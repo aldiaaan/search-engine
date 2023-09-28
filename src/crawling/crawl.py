@@ -2,6 +2,7 @@ from src.database.database import Database
 from src.crawling.methods.modified_similarity_based import ModifiedSimilarityBased
 from src.crawling.crawl_utils import CrawlUtils
 from src.crawling.methods.breadth_first_search import BreadthFirstSearch
+from  src.constants.variables import CRAWLER_STATUS_RUNNING, CRAWLER_STATUS_STOPPED
 import queue
 import time
 import bs4
@@ -66,7 +67,9 @@ class Crawl:
 
         db_connection = self.db.connect()
         if self.status.lower() == "start":
+            print("starting over...")
             self.db.truncate_tables()
+            print("done removing.")
         self.visited_urls = self.crawl_utils.get_visited_urls(db_connection)
         self.page_count_start = self.db.count_rows(db_connection, "page_information")
 
@@ -86,7 +89,7 @@ class Crawl:
         urls_string = urls_string[0 : len(urls_string) - 1]
 
         crawl_id = self.crawl_utils.insert_crawling(
-            db_connection, urls_string, "", 0, (self.bfs_duration_sec + self.msb_duration_sec)
+            db_connection, urls_string, "", 0, (self.bfs_duration_sec + self.msb_duration_sec), self.bfs_duration_sec, CRAWLER_STATUS_RUNNING
         )
         db_connection.close()
 
@@ -114,7 +117,7 @@ class Crawl:
         page_count = self.page_count_end - self.page_count_start
         time_now = time.time() - self.start_time
         duration_crawl = int(time_now)
-        self.crawl_utils.update_crawling(db_connection, crawl_id, page_count, duration_crawl)
+        self.crawl_utils.update_crawling(db_connection, crawl_id, page_count, duration_crawl, CRAWLER_STATUS_STOPPED)
         db_connection.close()
-
+        print("crawl->run() done")
         return page_count

@@ -9,8 +9,8 @@ bp_crawling = Blueprint("crawling", __name__)
 processes = []
 
 
-def start_crawling_task(start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
-    c = Crawl(start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
+def start_crawling_task(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
+    c = Crawl(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
     c.run()
 
 
@@ -18,8 +18,12 @@ def start_crawling_task(start_urls, max_threads, bfs_duration_sec, msb_duration_
 def start_crawling():
     try:
         crawler_duration_sec = request.args.get("duration", default="", type=str)
-        start_urls = os.getenv("CRAWLER_START_URLS").split()
+        crawler_act = request.args.get("status", default="resume", type=str)
+        start_urls = request.args.getlist("urls[]")
+        # start_urls = os.getenv("CRAWLER_START_URLS").split()
         max_threads = os.getenv("CRAWLER_MAX_THREADS")
+        # print(crawler_start_urls)
+        # return 200
         try:
             msb_keyword = os.getenv("CRAWLER_KEYWORD")
         except:
@@ -31,10 +35,9 @@ def start_crawling():
         else:
             bfs_duration_sec = int(crawler_duration_sec)
             msb_duration_sec = 0
-
         process = multiprocessing.Process(
             target=start_crawling_task,
-            args=("resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
+            args=(crawler_act,start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
         )
         process.start()
         processes.append(process)
@@ -56,12 +59,6 @@ def start_crawling():
 @bp_crawling.route("/stop")
 def stop_crawling():
     try:
-        for process in processes:
-            process.terminate()
-            process.join()
-
-        processes.clear()
-
         response = {
             "ok": True,
             "message": "Sukses",
@@ -123,6 +120,33 @@ def get_page_information():
         return {
             "ok": False,
             "message": e,
+        }, 500
+
+
+@bp_crawling.route("/crawlers", methods=["GET"])
+def get_crawler_details():
+    try:
+        start = request.args.get("start", default="", type=int)
+        length = request.args.get("length", default="", type=int)
+        
+        crawl_utils = CrawlUtils()
+
+        crawlers, pagination = crawl_utils.get_crawlers(start, length)
+
+        response = {
+            "data": {
+                "crawlers": crawlers,
+                "pagination": pagination
+            }
+        }
+        
+        json_obj = json.dumps(response, indent=4, default=str)
+        return json.loads(json_obj), 200
+
+    except Exception as e:
+        print(e)
+        return {
+            "ok": False,
         }, 500
 
 

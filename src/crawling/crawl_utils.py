@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor
 import queue
 import pymysql
 from src.database.database import Database
+import math
 
 
 class CrawlUtils:
@@ -253,7 +254,7 @@ class CrawlUtils:
         db_cursor.close()
 
     def insert_crawling(
-        self, db_connection: pymysql.Connection, start_urls: str, keyword: str, total_page: int, duration: int
+        self, db_connection: pymysql.Connection, start_urls: str, keyword: str, total_page: int, duration: int, start_time: int, status: str
     ) -> int:
         """
         Fungsi untuk menyimpan data crawling yang sudah dilakukan ke dalam database.
@@ -270,8 +271,8 @@ class CrawlUtils:
         """
         db_connection.ping()
         db_cursor = db_connection.cursor()
-        query = "INSERT INTO `crawling` (`start_urls`, `keyword`, `total_page`, `duration_crawl`) VALUES (%s, %s, %s, SEC_TO_TIME(%s))"
-        db_cursor.execute(query, (start_urls, keyword, total_page, duration))
+        query = "INSERT INTO `crawling` (`start_urls`, `keyword`, `total_page`, `duration_crawl`, `start_time`, `status`) VALUES (%s, %s, %s, SEC_TO_TIME(%s), SEC_TO_TIME(%s), %s)"
+        db_cursor.execute(query, (start_urls, keyword, total_page, duration, start_time, status))
         inserted_id = db_cursor.lastrowid
         db_cursor.close()
         return inserted_id
@@ -292,7 +293,7 @@ class CrawlUtils:
         db_cursor.close()
 
     def update_crawling(
-        self, db_connection: pymysql.Connection, crawl_id: int, total_page: int, duration_crawl: int
+        self, db_connection: pymysql.Connection, crawl_id: int, total_page: int, duration_crawl: int, status: str
     ) -> None:
         """
         Fungsi untuk memperbarui data crawling ke dalam database.
@@ -304,8 +305,8 @@ class CrawlUtils:
         """
         db_connection.ping()
         db_cursor = db_connection.cursor()
-        query = "UPDATE `crawling` SET `total_page` = %s, `duration_crawl` = SEC_TO_TIME(%s) WHERE `id_crawling` = %s"
-        db_cursor.execute(query, (total_page, duration_crawl, crawl_id))
+        query = "UPDATE `crawling` SET `total_page` = %s, `status` = %s , `duration_crawl` = SEC_TO_TIME(%s) WHERE `id_crawling` = %s"
+        db_cursor.execute(query, (total_page, status, duration_crawl, crawl_id))
         db_cursor.close()
 
     def get_visited_urls(self, db_connection: pymysql.Connection) -> list:
@@ -372,6 +373,26 @@ class CrawlUtils:
         db_cursor.close()
         db.close_connection(db_connection)
         return rows
+    
+    def get_crawlers(self, start = 0, length = 20):
+        db = Database()
+        print(start, length)
+        db_connection = db.connect()
+        db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
+        db_cursor.execute("SELECT * FROM `crawling` LIMIT %s, %s", (start, length))
+        rows = db_cursor.fetchall()
+        db_cursor.execute("SELECT COUNT(*) as total FROM `crawling`")
+        total = db_cursor.fetchall()[0]["total"]
+        pagination = {
+            "current_page": math.floor(start / length),
+            "last_page": math.floor(total / length),
+            "total": total,
+            "per_page": length
+        }
+
+        
+        db.close_connection(db_connection)
+        return rows, pagination
 
     def start_insert_api(self, start_urls: str, keyword: str, duration_crawl: int) -> int:
         """
