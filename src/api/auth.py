@@ -11,6 +11,6 @@ def create_new_account():
     try:
         token = Auth.create_auth_token(
             email=payload["email"], password=payload["password"])
-        return jsonify({"token": token}), 200
+        return jsonify({"data": {"token": token}}), 200
     except ServerException as e:
         return jsonify(e.to_json()), e.code

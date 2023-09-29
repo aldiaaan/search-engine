@@ -49,7 +49,7 @@ class Account:
     accounts = cursor.fetchall() 
 
     if len(accounts) == 0:
-      raise NotFoundException("Account not found")
+      return None
     
     account = accounts[0]
 
