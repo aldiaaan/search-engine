@@ -19,6 +19,18 @@ class Webpage:
             "keywords": self.keywords,
             "pagerank_score": self.pagerank_score
         }
+    
+    # get total size of all crawled webpages in byte(s)
+    def get_total_size():
+        db = Database()
+        connection = db.connect()
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
+        query = "SELECT SUM(size_bytes) as total FROM page_information pi2 "
+        cursor.execute(query)
+        
+        size = int(cursor.fetchall()[0].get("total"))
+
+        return size
 
     def find(options: dict = {
         "limit": 10,

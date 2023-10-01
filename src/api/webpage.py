@@ -18,6 +18,7 @@ def get_webpages():
         "data": list(map(lambda x: x.to_dict(), webpages)),
         "pagination": {
             "total": total,
+            "size": Webpage.get_total_size(),
             "pages": math.ceil(total / int(request.args.get("limit") or 10)),
             "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
         }
