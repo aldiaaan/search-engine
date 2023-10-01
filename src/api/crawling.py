@@ -1,21 +1,58 @@
 from flask import Blueprint, request
 from src.crawling.crawl import Crawl
 from src.crawling.crawl import CrawlUtils
+from src.domain import Domain
+from src.webpage import Webpage
 import multiprocessing
 import json
+from threading import Thread
+import time
 import os
 
 bp_crawling = Blueprint("crawling", __name__)
 processes = []
 
+IS_CRAWLING_RUNNING = False
 
-def start_crawling_task(start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
-    c = Crawl(start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
+def crawling_task_checker(event, kill_event):
+    
+    print("[checker thread] waiting for crawling task finished...")
+    event.wait()
+    print("[checker thread] crawling task done, clearing...")
+    processes.clear()
+    kill_event.set()
+    print("[checker thread] all done, processes cleared!")
+
+def start_crawling_task(event, status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
+    c = Crawl(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
+    
+    print("starting running crawling task")
     c.run()
+    event.set()
 
+@bp_crawling.route("info")
+def get_crawling_info():
+
+    _, total_domains = Domain.find()
+    _, total_webpages = Webpage.find()
+
+    return {
+        "status": "RUNNING" if len(processes) > 0 else "IDLE",
+        "start_time": processes[0]["start_time"] if len(processes) > 0 else -1,
+        "metrics": {
+            "total_domains": total_domains,
+            "total_webpages": total_webpages
+        }
+    }
 
 @bp_crawling.route("/start")
 def start_crawling():
+    
+    if len(processes) > 0:
+        return {
+            "msg": "Service is currently running!"
+        }
+    
     try:
         crawler_duration_sec = request.args.get("duration", default="", type=str)
         start_urls = os.getenv("CRAWLER_START_URLS").split()
@@ -32,12 +69,22 @@ def start_crawling():
             bfs_duration_sec = int(crawler_duration_sec)
             msb_duration_sec = 0
 
+        event = multiprocessing.Event()
+        kill_event = multiprocessing.Event()
+        
+
         process = multiprocessing.Process(
             target=start_crawling_task,
-            args=("resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
+            args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
         )
+
+        checker_thread = Thread(target=crawling_task_checker, args=(event, kill_event))
+        checker_thread.start()
         process.start()
-        processes.append(process)
+        processes.append({
+            "task": "crawling",
+            "start_time": time.time()
+        })
 
         response = {
             "ok": True,
@@ -47,9 +94,9 @@ def start_crawling():
         return json.loads(json_obj), 200
 
     except Exception as e:
+        print(e)
         return {
-            "ok": False,
-            "message": e,
+            "ok": False
         }, 500
 
 
