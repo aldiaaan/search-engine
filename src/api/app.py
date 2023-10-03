@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import os
+from flask_cors import CORS
 
 
 def run():
@@ -23,6 +24,9 @@ def run():
     app.register_blueprint(bp_auth, url_prefix="/api/" + api_version + "/auth")
     app.register_blueprint(bp_webpage, url_prefix="/api/" + api_version + "/webpages")
     app.register_blueprint(bp_domain, url_prefix="/api/" + api_version + "/domains")
+
+    
+    CORS(app)
 
     @app.route("/")
     def index():

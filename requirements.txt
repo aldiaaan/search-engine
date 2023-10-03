@@ -12,3 +12,4 @@ flask
 cryptography
 pyjwt
 bcrypt
+flask_cors

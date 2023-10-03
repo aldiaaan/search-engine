@@ -8,6 +8,7 @@ import json
 from threading import Thread
 import time
 import os
+import signal
 
 bp_crawling = Blueprint("crawling", __name__)
 processes = []
@@ -30,6 +31,20 @@ def start_crawling_task(event, status, start_urls, max_threads, bfs_duration_sec
     c.run()
     event.set()
 
+
+@bp_crawling.route("stop")
+def stop_crawler():
+    if len(processes) > 0:
+        os.kill(processes[0].get("pid"), signal.SIGTERM)
+        processes.clear()
+        print("process stopped")
+        return {
+            "message": "stopped"
+        }
+    return {
+        "message": "crawling service not running yet"
+    }
+
 @bp_crawling.route("info")
 def get_crawling_info():
 
@@ -39,9 +54,12 @@ def get_crawling_info():
     return {
         "status": "RUNNING" if len(processes) > 0 else "IDLE",
         "start_time": processes[0]["start_time"] if len(processes) > 0 else -1,
+        "end_time": processes[0]["end_time"] if len(processes) > 0 else -1,
+        "duration": processes[0]["duration"] if len(processes) > 0 else -1,
         "metrics": {
             "total_domains": total_domains,
-            "total_webpages": total_webpages
+            "total_webpages": total_webpages,
+            "total_webpages_size": Webpage.get_total_size()
         }
     }
 
@@ -81,9 +99,13 @@ def start_crawling():
         checker_thread = Thread(target=crawling_task_checker, args=(event, kill_event))
         checker_thread.start()
         process.start()
+        start_time = time.time()
         processes.append({
             "task": "crawling",
-            "start_time": time.time()
+            "start_time": start_time,
+            "end_time": start_time + int(crawler_duration_sec),
+            "duration": crawler_duration_sec,
+            "pid": process.pid
         })
 
         response = {
