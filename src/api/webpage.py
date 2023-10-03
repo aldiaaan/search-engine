@@ -12,9 +12,10 @@ def get_webpages():
     webpages, total = Webpage.find({
         "limit": int(request.args.get("limit") or 10),
         "start": int(request.args.get("start") or 0),
+        "query": request.args.get("query") or "",
         "sort_pagerank_score": request.args.get("sort_pagerank_score") or "DESC"
     })
-    return jsonify({
+    return {
         "data": list(map(lambda x: x.to_dict(), webpages)),
         "pagination": {
             "total": total,
@@ -22,4 +23,4 @@ def get_webpages():
             "pages": math.ceil(total / int(request.args.get("limit") or 10)),
             "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
         }
-    })
+    }
