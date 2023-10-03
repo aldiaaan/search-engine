@@ -35,14 +35,15 @@ class Webpage:
     def find(options: dict = {
         "limit": 10,
         "start": 0,
-        "sort_pagerank_score": "DESC"
+        "sort_pagerank_score": "DESC",
+        "query": ""
     }):
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        query = "SELECT * FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id ORDER BY pagerank_score {}  LIMIT %s OFFSET %s".format(options["sort_pagerank_score"])
+        query = """SELECT * FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}'  ORDER BY pagerank_score {}  LIMIT {} OFFSET {}""".format("%" + options["query"] + "%", options["sort_pagerank_score"], options["limit"], options["start"])
 
-        cursor.execute(query, (options["limit"], options["start"]))
+        cursor.execute(query)
 
         webpages = cursor.fetchall()
 
@@ -51,7 +52,7 @@ class Webpage:
 
         webpages = list(map(mapper, webpages))
 
-        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id "
+        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '%{}%'   "
         
         cursor.execute(query)
 
