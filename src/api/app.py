@@ -12,6 +12,7 @@ def run():
     from src.api.account import bp_account
     from src.api.auth import bp_auth
     from src.api.webpage import bp_webpage
+    from src.api.domain import bp_domain
 
     api_version = os.getenv("API_VERSION")
     app.register_blueprint(bp_crawling, url_prefix="/api/" + api_version + "/crawling")
@@ -21,6 +22,7 @@ def run():
     app.register_blueprint(bp_account, url_prefix="/api/" + api_version + "/account")
     app.register_blueprint(bp_auth, url_prefix="/api/" + api_version + "/auth")
     app.register_blueprint(bp_webpage, url_prefix="/api/" + api_version + "/webpages")
+    app.register_blueprint(bp_domain, url_prefix="/api/" + api_version + "/domains")
 
     @app.route("/")
     def index():
