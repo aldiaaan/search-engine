@@ -12,12 +12,14 @@ def get_domains():
     domains, total = Domain.find({
         "limit": int(request.args.get("limit") or 10),
         "start": int(request.args.get("start") or 0),
-        "sort_total_pages": request.args.get("sort_total_pages") or "DESC"
+        "sort_total_pages": request.args.get("sort_total_pages") or "DESC",
+        "query": request.args.get("query")
     })
     return jsonify({
         "data": list(map(lambda x: x.to_dict(), domains)),
         "pagination": {
             "total": total,
+            "limit": int(request.args.get("limit") or 10),
             "pages": math.ceil(total / int(request.args.get("limit") or 10)),
             "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
         }

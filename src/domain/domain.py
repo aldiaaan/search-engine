@@ -24,12 +24,13 @@ class Domain:
     def find(options: dict = {
         "limit": 10,
         "start": 0,
+        "query": "",
         "sort_total_pages": "DESC"
     }):
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 GROUP BY name ORDER BY total_pages {} LIMIT %s OFFSET %s""".format(options.get("sort_total_pages"))
+        query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 WHERE url LIKE '{}' GROUP BY name ORDER BY total_pages {} LIMIT %s OFFSET %s""".format("%" + options.get("query") + "%", options.get("sort_total_pages"))
         cursor.execute(query, (options["limit"], options["start"]))
 
         domains = cursor.fetchall()
