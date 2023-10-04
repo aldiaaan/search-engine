@@ -13,7 +13,7 @@ def get_domains():
         "limit": int(request.args.get("limit") or 10),
         "start": int(request.args.get("start") or 0),
         "sort_total_pages": request.args.get("sort_total_pages") or "DESC",
-        "query": request.args.get("query")
+        "query": request.args.get("query") or ""
     })
     return jsonify({
         "data": list(map(lambda x: x.to_dict(), domains)),

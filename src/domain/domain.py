@@ -30,8 +30,8 @@ class Domain:
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 WHERE url LIKE '{}' GROUP BY name ORDER BY total_pages {} LIMIT %s OFFSET %s""".format("%" + options.get("query") + "%", options.get("sort_total_pages"))
-        cursor.execute(query, (options["limit"], options["start"]))
+        query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 GROUP BY name  HAVING name LIKE '{}'  ORDER BY total_pages {}  LIMIT {} OFFSET {}""".format("%" + options["query"] + "%", options.get("sort_total_pages"), options["limit"], options["start"])
+        cursor.execute(query)
 
         domains = cursor.fetchall()
 
@@ -45,9 +45,9 @@ class Domain:
                 country = countries[0]
             return Domain(name=row.get("name"), country=country, total_pages=row.get("total_pages"))
 
-        query = """SELECT COUNT(*) OVER () AS total,  SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 group by name"""
+        query = """SELECT COUNT(*) OVER () AS total,  SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 group by name  HAVING name LIKE '{}'""".format("%" + options.get("query") + "%")
         cursor.execute(query)
 
-        total = cursor.fetchall()[0].get("total")
+        total = cursor.fetchall()[0].get("total") if len(cursor.fetchall()) != 0 else 0
 
         return list(map(mapper, domains)), total
