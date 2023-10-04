@@ -54,7 +54,7 @@ class Webpage:
 
         webpages = list(map(mapper, webpages))
 
-        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}'".format(options["query"])
+        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}'".format("%" + options["query"] + "%")
         
         cursor.execute(query)
 
