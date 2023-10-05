@@ -45,22 +45,27 @@ def stop_crawler():
         "message": "crawling service not running yet"
     }
 
-@bp_crawling.route("info")
-def get_crawling_info():
-
-    _, total_domains = Domain.find()
-    _, total_webpages = Webpage.find()
+@bp_crawling.route("status")
+def get_crawling_status():
 
     return {
         "status": "RUNNING" if len(processes) > 0 else "IDLE",
         "start_time": processes[0]["start_time"] if len(processes) > 0 else -1,
         "end_time": processes[0]["end_time"] if len(processes) > 0 else -1,
-        "duration": processes[0]["duration"] if len(processes) > 0 else -1,
-        "metrics": {
-            "total_domains": total_domains,
-            "total_webpages": total_webpages,
-            "total_webpages_size": Webpage.get_total_size()
-        }
+        "duration": processes[0]["duration"] if len(processes) > 0 else -1,        
+    }
+
+
+@bp_crawling.route("metrics")
+def get_crawling_info():
+
+    _, total_domains = Domain.find()
+    _, total_webpages = Webpage.find()
+
+    return {        
+        "total_domains": total_domains,
+        "total_webpages": total_webpages,
+        "total_webpages_size": Webpage.get_total_size()
     }
 
 @bp_crawling.route("/start")
