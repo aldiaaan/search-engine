@@ -50,7 +50,7 @@ class Webpage:
         webpages = cursor.fetchall()
 
         def mapper(page):
-            return Webpage(title=page.get("title"), url=page.get("url"), pagerank_score=page.get("pagerank_score"), keywords=page.get("keywords").split(","), total_words=page.get("total_words"))
+            return Webpage(title=page.get("title"), url=page.get("url"), pagerank_score=page.get("pagerank_score"), keywords=[], total_words=page.get("total_words"))
 
         webpages = list(map(mapper, webpages))
 
