@@ -59,8 +59,19 @@ def get_crawling_status():
 @bp_crawling.route("metrics")
 def get_crawling_info():
 
-    _, total_domains = Domain.find()
-    _, total_webpages = Webpage.find()
+    _, total_domains = Domain.find({
+        "with_country": False,
+        "query": "",
+        "limit": 18446744073709551610,
+        "start": 0,
+        "sort_total_pages": "DESC"
+    })
+    _, total_webpages = Webpage.find({
+        "query": "",
+        "limit": 18446744073709551610,
+        "start": 0,
+        "sort_pagerank_score": "DESC"
+    })
 
     return {        
         "total_domains": total_domains,

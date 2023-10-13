@@ -44,9 +44,10 @@ class Webpage:
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
         query = """SELECT *, COUNT(*) as total_words FROM page_information pi join tfidf_word tw on tw.page_id = pi.id_page JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}' GROUP BY pi.url  ORDER BY pagerank_score {}  LIMIT {} OFFSET {}""".format("%" + options["query"] + "%", options["sort_pagerank_score"], options["limit"], options["start"])
-
+        print(query)
+        print(options)
         cursor.execute(query)
-
+        
         webpages = cursor.fetchall()
 
         def mapper(page):
@@ -54,7 +55,7 @@ class Webpage:
 
         webpages = list(map(mapper, webpages))
 
-        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}'".format("%" + options["query"] + "%")
+        query = "SELECT COUNT(*) as total FROM page_information pi JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}'".format("%" + options.get("query") + "%")
         
         cursor.execute(query)
         result = cursor.fetchall()
