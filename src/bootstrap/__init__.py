@@ -1,0 +1,1 @@
+from src.bootstrap.collect_domains import *

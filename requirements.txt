@@ -13,3 +13,4 @@ cryptography
 pyjwt
 bcrypt
 flask_cors
+geoip2
