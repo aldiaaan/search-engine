@@ -62,10 +62,7 @@ def get_all_similarity_for_api(keyword, sort, start=None, length=None):
         db_cursor.close()
 
         query = f'SELECT COUNT(*) as total, `page_information`.`title`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, ({tf_idf_percentage} * `tfidf`.`tfidf_total`) + ({page_rank_percentage} * `pagerank`.`pagerank_score`) AS `similarity_score`, `tfidf`.`tfidf_total`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
-
-        if start is not None and length is not None:
-            query += f" LIMIT {start}, {length}"
-
+        
         db_connection = Database().connect()
         db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
         db_cursor.execute(query)
