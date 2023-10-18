@@ -17,6 +17,18 @@ class Account:
     self.role = role
     self.password = password
 
+  
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "first_name": self.first_name,
+      "full_name": "{} {}".format(self.first_name, self.last_name),
+      "last_name": self.last_name,
+      "role": self.role,
+      "email": self.email
+    }
+
+
   def to_json(self):
     return {
       "id": self.id,
@@ -26,6 +38,23 @@ class Account:
       "role": self.role,
       "email": self.email
     }
+  
+  def delete(self):
+
+    if self.id is None:
+      return
+    
+    connection = self.db.connect()
+    cursor = connection.cursor()
+
+    query = "DELETE FROM accounts WHERE id = {}".format(self.id)
+
+    try:
+      cursor.execute(query)
+      return True
+    except:
+      return None
+    
 
   def save(self):
     connection = self.db.connect()
@@ -37,6 +66,26 @@ class Account:
     self.id = cursor.lastrowid
 
     return self
+  
+  def update(self):
+    query = "UPDATE accounts SET "
+    if self.first_name is not None:
+      query += "first_name = '{}', ".format(self.first_name)
+    if self.last_name is not None:
+      query += "last_name = '{}', ".format(self.last_name)
+    if self.role is not None and self.role in ['root', 'staff']:
+      query += "role = '{}'".format(self.role)
+
+    query += "WHERE id = {} ".format(self.id)
+
+  
+    connection = self.db.connect()
+    cursor = connection.cursor()
+
+    cursor.execute(query)
+    cursor.close()
+
+    return
   
   def get(self):
 
@@ -53,4 +102,4 @@ class Account:
     
     account = accounts[0]
 
-    return Account(password=account["password"], first_name=account["first_name"], last_name=account["last_name"], role=account["role"], email=account["email"])
+    return Account(id=account["id"], password=account["password"], first_name=account["first_name"], last_name=account["last_name"], role=account["role"], email=account["email"])

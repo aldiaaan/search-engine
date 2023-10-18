@@ -6,6 +6,9 @@ from flask_cors import CORS
 def run():
     app = Flask(__name__)
 
+    
+    CORS(app)
+            
     from src.api.crawling import bp_crawling
     from src.api.page_ranking import bp_page_ranking
     from src.api.document_ranking import bp_document_ranking
@@ -14,9 +17,11 @@ def run():
     from src.api.auth import bp_auth
     from src.api.webpage import bp_webpage
     from src.api.domain import bp_domain
+    from src.api.profile import bp_profile
 
     api_version = os.getenv("API_VERSION")
     app.register_blueprint(bp_crawling, url_prefix="/api/" + api_version + "/crawling")
+    # app.register_blueprint(bp_profile, url_prefix="/api/" + api_version + "/profile")
     app.register_blueprint(bp_page_ranking, url_prefix="/api/" + api_version + "/page_ranking")
     app.register_blueprint(bp_document_ranking, url_prefix="/api/" + api_version + "/document_ranking")
     app.register_blueprint(bp_overall_ranking, url_prefix="/api/" + api_version + "/overall_ranking")
@@ -26,7 +31,6 @@ def run():
     app.register_blueprint(bp_domain, url_prefix="/api/" + api_version + "/domains")
 
     
-    CORS(app)
 
     @app.route("/")
     def index():

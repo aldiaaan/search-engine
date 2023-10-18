@@ -5,6 +5,16 @@ import bcrypt
 
 
 class Auth:
+    def verify(token: str):     
+        try:              
+            decoded = jwt.decode(token, "secret", algorithms=["HS256"])       
+            account = Account(email=decoded.get("email")).get()
+            if account is None:
+                raise Exception("account not found")
+            return account
+        except Exception as e:
+            return None
+    
     def create_auth_token(email: str, password: str):
 
         account = Account(email=email, password=password).get()
