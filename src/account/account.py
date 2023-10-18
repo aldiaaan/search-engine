@@ -39,6 +39,36 @@ class Account:
       "email": self.email
     }
   
+  def find(options: dict = dict()):
+    start = options.get('start') or 0
+    length = options.get('length') or 20
+    query = options.get('query') or ""
+
+    sql = "SELECT * FROM accounts WHERE email LIKE '%{}%' LIMIT {} OFFSET {}".format(query, length, start * length)
+
+  
+    connection = Database().connect()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
+
+    cursor.execute(sql)
+    accounts = cursor.fetchall()
+
+    sql = "SELECT COUNT(*) as total FROM accounts WHERE email LIKE '%{}%'".format(query)
+    cursor.execute(sql)
+    _accounts = cursor.fetchall()
+
+    total = 0
+
+    if len(_accounts) > 0:
+      total = _accounts[0].get('total')
+
+
+    def mapper(account):
+      return Account(email=account.get('email'), id=account.get('id'), first_name=account.get('first_name'), last_name=account.get('last_name'), role=account.get('role')).to_dict()
+
+
+    return list(map(mapper, accounts)), total
+  
   def delete(self):
 
     if self.id is None:

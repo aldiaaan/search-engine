@@ -25,7 +25,7 @@ def run():
     app.register_blueprint(bp_page_ranking, url_prefix="/api/" + api_version + "/page_ranking")
     app.register_blueprint(bp_document_ranking, url_prefix="/api/" + api_version + "/document_ranking")
     app.register_blueprint(bp_overall_ranking, url_prefix="/api/" + api_version + "/overall_ranking")
-    app.register_blueprint(bp_account, url_prefix="/api/" + api_version + "/account")
+    app.register_blueprint(bp_account, url_prefix="/api/" + api_version + "/accounts")
     app.register_blueprint(bp_auth, url_prefix="/api/" + api_version + "/auth")
     app.register_blueprint(bp_webpage, url_prefix="/api/" + api_version + "/webpages")
     app.register_blueprint(bp_domain, url_prefix="/api/" + api_version + "/domains")

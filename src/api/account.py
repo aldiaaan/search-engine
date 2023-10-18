@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from src.account import Account
 from src.auth import Auth
 from functools import wraps
+import math
 
 bp_account = Blueprint("account", __name__)
 
@@ -40,6 +41,22 @@ def login_required(f):
         kwargs['account'] = account
         return f(*args, **kwargs)
     return wrap
+
+@bp_account.route("/", methods=["GET"])
+@login_required
+# @roles_needed(['root'])
+def get_accounts(account):
+    accounts, total = Account.find({'query': request.args.get('query') or None})
+
+    return jsonify({
+        "data": accounts,
+        "pagination": {
+            "total": total,
+            "limit": int(request.args.get("limit") or 20),
+            "pages": math.ceil(total / int(request.args.get("limit") or 20)),
+            "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
+        }
+    })
 
 @bp_account.route("/create", methods=["POST"])
 def create_new_account():
