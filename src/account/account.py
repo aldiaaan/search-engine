@@ -41,12 +41,12 @@ class Account:
   
   def find(options: dict = dict()):
     start = options.get('start') or 0
-    length = options.get('length') or 20
+    limit = options.get('limit') or 20
     query = options.get('query') or ""
 
-    sql = "SELECT * FROM accounts WHERE email LIKE '%{}%' LIMIT {} OFFSET {}".format(query, length, start * length)
 
-  
+    sql = "SELECT * FROM accounts WHERE email LIKE '%{}%' LIMIT {} OFFSET {}".format(query, limit, start)
+
     connection = Database().connect()
     cursor = connection.cursor(pymysql.cursors.DictCursor)
 

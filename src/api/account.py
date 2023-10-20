@@ -46,7 +46,7 @@ def login_required(f):
 @login_required
 # @roles_needed(['root'])
 def get_accounts(account):
-    accounts, total = Account.find({'query': request.args.get('query') or None})
+    accounts, total = Account.find({'query': request.args.get('query') or None, 'limit': int(request.args.get('limit')) or 10, 'start': int(request.args.get('start')) or 0})
 
     return jsonify({
         "data": accounts,
@@ -56,7 +56,7 @@ def get_accounts(account):
             "pages": math.ceil(total / int(request.args.get("limit") or 20)),
             "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
         }
-    })
+    }), 200
 
 @bp_account.route("/create", methods=["POST"])
 def create_new_account():
@@ -91,9 +91,9 @@ def update_account(account_id, account):
     return jsonify({"message": "ok"}), 200
 
 
-@bp_account.route("/<account_id>/delete", methods=["DELETE"])
+@bp_account.route("/<account_id>/delete/", methods=["DELETE"])
 @login_required
-@roles_needed(['root'])
+# @roles_needed(['root'])
 def delete_account(account_id, account):
     Account(id=account_id).delete()
     return jsonify({"message": "ok"}), 200
