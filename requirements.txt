@@ -1,9 +1,16 @@
 beautifulsoup4
-requests
+bitarray
+cryptography
+flask
+matplotlib
+numpy
 pandas
+pdoc3
+psutil
 pymysql
 python-dotenv
-psutil
+requests
+simphile
 sklearn
 numpy
 pdoc3
@@ -14,3 +21,4 @@ pyjwt
 bcrypt
 flask_cors
 geoip2
+suffix-tree
