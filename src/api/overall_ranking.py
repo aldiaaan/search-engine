@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from src.overall_ranking.similarity import get_all_similarity_for_api
 import json
+import math
 
 bp_overall_ranking = Blueprint(
     "overall_ranking",
@@ -23,13 +24,19 @@ def get_similarity_ranks():
             }
         else:
             if start != "" and length != "":
-                data = get_all_similarity_for_api(keyword, sort, int(start), int(length))
+                data, total = get_all_similarity_for_api(keyword, sort, int(start), int(length))
             else:
-                data = get_all_similarity_for_api(keyword, sort)
+                data, total = get_all_similarity_for_api(keyword, sort)
+                print(total)
             response = {
                 "ok": True,
                 "message": "Sukses",
                 "data": data,
+                "pagination": {
+                    "total": total,
+                    "pages": math.ceil(total / int(length)),
+                    "per_page": int(length)
+                }
             }
         json_obj = json.dumps(response, indent=4, default=str)
         return json.loads(json_obj), 200
