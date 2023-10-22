@@ -10,6 +10,7 @@ from re import match, sub
 from typing import Dict, List, Tuple, TypedDict, Union
 
 import pymysql
+import bs4
 import pymysql.cursors
 from bitarray import bitarray
 from bitarray.util import ba2int
@@ -17,6 +18,7 @@ from simphile import jaccard_similarity  #type: ignore
 
 from src.database.database import Database  #type: ignore
 from src.indexing.gst import GST
+from src.crawling.crawl_utils import CrawlUtils
 
 # TODO should be on crawling
 FILTERED_CHAR = ['\r\n\xa0', '\\']
@@ -255,6 +257,24 @@ class Indexer:
                  "gst", "documentPersistence", "wordPersistence",
                  "treePersistence", "docWordCountPersistence" ,"sock",
                  "documentBlacklist", "wordDocCount")
+    
+    def collect_paragraphs(): 
+        try:
+            soup = bs4.BeautifulSoup(response.text, "html.parser")
+            for paragraph in soup.findAll("p"):
+                if paragraph.string is None:
+                    pass
+                # Skip if it's only single character and it's not
+                # alphanumeric (symbols or space)
+                if len(str(paragraph.string)) == 1 and not str(
+                        paragraph.string).isalnum():
+                    pass
+                paragraph.string = paragraph.string.replace(
+                    '\r\n\xa0', ' ')
+                CrawlUtils().insert_page_paragraph(
+                    Database().connect(), page_id, paragraph.string)
+        except:
+            pass
 
     def __init__(self, db: Database, status: str, useGST: str,
                  barrelMode: str) -> None:

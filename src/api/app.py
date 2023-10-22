@@ -19,9 +19,11 @@ def run():
     from src.api.domain import bp_domain
     from src.api.profile import bp_profile
     from src.api.analytics import bp_analytics
+    from src.api.words import bp_words
 
     api_version = os.getenv("API_VERSION")
     app.register_blueprint(bp_crawling, url_prefix="/api/" + api_version + "/crawling")
+    app.register_blueprint(bp_words, url_prefix="/api/" + api_version + "/words")
     # app.register_blueprint(bp_profile, url_prefix="/api/" + api_version + "/profile")
     app.register_blueprint(bp_page_ranking, url_prefix="/api/" + api_version + "/page_ranking")
     app.register_blueprint(bp_document_ranking, url_prefix="/api/" + api_version + "/document_ranking")
