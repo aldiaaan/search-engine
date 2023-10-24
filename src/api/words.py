@@ -18,6 +18,28 @@ def get_overall_wordclouds():
   response.mimetype = "image/png"
   return response
 
+@bp_words.route("/occurrences", methods=["GET"])
+def get_occurences():
+    start = int(request.args.get('start') or 0)
+    limit = int(request.args.get('limit') or 20)
+    word = request.args.get('word') or ''
+
+    words, total = Word.occurrences(options={
+        'start': start,
+        'limit': limit,
+        'word': word
+    })
+
+    return {
+        'data': words,
+        'pagination': {
+            'total': total,
+            'pages': math.ceil(total / limit),
+            'limit': limit
+        },
+        'message': 'ok'
+    }, 200
+
 
 @bp_words.route("/", methods=["GET"])
 def get_words():

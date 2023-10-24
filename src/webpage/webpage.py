@@ -3,11 +3,11 @@ from src.common.errors import ServerException, NotFoundException
 from src.database.database import Database
 import pymysql
 
-
 class Webpage:
 
-    def __init__(self, total_words: int = 0, title: str = None, url: str = None, pagerank_score: int = -1, keywords: tuple = tuple()):
+    def __init__(self, id = 0, total_words: int = 0, title: str = None, url: str = None, pagerank_score: int = -1, keywords: tuple = tuple()):
         self.title = title
+        self.id = id
         self.keywords = keywords
         self.pagerank_score = pagerank_score
         self.url = url
@@ -19,7 +19,8 @@ class Webpage:
             "title": self.title,
             "url": self.url,
             "keywords": self.keywords,
-            "pagerank_score": self.pagerank_score
+            "pagerank_score": self.pagerank_score,
+            "id": self.id
         }
     
     # get total size of all crawled webpages in byte(s)
@@ -51,7 +52,7 @@ class Webpage:
         webpages = cursor.fetchall()
 
         def mapper(page):
-            return Webpage(title=page.get("title"), url=page.get("url"), pagerank_score=page.get("pagerank_score"), keywords=[], total_words=page.get("total_words"))
+            return Webpage(id=page.get('id_page'), title=page.get("title"), url=page.get("url"), pagerank_score=page.get("pagerank_score"), keywords=[], total_words=page.get("total_words"))
 
         webpages = list(map(mapper, webpages))
 

@@ -12,11 +12,16 @@ class Database:
     def __init__(self) -> None:
         self.host: str = str(os.getenv("DB_HOST"))
         self.username: str = str(os.getenv("DB_USERNAME"))
-        self.password: str = str(os.getenv("DB_PASSWORD"))
+        self.password: str = str(os.getenv("DB_PASSWORD") or "")
         self.db_name: str = str(os.getenv("DB_NAME"))
         self.db_port: int = int(str(os.getenv("DB_PORT")))
 
     def connect(self) -> pymysql.Connection:
+        print(self.host)
+        print(self.username)
+        print(self.password)
+        print(self.db_name)
+        print(self.db_port)
         """
         Fungsi untuk melakukan koneksi ke database.
 

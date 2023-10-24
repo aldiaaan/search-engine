@@ -7,7 +7,7 @@ import math
 bp_domain = Blueprint("domain", __name__)
 
 
-@bp_domain.route("/xx")
+@bp_domain.route("/", methods=["GET"])
 def get_domains():
     domains, total = Domain.find({
         "limit": int(request.args.get("limit") or 10),

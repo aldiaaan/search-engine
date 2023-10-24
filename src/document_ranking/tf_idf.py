@@ -155,13 +155,11 @@ def get_all_tfidf_for_api(keyword, start=None, length=None):
     saved_tfidf = get_all_saved_tfidf(db_connection, keyword, start, length)
     return saved_tfidf
 
-
 def run_background_service():
     """
     Fungsi utama yang digunakan untuk melakukan pembobotan kata pada dokumen menggunakan metode TF-IDF.
     """
     db_connection = Database().connect()
-
     # Ambil semua data halaman yang sudah di crawl ke dalam pandas dataframe
     query = "SELECT * FROM `page_information`"
     df = pd.read_sql(query, db_connection)
