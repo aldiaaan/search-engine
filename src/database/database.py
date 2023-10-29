@@ -17,11 +17,6 @@ class Database:
         self.db_port: int = int(str(os.getenv("DB_PORT")))
 
     def connect(self) -> pymysql.Connection:
-        print(self.host)
-        print(self.username)
-        print(self.password)
-        print(self.db_name)
-        print(self.db_port)
         """
         Fungsi untuk melakukan koneksi ke database.
 

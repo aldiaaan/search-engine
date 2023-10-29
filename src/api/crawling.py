@@ -8,6 +8,7 @@ import json
 from threading import Thread
 import time
 import os
+import multiprocessing
 import signal
 
 bp_crawling = Blueprint("crawling", __name__)
@@ -45,6 +46,12 @@ def stop_crawler():
         "message": "crawling service not running yet"
     }
 
+@bp_crawling.route('specs')
+def get_specs():
+    return {
+        "available_cpus": multiprocessing.cpu_count() 
+    }, 200
+
 @bp_crawling.route("status")
 def get_crawling_status():
 
@@ -52,7 +59,8 @@ def get_crawling_status():
         "status": "RUNNING" if len(processes) > 0 else "IDLE",
         "start_time": processes[0]["start_time"] if len(processes) > 0 else -1,
         "end_time": processes[0]["end_time"] if len(processes) > 0 else -1,
-        "duration": processes[0]["duration"] if len(processes) > 0 else -1,        
+        "duration": int(processes[0]["duration"]) if len(processes) > 0 else -1,
+        "threads": processes[0]["threads"] if len(processes) > 0 else -1        
     }
 
 
@@ -76,7 +84,8 @@ def get_crawling_info():
     return {        
         "total_domains": total_domains,
         "total_webpages": total_webpages,
-        "total_webpages_size": Webpage.get_total_size()
+        "total_webpages_size": Webpage.get_total_size(),
+        "domains_stats": Domain.get_stats()
     }
 
 @bp_crawling.route("/start")
@@ -90,7 +99,7 @@ def start_crawling():
     try:
         crawler_duration_sec = request.args.get("duration", default="", type=str)
         start_urls = os.getenv("CRAWLER_START_URLS").split()
-        max_threads = os.getenv("CRAWLER_MAX_THREADS")
+        max_threads = int(request.args.get('threads')) or os.getenv("CRAWLER_MAX_THREADS")
         try:
             msb_keyword = os.getenv("CRAWLER_KEYWORD")
         except:
@@ -121,7 +130,8 @@ def start_crawling():
             "start_time": start_time,
             "end_time": start_time + int(crawler_duration_sec),
             "duration": crawler_duration_sec,
-            "pid": process.pid
+            "pid": process.pid,
+            "threads": int(request.args.get('threads'))
         })
 
         response = {

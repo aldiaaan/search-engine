@@ -7,6 +7,7 @@ import time
 import os
 import signal
 import json
+from src.document_ranking.service import DocumentRankingService
 
 bp_document_ranking = Blueprint(
     "document_ranking",
@@ -26,8 +27,9 @@ def document_ranking_task_checker(event, kill_event):
     print("[checker thread] all done, handles cleared!")
 
 
-def document_ranking_task(event):
-    run_background_service()
+def document_ranking_task(event, type, options):
+    
+    DocumentRankingService(type).run(options)
 
     event.set()
 
@@ -48,9 +50,15 @@ def stop_task():
 @bp_document_ranking.route("status", methods=["GET"])
 def get_task_status():
 
+    if len(handles) == 0:
+        return {
+            "status": "IDLE",
+        }, 200
+
     return {
         "status": "RUNNING" if len(handles) > 0 else "IDLE",
         "start_time": handles[0]["start_time"] if len(handles) > 0 else -1,
+        "algorithm":  handles[0]["algorithm"]
     }, 200
 
 
@@ -66,7 +74,7 @@ def create_new_task():
 
     document_ranking_process = multiprocessing.Process(
         target=document_ranking_task,
-        args=(event,),
+        args=(event,request.args.get('algorithm') or 'tfidf', {"use_gst": request.args.get('use_gst')}),
     )
 
     checker_thread = Thread(
@@ -77,7 +85,8 @@ def create_new_task():
     handles.append({
         "task": "document-ranking",
         "start_time": start_time,
-        "pid": document_ranking_process.pid
+        "pid": document_ranking_process.pid,
+        "algorithm": request.args.get('algorithm') or 'tfidf'
     })
 
     return {'message': 'started!'}, 200
