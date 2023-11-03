@@ -88,6 +88,8 @@ class CrawlUtils:
         size_bytes: int,
         model_crawl: str,
         duration_crawl: int,
+        domain: str,
+        country: str,
     ) -> int:
         """
         Fungsi untuk menyimpan konten seperti teks, judul, deskripsi yang ada di halaman web ke dalam database.
@@ -111,7 +113,7 @@ class CrawlUtils:
         """
         db_connection.ping()
         db_cursor = db_connection.cursor()
-        query = "INSERT INTO `page_information` (`url`, `crawl_id`, `html5`, `title`, `description`, `keywords`, `content_text`, `hot_url`, `size_bytes`, `model_crawl`, `duration_crawl`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, SEC_TO_TIME(%s))"
+        query = "INSERT INTO `page_information` (`url`, `crawl_id`, `html5`, `title`, `description`, `keywords`, `content_text`, `hot_url`, `size_bytes`, `model_crawl`, `duration_crawl`, `domain`, `country`) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, SEC_TO_TIME(%s), %s, %s)"
         db_cursor.execute(
             query,
             (
@@ -126,6 +128,8 @@ class CrawlUtils:
                 size_bytes,
                 model_crawl,
                 duration_crawl,
+                domain,
+                country
             ),
         )
         inserted_id = db_cursor.lastrowid

@@ -20,6 +20,7 @@ def run():
     from src.api.profile import bp_profile
     from src.api.analytics import bp_analytics
     from src.api.words import bp_words
+    from src.api.sitemap import bp_sitemap
 
     api_version = os.getenv("API_VERSION")
     app.register_blueprint(bp_crawling, url_prefix="/api/" + api_version + "/crawling")
@@ -33,6 +34,8 @@ def run():
     app.register_blueprint(bp_webpage, url_prefix="/api/" + api_version + "/webpages")
     app.register_blueprint(bp_domain, url_prefix="/api/" + api_version + "/domains")
     app.register_blueprint(bp_analytics, url_prefix="/api/" + api_version + "/analytics")
+    
+    app.register_blueprint(bp_sitemap, url_prefix="/api/" + api_version + "/sitemap")
 
     
 

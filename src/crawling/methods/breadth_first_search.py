@@ -9,6 +9,8 @@ import threading
 import queue
 import time
 import re
+from src.domain import Domain
+from urllib.parse import urlparse
 
 
 class BreadthFirstSearch:
@@ -78,6 +80,15 @@ class BreadthFirstSearch:
         Args:
             url (str): URL halaman yang ingin discrape
         """
+
+        try:
+            hostname = urlparse(url).hostname.replace("www.", "")
+            country = Domain.domain_name_for_country(hostname)
+            Domain(name=hostname, country=country).save()
+        except Exception as e:
+            print(e)
+
+
         try:
             page_start_time = time.time()
             response = self.crawl_utils.get_page(url)
@@ -159,6 +170,8 @@ class BreadthFirstSearch:
                     size_bytes,
                     "BFS crawling",
                     0,
+                    domain=hostname,
+                    country=country,
                 )
 
                 # extract outgoing link

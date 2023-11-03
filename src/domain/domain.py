@@ -72,6 +72,32 @@ class Domain:
         ip, _ = response.raw._fp.fp.raw._sock.getpeername()
         country = geoip2_handle.country(ip).registered_country.iso_code
         return country
+    
+    def save(self):
+        country = self.country
+        name = self.name
+
+        if not name or not country:
+            raise Exception("[Domain::save] name or country cannot be undefined")
+        
+        db = Database()
+        connection = db.connect()
+        cursor = connection.cursor(pymysql.cursors.DictCursor)
+
+        query = """SELECT * FROM domains where name = '{}'""".format(name)
+
+        cursor.execute(query)
+
+        if len(cursor.fetchall()) > 0:
+            raise Exception('[Domain::save] domain {} has already been registered in database'.format(name))
+
+        query = """INSERT INTO domains (name, country) VALUES ('{}', '{}')""".format(name, country)
+
+        print("[Domain::save] {} with country {} saved!".format(name, country))
+
+        cursor.execute(query)
+
+        
 
 
     def find(options: dict = {

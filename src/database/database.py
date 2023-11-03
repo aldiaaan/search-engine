@@ -108,6 +108,7 @@ class Database:
         Fungsi untuk mengosongkan semua table yang ada di database.
         """
         connection = self.connect()
+        print("DELETING....")
 
         try:
             self.exec_query(
