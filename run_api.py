@@ -7,7 +7,7 @@ from src.bootstrap import collect_domains
 
 def warmup():
     print('warming up...')
-    Domain.get_stats()
+    # Domain.get_stats()
     print('warming up done')
 
 if __name__ == "__main__":

@@ -35,16 +35,13 @@ class Domain:
             "with_country": False
         })
 
-        with multiprocessing.Pool() as pool: 
-            results = pool.map(worker, domains) 
-
         stats = dict()
 
-        for domain in results:
-            if stats.get(domain.get('country')) is None:
-                stats[domain.get('country')] = [domain.get('name')]
+        for domain in domains:
+            if stats.get(domain.country) is None:
+                stats[domain.country] = [domain.name]
             else:
-                stats[domain.get('country')].append(domain.get('name'))
+                stats[domain.country].append(domain.name)
         
         return stats
             
@@ -70,6 +67,7 @@ class Domain:
             return "UNKNOWN"
 
         ip, _ = response.raw._fp.fp.raw._sock.getpeername()
+        print(ip)
         country = geoip2_handle.country(ip).registered_country.iso_code
         return country
     
@@ -110,16 +108,17 @@ class Domain:
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 GROUP BY name  HAVING name LIKE '{}'  ORDER BY total_pages {}  LIMIT {} OFFSET {}""".format("%" + options.get("query") + "%", options.get("sort_total_pages"), options["limit"], options["start"])
+        # query = """SELECT SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 GROUP BY name  HAVING name LIKE '{}'  ORDER BY total_pages {}  LIMIT {} OFFSET {}""".format("%" + options.get("query") + "%", options.get("sort_total_pages"), options["limit"], options["start"])
+        query = """SELECT domain AS name, country, COUNT(*) AS total_pages FROM page_information pi2 GROUP BY domain HAVING domain LIKE '{}'  ORDER BY total_pages {}  LIMIT {} OFFSET {}""".format("%" + options.get("query") + "%", options.get("sort_total_pages"), options["limit"], options["start"])
         cursor.execute(query)
         domains = cursor.fetchall()
         def mapper(row):
-                
-            country = Domain.domain_name_for_country(row.get('name')) if options.get('with_country') else 'UNKNOWN'
+        
+            return Domain(name=row.get("name"), country=row.get("country"), total_pages=row.get("total_pages"))
 
-            return Domain(name=row.get("name"), country=country, total_pages=row.get("total_pages"))
-
-        query = """SELECT COUNT(*) OVER () AS total,  SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 group by name  HAVING name LIKE '{}'""".format("%" + options.get("query") + "%")
+        # query = """SELECT COUNT(*) OVER () AS total,  SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(url, "/", 3), "://", -1), "/", 1), "?", 1), "#", 1)  AS name, COUNT(*) AS total_pages FROM page_information pi2 group by name  HAVING name LIKE '{}'""".format("%" + options.get("query") + "%")
+        
+        query = """SELECT COUNT(*) OVER () AS total, domain from page_information group by domain HAVING domain LIKE '{}'""".format("%" + options.get("query") + "%")
         
         cursor.execute(query)
         x = cursor.fetchall()
