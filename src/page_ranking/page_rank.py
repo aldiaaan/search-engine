@@ -1,7 +1,10 @@
 # Reference: https://github.com/nicholaskajoh/devsearch/blob/f6d51fc478e5bae68e4ba32f3299ab20c0ffa033/devsearch/pagerank.py#L2
 
 from src.database.database import Database
-
+from multiprocessing import Value
+import pickle
+import time
+import os
 import pymysql
 
 
@@ -141,21 +144,37 @@ def log_pagerank_change(page_id, iteration, pagerank_change):
 
     db_cursor.close()
 
+def get_iteration_count():
+    file = open('page_ranking_service_state', 'rb')
+    iteration = pickle.load(file)
+    return iteration
 
-def run_background_service():
+def run_background_service(options: dict):
     """
     Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
     """
-    max_iterations = 20
-    damping_factor = 0.85
+    try:
+        os.remove('page_ranking_service_state')
+    except:
+        print('state not found')
+    
+    max_iterations = options.get('max_iterations') or 20
+    damping_factor = options.get('damping_factor') or 0.85
     db_connection = Database().connect()
     N = Database().count_rows(db_connection, "page_information")
     initial_pr = 1 / N
     save_initial_pagerank(db_connection, initial_pr)
     Database().close_connection(db_connection)
 
+    print(max_iterations)
+    print(damping_factor)
+    print('==========================')
+
     for iteration in range(max_iterations):
         pr_change_sum = 0
+        state = open('page_ranking_service_state', 'wb')
+        pickle.dump(iteration, state)
+        state.close()
 
         db_connection = Database().connect()
         pages = get_all_crawled_pages(db_connection)
@@ -204,5 +223,5 @@ def run_background_service():
         if average_pr_change < 0.0001:
             print(f"convergent with average pr change: {average_pr_change}")
             break
-
+    state.close()
     print("PageRank Background Service - Completed.")
