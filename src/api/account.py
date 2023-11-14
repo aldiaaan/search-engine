@@ -36,6 +36,7 @@ def login_required(f):
         
         if account is None:
             return jsonify({
+                "code": 'INVALID_CREDENTIALS',
                 "message": "invalid credentials or account not found"
             }), 400
         kwargs['account'] = account

@@ -3,6 +3,7 @@ from enum import Enum
 from src.common.errors import NotFoundException
 import bcrypt
 import pymysql.cursors
+from src.exceptions import DuplicateDataException
 
 class Account:
 
@@ -89,6 +90,14 @@ class Account:
   def save(self):
     connection = self.db.connect()
     cursor = connection.cursor()
+
+    query = "SELECT * FROM accounts WHERE email = '{}'".format(self.email)
+
+    cursor.execute(query)
+
+    if (len(cursor.fetchall()) > 0):
+      raise DuplicateDataException('account')
+
     query = "INSERT INTO accounts (email, first_name, last_name, password, role) VALUES (%s, %s, %s, %s, %s)"
 
     cursor.execute(query, (self.email, self.first_name, self.last_name, bcrypt.hashpw(self.password.encode('utf-8'), bcrypt.gensalt()), self.role))

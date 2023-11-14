@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, Response
 import os
 from flask_cors import CORS
+from src.exceptions import BaseException
 
 
 def run():
@@ -36,7 +37,15 @@ def run():
     app.register_blueprint(bp_analytics, url_prefix="/api/" + api_version + "/analytics")
     
     app.register_blueprint(bp_sitemap, url_prefix="/api/" + api_version + "/sitemap")
-
+    
+    @app.errorhandler(Exception)
+    def handle_exception(e):
+        if isinstance(e, BaseException):
+            return e.to_dict(), e.status
+        else:
+            return e
+        
+    app.register_error_handler(Exception, handle_exception)
     
 
     @app.route("/")

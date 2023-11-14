@@ -155,9 +155,13 @@ def run_background_service(options: dict):
     """
     try:
         os.remove('page_ranking_service_state')
+        state = open('page_ranking_service_state', 'wb')
+        iteration = 0
+        pickle.dump(iteration, state)
+        state.close()
     except:
         print('state not found')
-    
+    print('start pageranking....')
     max_iterations = options.get('max_iterations') or 20
     damping_factor = options.get('damping_factor') or 0.85
     db_connection = Database().connect()
@@ -165,10 +169,6 @@ def run_background_service(options: dict):
     initial_pr = 1 / N
     save_initial_pagerank(db_connection, initial_pr)
     Database().close_connection(db_connection)
-
-    print(max_iterations)
-    print(damping_factor)
-    print('==========================')
 
     for iteration in range(max_iterations):
         pr_change_sum = 0
