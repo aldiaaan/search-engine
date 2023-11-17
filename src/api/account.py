@@ -73,9 +73,10 @@ def create_new_account():
 
 @bp_account.route("/me", methods=["GET"])
 @login_required
-@roles_needed(['staff'])
+# @roles_needed(['staff', 'root'])
 def me(account):
-    payload = request.get_json()
+    # payload = request.get_json()
+    print(account)
     try:
         return jsonify({"data": account.to_dict()}), 200
     except Exception as e:

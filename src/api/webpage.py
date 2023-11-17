@@ -13,6 +13,7 @@ def get_webpages():
         "limit": int(request.args.get("limit") or 10),
         "start": int(request.args.get("start") or 0),
         "query": request.args.get("query") or "",
+        "countries": request.args.getlist("countries[]"),
         "sort_pagerank_score": request.args.get("sort_pagerank_score") or "DESC"
     })
     return {
