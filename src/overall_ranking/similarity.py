@@ -4,7 +4,7 @@ import pymysql
 import os
 
 
-def get_all_similarity_for_api(keyword, sort, start=None, length=None):
+def get_all_similarity_for_api(keyword, sort=None, start=None, length=None):
     """
     Fungsi untuk mendapatkan perankingan keseluruhan berdasarkan keyword tertentu.
 
@@ -24,7 +24,7 @@ def get_all_similarity_for_api(keyword, sort, start=None, length=None):
 
     if use_cosine == "true":
         page_with_cosine = get_cosine_similarity(keyword)
-        query = f'SELECT `page_information`.`title`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
+        query = f'SELECT `page_information`.`title`, `page_information`.`country`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
 
         if start is not None and length is not None:
             query += f" LIMIT {start}, {length}"
@@ -35,7 +35,7 @@ def get_all_similarity_for_api(keyword, sort, start=None, length=None):
         rows = db_cursor.fetchall()
         db_cursor.close()
 
-        query = f'SELECT COUNT(*) as total `page_information`.`title`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
+        query = f'SELECT COUNT(*) as total `page_information`.`title`, `page_information`.`country`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
         db_connection = Database().connect()
         db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
         db_cursor.execute(query)
@@ -50,7 +50,7 @@ def get_all_similarity_for_api(keyword, sort, start=None, length=None):
         tf_idf_percentage = 0.6
         page_rank_percentage = 0.4
 
-        query = f'SELECT `page_information`.`title`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, ({tf_idf_percentage} * `tfidf`.`tfidf_total`) + ({page_rank_percentage} * `pagerank`.`pagerank_score`) AS `similarity_score`, `tfidf`.`tfidf_total`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
+        query = f'SELECT `page_information`.`title`, `page_information`.`country`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, ({tf_idf_percentage} * `tfidf`.`tfidf_total`) + ({page_rank_percentage} * `pagerank`.`pagerank_score`) AS `similarity_score`, `tfidf`.`tfidf_total`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
 
         if start is not None and length is not None:
             query += f" LIMIT {start}, {length}"
@@ -61,7 +61,7 @@ def get_all_similarity_for_api(keyword, sort, start=None, length=None):
         rows = db_cursor.fetchall()
         db_cursor.close()
 
-        query = f'SELECT COUNT(*) as total, `page_information`.`title`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, ({tf_idf_percentage} * `tfidf`.`tfidf_total`) + ({page_rank_percentage} * `pagerank`.`pagerank_score`) AS `similarity_score`, `tfidf`.`tfidf_total`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
+        query = f'SELECT COUNT(*) as total, `page_information`.`title`, `page_information`.`country`, `page_information`.`description`, `page_information`.`content_text`, `tfidf`.`page_id` AS `id_page`, `page_information`.`url`, ({tf_idf_percentage} * `tfidf`.`tfidf_total`) + ({page_rank_percentage} * `pagerank`.`pagerank_score`) AS `similarity_score`, `tfidf`.`tfidf_total`, `pagerank`.`pagerank_score` FROM `tfidf` LEFT JOIN `pagerank` ON `tfidf`.`page_id` = `pagerank`.`page_id` LEFT JOIN `page_information` ON `tfidf`.`page_id` = `page_information`.`id_page` WHERE `tfidf`.`keyword` = "{keyword}"'
         
         db_connection = Database().connect()
         db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)

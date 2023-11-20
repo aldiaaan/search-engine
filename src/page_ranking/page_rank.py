@@ -149,7 +149,7 @@ def get_iteration_count():
     iteration = pickle.load(file)
     return iteration
 
-def run_background_service(options: dict):
+def run_background_service(options: dict = dict()):
     """
     Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
     """
@@ -172,9 +172,9 @@ def run_background_service(options: dict):
 
     for iteration in range(max_iterations):
         pr_change_sum = 0
-        state = open('page_ranking_service_state', 'wb')
-        pickle.dump(iteration, state)
-        state.close()
+        # state = open('page_ranking_service_state', 'wb')
+        # pickle.dump(iteration, state)
+        # state.close()
 
         db_connection = Database().connect()
         pages = get_all_crawled_pages(db_connection)

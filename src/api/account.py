@@ -82,13 +82,14 @@ def me(account):
     except Exception as e:
         return jsonify({"message": "something went wrong"}), 400
 
-@bp_account.route("/<account_id>/update", methods=["PUT"])
+@bp_account.route("/<account_id>/update/", methods=["PUT"])
 @login_required
 @match_account_with_incoming_account_id
 def update_account(account_id, account):
     payload = request.get_json()
     account.first_name = payload.get("first_name") or account.first_name
     account.last_name = payload.get("last_name") or account.last_name
+    account.email = payload.get("email") or account.email
     account.update()
     return jsonify({"message": "ok"}), 200
 
