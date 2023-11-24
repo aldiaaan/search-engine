@@ -74,7 +74,7 @@ def get_crawling_info():
         "start": 0,
         "sort_total_pages": "DESC"
     })
-    _, total_webpages = Webpage.find({
+    _, total_webpages, countries = Webpage.find({
         "query": "",
         "limit": 18446744073709551610,
         "start": 0,
@@ -85,7 +85,8 @@ def get_crawling_info():
         "total_domains": total_domains,
         "total_webpages": total_webpages,
         "total_webpages_size": Webpage.get_total_size(),
-        "domains_stats": Domain.get_stats()
+        "domains_stats": Domain.get_stats(),
+        "countries": countries
     }
 
 @bp_crawling.route("/start")

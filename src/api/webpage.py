@@ -9,7 +9,7 @@ bp_webpage = Blueprint("webpage", __name__)
 
 @bp_webpage.route("/", methods=["GET"])
 def get_webpages():
-    webpages, total = Webpage.find({
+    webpages, total, countries = Webpage.find({
         "limit": int(request.args.get("limit") or 10),
         "start": int(request.args.get("start") or 0),
         "query": request.args.get("query") or "",
@@ -23,5 +23,8 @@ def get_webpages():
             "size": Webpage.get_total_size(),
             "pages": math.ceil(total / int(request.args.get("limit") or 10)),
             "current_page": math.floor(int(request.args.get("start") or 0) / int(request.args.get("limit") or 10))
+        },
+        "facets": {
+            "countries": countries
         }
     }

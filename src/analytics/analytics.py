@@ -47,7 +47,7 @@ class Analytics:
       connection = db.connect()
       cursor = connection.cursor(pymysql.cursors.DictCursor)
 
-      sql = "SELECT * FROM search_log LIMIT {}, {}".format(start, limit)
+      sql = "SELECT * FROM search_log ORDER BY `id` DESC LIMIT {}, {}".format(start, limit)
 
       query = cursor.execute(sql)
 

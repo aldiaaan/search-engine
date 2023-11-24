@@ -43,12 +43,10 @@ class Webpage:
         "sort_pagerank_score": "DESC",
         "query": ""
     }):
-        print(options)
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-        query = """SELECT *, COUNT(*) as total_words FROM page_information pi join tfidf_word tw on tw.page_id = pi.id_page JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}' {} GROUP BY pi.url  ORDER BY pagerank_score {}  LIMIT {} OFFSET {}""".format("%" + options["query"] + "%", "AND country IN ({})".format(','.join(list(map(lambda x: "'{}'".format(x), options.get('countries'))))) if len(options.get('countries')) > 0 else '', options["sort_pagerank_score"], options["limit"], options["start"])
-        print(query)
+        query = """SELECT *, COUNT(*) as total_words FROM page_information pi left join tfidf_word tw on tw.page_id = pi.id_page JOIN pagerank p ON pi.id_page = p.page_id WHERE pi.url LIKE '{}' {} GROUP BY pi.url  ORDER BY pagerank_score {}  LIMIT {} OFFSET {}""".format("%" + options["query"] + "%", "AND country IN ({})".format(','.join(list(map(lambda x: "'{}'".format(x), options.get('countries') or [])))) if len(options.get('countries') or []) > 0 else '', options["sort_pagerank_score"], options["limit"], options["start"])
         cursor.execute(query)
         
         webpages = cursor.fetchall()
@@ -58,11 +56,19 @@ class Webpage:
 
         webpages = list(map(mapper, webpages))
 
-        query = "SELECT COUNT(*) as total FROM page_information pi WHERE pi.url LIKE '{}' {}".format("%" + options.get("query") + "%", "AND country IN ({})".format(','.join(list(map(lambda x: "'{}'".format(x), options.get('countries'))))) if len(options.get('countries')) > 0 else '')
-        
+        query = "SELECT COUNT(*) as total FROM page_information pi WHERE pi.url LIKE '{}' {}".format("%" + options.get("query") + "%", "AND country IN ({})".format(','.join(list(map(lambda x: "'{}'".format(x), options.get('countries') or [])))) if len(options.get('countries') or []) > 0 else '')
+
         cursor.execute(query)
         result = cursor.fetchall()
 
         total = result[0].get("total") if len(result) != 0 else 0
 
-        return webpages, total
+        query = "SELECT COUNT(*) as total, country as value FROM page_information pi WHERE pi.url LIKE '{}' GROUP BY country".format("%" + options.get("query") + "%")
+
+        cursor.execute(query)
+        result = cursor.fetchall()
+
+        countries = result
+
+
+        return webpages, total, countries

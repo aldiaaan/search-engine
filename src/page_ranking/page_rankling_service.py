@@ -50,6 +50,8 @@ class PageRankingService:
         event.set()
 
     def checker(event: Event):
+        
+        print('waiting...')
         event.wait()
         PageRankingService.cleanup()
 

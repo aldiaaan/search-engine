@@ -6,7 +6,7 @@ import math
 bp_analytics = Blueprint("analytics", __name__)
 
 
-@bp_analytics.route("/events/search", methods=["POST"])
+@bp_analytics.route("/events/search/", methods=["POST"])
 def save_query():
     payload = request.get_json()
     Analytics.save_query_log(query=payload.get(
