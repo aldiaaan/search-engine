@@ -7,6 +7,7 @@ import time
 import os
 from concurrent.futures import ThreadPoolExecutor, wait
 import pymysql
+from itertools import repeat
 
 
 def save_initial_pagerank(db_connection, initial_pr):
@@ -80,7 +81,7 @@ def get_one_pagerank(db_connection, page_id):
     Returns:
         double: Berisi nilai skor page rank
     """
-    db_connection.ping()
+    # db_connection.ping()
 
     db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
     db_cursor.execute(
@@ -138,8 +139,8 @@ def get_all_pagerank_for_api(start=None, length=None):
     return rows
 
 
-def log_pagerank_change(page_id, iteration, pagerank_change):
-    db_connection = Database().connect()
+def log_pagerank_change(page_id, iteration, pagerank_change, db_connection):
+    db_connection = db_connection or Database().connect()
     db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
 
     query = "INSERT INTO `pagerank_changes` (`page_id`, `iteration`, `pagerank_change`) VALUES (%s, %s, %s)"
@@ -174,10 +175,12 @@ def run_background_service(options: dict = dict()):
     N = Database().count_rows(db_connection, "page_information")
     initial_pr = 1 / N
     save_initial_pagerank(db_connection, initial_pr)
+    
+    Database().connect_threaded()
+
 
     def process_page(page_row):
-        time.sleep(1)
-        db_connection = Database().connect()
+        db_connection = Database().connect_threaded()
         t1 = time.perf_counter()
         page_id = page_row["id_page"]
         page_url = page_row["url"]
@@ -210,8 +213,10 @@ def run_background_service(options: dict = dict()):
         save_one_pagerank(db_connection, page_id, new_pagerank)
 
         pr_change = abs(new_pagerank - current_pagerank) / current_pagerank
-
-        log_pagerank_change(page_id, iteration, pr_change)
+        log_pagerank_change(page_id, iteration, pr_change, db_connection)
+        
+        db_connection.close()
+        db_cursor2.close()
 
         t2 = time.perf_counter()
         # avg += (t2 - t1)
@@ -223,6 +228,7 @@ def run_background_service(options: dict = dict()):
         return pr_change, t2 - t1
 
     for iteration in range(max_iterations):
+        iteration_t1 = time.perf_counter()
         pr_change_sum = 0
         # state = open('page_ranking_service_state', 'wb')
         # pickle.dump(iteration, state)
@@ -240,6 +246,10 @@ def run_background_service(options: dict = dict()):
         if average_pr_change < 0.0001:
             print(f"convergent with average pr change: {average_pr_change}")
             break
+        
+        iteration_t2 = time.perf_counter()
+        print(f"iteration took {iteration_t2 - iteration_t1} seconds!!")
+        exit()
     state.close()
     Database().close_connection(db_connection)
     print("PageRank Background Service - Completed.")

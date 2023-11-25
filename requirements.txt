@@ -25,3 +25,4 @@ suffix-tree
 Pillow
 wordcloud
 cachetools
+pymysql-pool

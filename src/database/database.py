@@ -2,7 +2,10 @@ from typing import Any
 import pymysql
 import pymysql.cursors
 import os
+import pymysqlpool
+import multiprocessing
 
+pool = None
 
 class Database:
     """
@@ -15,6 +18,16 @@ class Database:
         self.password: str = str(os.getenv("DB_PASSWORD") or "")
         self.db_name: str = str(os.getenv("DB_NAME"))
         self.db_port: int = int(str(os.getenv("DB_PORT")))
+
+    def connect_threaded(self):
+        config = {'host': self.host, 'user': self.username,
+                  'password': self.password, 'database': self.db_name, 'autocommit': True}
+        CPU_COUNT = multiprocessing.cpu_count() + 1
+        global pool
+        if (pool is None):
+            pool = pymysqlpool.ConnectionPool(size=CPU_COUNT, maxsize=multiprocessing.cpu_count(
+            ), pre_create_num=CPU_COUNT, name='default', **config)
+        return pool.get_connection()
 
     def connect(self) -> pymysql.Connection:
         """
