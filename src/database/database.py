@@ -22,7 +22,7 @@ class Database:
     def connect_threaded(self):
         config = {'host': self.host, 'user': self.username,
                   'password': self.password, 'database': self.db_name, 'autocommit': True}
-        CPU_COUNT = multiprocessing.cpu_count() + 1
+        CPU_COUNT = 16 + 1
         global pool
         if (pool is None):
             pool = pymysqlpool.ConnectionPool(size=CPU_COUNT, maxsize=multiprocessing.cpu_count(

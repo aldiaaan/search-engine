@@ -3,11 +3,12 @@
 from src.database.database import Database
 from multiprocessing import Value
 import pickle
-import time
+from time import perf_counter
 import os
 from concurrent.futures import ThreadPoolExecutor, wait
 import pymysql
 from itertools import repeat
+from src.utils import log_execution_time
 
 
 def save_initial_pagerank(db_connection, initial_pr):
@@ -81,7 +82,7 @@ def get_one_pagerank(db_connection, page_id):
     Returns:
         double: Berisi nilai skor page rank
     """
-    # db_connection.ping()
+    db_connection.ping()
 
     db_cursor = db_connection.cursor(pymysql.cursors.DictCursor)
     db_cursor.execute(
@@ -167,7 +168,7 @@ def run_background_service(options: dict = dict()):
         state.close()
     except:
         print('state not found')
-    print('start pageranking....')
+    print('start pageranking (non-threaded)....')
 
     max_iterations = options.get('max_iterations') or 20
     damping_factor = options.get('damping_factor') or 0.85
@@ -176,15 +177,15 @@ def run_background_service(options: dict = dict()):
     initial_pr = 1 / N
     save_initial_pagerank(db_connection, initial_pr)
     
-    Database().connect_threaded()
+    # Database().connect_threaded()
 
 
-    def process_page(page_row):
-        db_connection = Database().connect_threaded()
-        t1 = time.perf_counter()
+    def process_page(page_row, db_connection = None):
+        db_connection = db_connection or Database().connect_threaded()
+        t1 = perf_counter()
         page_id = page_row["id_page"]
         page_url = page_row["url"]
-        current_pagerank = get_one_pagerank(db_connection, page_id)
+        current_pagerank = log_execution_time(get_one_pagerank, (db_connection, page_id))
 
         new_pagerank = 0
         db_cursor2 = db_connection.cursor(pymysql.cursors.DictCursor)
@@ -198,10 +199,10 @@ def run_background_service(options: dict = dict()):
         # for page_linking_row in db_cursor2.fetchall():
         #     backlink_ids.add(page_linking_row["page_id"])
 
-        db_cursor2.execute(
+        log_execution_time(lambda: db_cursor2.execute(
             "SELECT `pagerank`.`page_id`, `pagerank`.`pagerank_score`, COUNT(*) FROM `page_linking` INNER JOIN `pagerank` ON `page_linking`.`page_id` = `pagerank`.`page_id` WHERE `pagerank`.`page_id` IN (SELECT DISTINCT(`page_id`) FROM `page_linking` WHERE `outgoing_link` = %s) GROUP by `pagerank`.`page_id`",
             [page_url],
-        )
+        ))
         for backlink_link_count in db_cursor2.fetchall():
             new_pagerank += backlink_link_count["pagerank_score"] / \
                 backlink_link_count["COUNT(*)"]
@@ -218,7 +219,7 @@ def run_background_service(options: dict = dict()):
         db_connection.close()
         db_cursor2.close()
 
-        t2 = time.perf_counter()
+        t2 = perf_counter()
         # avg += (t2 - t1)
         print(f"processing page_id {page_id} took {t2-t1} seconds (avg: --)")
         # print(
@@ -228,7 +229,105 @@ def run_background_service(options: dict = dict()):
         return pr_change, t2 - t1
 
     for iteration in range(max_iterations):
-        iteration_t1 = time.perf_counter()
+        iteration_t1 = perf_counter()
+        pr_change_sum = 0
+        # state = open('page_ranking_service_state', 'wb')
+        # pickle.dump(iteration, state)
+        # state.close()
+        pages = get_all_crawled_pages(db_connection)
+        avg = 0
+        idx = 0
+        for index,page_row in enumerate(pages):
+            pr_change, time = process_page(page_row, db_connection)
+            pr_change_sum += pr_change
+
+        average_pr_change = pr_change_sum / N
+        if average_pr_change < 0.0001:
+            print(f"convergent with average pr change: {average_pr_change}")
+            break
+        
+        iteration_t2 = perf_counter()
+        print(f"iteration took {iteration_t2 - iteration_t1} seconds!!")
+        exit()
+    state.close()
+    Database().close_connection(db_connection)
+    print("PageRank Background Service - Completed.")
+
+
+def run_background_service_threaded(options: dict = dict()):
+    """
+    Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
+    """
+    try:
+        os.remove('page_ranking_service_state')
+        state = open('page_ranking_service_state', 'wb')
+        iteration = 0
+        pickle.dump(iteration, state)
+        state.close()
+    except:
+        print('state not found')
+    print('start pageranking....')
+
+    max_iterations = options.get('max_iterations') or 20
+    damping_factor = options.get('damping_factor') or 0.85
+    db_connection = Database().connect()
+    N = Database().count_rows(db_connection, "page_information")
+    initial_pr = 1 / N
+    save_initial_pagerank(db_connection, initial_pr)
+    
+    Database().connect_threaded()
+
+
+    def process_page(page_row):
+        db_connection = Database().connect_threaded()
+        t1 = perf_counter()
+        page_id = page_row["id_page"]
+        page_url = page_row["url"]
+        current_pagerank = get_one_pagerank(db_connection, page_id)
+
+        new_pagerank = 0
+        db_cursor2 = db_connection.cursor(pymysql.cursors.DictCursor)
+
+        # db_cursor2.execute(
+        #     "SELECT DISTINCT(`page_id`) FROM `page_linking` WHERE `outgoing_link` = %s",
+        #     (page_url),
+        # )
+        # backlink_ids = db_cursor2.fetchall()
+
+        # for page_linking_row in db_cursor2.fetchall():
+        #     backlink_ids.add(page_linking_row["page_id"])
+
+        log_execution_time(lambda: db_cursor2.execute(
+            "SELECT `pagerank`.`page_id`, `pagerank`.`pagerank_score`, COUNT(*) FROM `page_linking` INNER JOIN `pagerank` ON `page_linking`.`page_id` = `pagerank`.`page_id` WHERE `pagerank`.`page_id` IN (SELECT DISTINCT(`page_id`) FROM `page_linking` WHERE `outgoing_link` = %s) GROUP by `pagerank`.`page_id`",
+            [page_url],
+        ))
+        for backlink_link_count in db_cursor2.fetchall():
+            new_pagerank += backlink_link_count["pagerank_score"] / \
+                backlink_link_count["COUNT(*)"]
+        db_cursor2.close()
+
+        new_pagerank = ((1 - damping_factor) / N) + \
+            (damping_factor * new_pagerank)
+
+        save_one_pagerank(db_connection, page_id, new_pagerank)
+
+        pr_change = abs(new_pagerank - current_pagerank) / current_pagerank
+        log_pagerank_change(page_id, iteration, pr_change, db_connection)
+        
+        db_connection.close()
+        db_cursor2.close()
+
+        t2 = perf_counter()
+        # avg += (t2 - t1)
+        print(f"processing page_id {page_id} took {t2-t1} seconds (avg: --)")
+        # print(
+        #     f"[{t2 - t1} secs] iteration: {iteration}, page_id: {page_id}, pagerank score: {new_pagerank}, url: {page_url}, pr_change: {pr_change}"
+        # )
+
+        return pr_change, t2 - t1
+
+    for iteration in range(max_iterations):
+        iteration_t1 = perf_counter()
         pr_change_sum = 0
         # state = open('page_ranking_service_state', 'wb')
         # pickle.dump(iteration, state)
@@ -237,7 +336,7 @@ def run_background_service(options: dict = dict()):
         avg = 0
         idx = 0
         # for index,page_row in enumerate(pages):
-        with ThreadPoolExecutor(8) as executor:
+        with ThreadPoolExecutor(16) as executor:
             for result, t in executor.map(process_page, pages):
                 # retrieve the result
                 pr_change_sum += result
@@ -247,7 +346,7 @@ def run_background_service(options: dict = dict()):
             print(f"convergent with average pr change: {average_pr_change}")
             break
         
-        iteration_t2 = time.perf_counter()
+        iteration_t2 = perf_counter()
         print(f"iteration took {iteration_t2 - iteration_t1} seconds!!")
         exit()
     state.close()
