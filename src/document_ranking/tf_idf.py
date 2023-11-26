@@ -8,6 +8,9 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import time
+import threading
+
+from concurrent.futures import ThreadPoolExecutor, wait
 
 
 def remove_tfidf_rows(db_connection):
@@ -179,29 +182,50 @@ def run_background_service():
 
     df_tfidf = pd.DataFrame.sparse.from_spmatrix(tfidf_matrix, columns=words)
 
+
+    Database().connect_threaded()
+
+
+    def process_word(word, page_id, index):
+        tf_idf = df_tfidf[word].loc[i]
+        if tf_idf == 0.0:
+            return
+        idf = idf_vector[index]
+        tf = tf_idf / idf
+
+        tc = Database().connect_threaded()
+
+        print(f"[{threading.current_thread().name}] word: {word}, page_id: {page_id}, tfidf score: {tf_idf}")
+        # Simpan setiap bobot/score pada kata ke table "tfidf_word"
+        save_one_tfidf_word(tc, word, page_id, tf_idf)
+        tc.close()
+        return {
+                "kata": word,
+                "page_id": page_id,
+                "tf": tf,
+                "idf": idf,
+                "tfidf": tf_idf,
+            }
+        # data_tfidf.append(
+        #     {
+        #         "kata": word,
+        #         "page_id": page_id,
+        #         "tf": tf,
+        #         "idf": idf,
+        #         "tfidf": tf_idf,
+        #     }
+        # )
+
+    
+
     data_tfidf = []
+
     for i in range(len(df_tfidf)):
         page_id = df["id_page"].loc[i]
-        for j in range(len(words)):
-            word = words[j]
-            tf_idf = df_tfidf[word].loc[i]
-            if tf_idf == 0.0:
-                continue
-            idf = idf_vector[j]
-            tf = tf_idf / idf
-
-            print(f"word: {word}, page_id: {page_id}, tfidf score: {tf_idf}")
-            # Simpan setiap bobot/score pada kata ke table "tfidf_word"
-            save_one_tfidf_word(db_connection, word, page_id, tf_idf)
-            data_tfidf.append(
-                {
-                    "kata": word,
-                    "page_id": page_id,
-                    "tf": tf,
-                    "idf": idf,
-                    "tfidf": tf_idf,
-                }
-            )
+        with ThreadPoolExecutor(8) as executor:
+            for result in executor.map(lambda word, index: process_word(word, page_id, index), words, range(len(words))):
+                data_tfidf.append(result)
+                pass
 
     new_df = pd.DataFrame(data_tfidf)
     # new_df.to_excel("output.xlsx")
