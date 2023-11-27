@@ -1,5 +1,5 @@
 from dotenv import load_dotenv
-from src.document_ranking.tf_idf import run_background_service
+from src.document_ranking.tf_idf import run_background_service, run_background_service_threaded
 from src.database.database import Database
 
 if __name__ == "__main__":
@@ -7,4 +7,5 @@ if __name__ == "__main__":
     db = Database()
     db.create_tables()
 
-    res = run_background_service()
+    # res = run_background_service()
+    run_background_service_threaded()

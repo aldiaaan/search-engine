@@ -8,7 +8,9 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import time
-
+from concurrent.futures import ThreadPoolExecutor, wait
+import threading
+import time
 
 def remove_tfidf_rows(db_connection):
     """Fungsi untuk mengosongkan table "tfidf" pada database.
@@ -155,7 +157,8 @@ def get_all_tfidf_for_api(keyword, start=None, length=None):
     saved_tfidf = get_all_saved_tfidf(db_connection, keyword, start, length)
     return saved_tfidf
 
-def run_background_service():
+
+def run_background_service_threaded():
     """
     Fungsi utama yang digunakan untuk melakukan pembobotan kata pada dokumen menggunakan metode TF-IDF.
     """
@@ -163,7 +166,8 @@ def run_background_service():
     # Ambil semua data halaman yang sudah di crawl ke dalam pandas dataframe
     query = "SELECT * FROM `page_information`"
     df = pd.read_sql(query, db_connection)
-    text_content = df["content_text"]  # Konten teks dari halaman yang sudah dicrawl
+    # Konten teks dari halaman yang sudah dicrawl
+    text_content = df["content_text"]
 
     # Buat model menggunakan TfidfVectorizer
     vectorizer = TfidfVectorizer(
@@ -180,6 +184,80 @@ def run_background_service():
     df_tfidf = pd.DataFrame.sparse.from_spmatrix(tfidf_matrix, columns=words)
 
     data_tfidf = []
+    
+    # print(df["id_page"])
+    # print(df_tfidf)
+
+    def worker(page_id, page_idx):
+        time.sleep(1)
+        for  idx, j in enumerate(words):
+            word = j
+            # print(word, idx)
+            tf_idf = df_tfidf[word].loc[page_idx]
+            # print(tf_idf)
+            if tf_idf == 0.0:
+                continue
+            idf = idf_vector[idx]
+            tf = tf_idf / idf
+
+            con = Database().connect_threaded()
+
+            print(f"[{threading.current_thread().name}] word: {word}, page_id: {page_id}, tfidf score: {tf_idf}")
+            # Simpan setiap bobot/score pada kata ke table "tfidf_word"
+            save_one_tfidf_word(con, word, page_id, tf_idf)
+            con.close()
+            data_tfidf.append(
+                {
+                    "kata": word,
+                    "page_id": page_id,
+                    "tf": tf,
+                    "idf": idf,
+                    "tfidf": tf_idf,
+                }
+            )
+    t1 = time.perf_counter()
+    with ThreadPoolExecutor(8) as executor:
+        for result in executor.map(lambda id_page, page_idx: worker(id_page, page_idx), df["id_page"], range(len(df_tfidf))):
+            pass
+    t2 = time.perf_counter()
+
+    print(f"done in {t2 - t1} seconds!!")
+    new_df = pd.DataFrame(data_tfidf)
+    new_df.to_excel("output_threaded.xlsx")
+
+    # Hapus semua hasil keyword yang sudah pernah dihitung sebelumnya pada table tfidf (keperluan API), karena bobot pada tiap kata berubah
+    remove_tfidf_rows(db_connection)
+
+    print("TFIDF Background Service - Completed.")
+
+
+def run_background_service():
+    """
+    Fungsi utama yang digunakan untuk melakukan pembobotan kata pada dokumen menggunakan metode TF-IDF.
+    """
+    db_connection = Database().connect()
+    # Ambil semua data halaman yang sudah di crawl ke dalam pandas dataframe
+    query = "SELECT * FROM `page_information`"
+    df = pd.read_sql(query, db_connection)
+    # Konten teks dari halaman yang sudah dicrawl
+    text_content = df["content_text"]
+
+    # Buat model menggunakan TfidfVectorizer
+    vectorizer = TfidfVectorizer(
+        lowercase=True,  # Untuk konversi ke lower case
+        use_idf=True,  # Untuk memakai idf
+        norm="l2",  # Normalisasi
+        smooth_idf=True,  # Untuk mencegah divide-by-zero errors
+    )
+
+    tfidf_matrix = vectorizer.fit_transform(text_content)
+    words = vectorizer.get_feature_names()
+    idf_vector = vectorizer.idf_
+
+    df_tfidf = pd.DataFrame.sparse.from_spmatrix(tfidf_matrix, columns=words)
+
+    data_tfidf = []
+    t1 = time.perf_counter()
     for i in range(len(df_tfidf)):
         page_id = df["id_page"].loc[i]
         for j in range(len(words)):
@@ -202,9 +280,11 @@ def run_background_service():
                     "tfidf": tf_idf,
                 }
             )
-
+    t2 = time.perf_counter()
+    
+    print(f"done in {t2 - t1} seconds!!")
     new_df = pd.DataFrame(data_tfidf)
-    # new_df.to_excel("output.xlsx")
+    new_df.to_excel("output.xlsx")
 
     # Hapus semua hasil keyword yang sudah pernah dihitung sebelumnya pada table tfidf (keperluan API), karena bobot pada tiap kata berubah
     remove_tfidf_rows(db_connection)
@@ -218,7 +298,8 @@ def get_cosine_similarity(keyword):
     db_connection = Database().connect()
     query = "SELECT * FROM `page_information`"
     df = pd.read_sql(query, db_connection)
-    text_content = df["content_text"]  # Konten teks dari halaman yang sudah dicrawl
+    # Konten teks dari halaman yang sudah dicrawl
+    text_content = df["content_text"]
 
     # Buat model menggunakan TfidfVectorizer
     vectorizer = TfidfVectorizer(
@@ -235,7 +316,8 @@ def get_cosine_similarity(keyword):
     query_tfidf_matrix = vectorizer.transform([keyword])
 
     # print(query_tfidf_matrix)
-    cosine_similarities = cosine_similarity(query_tfidf_matrix, tfidf_matrix).flatten()
+    cosine_similarities = cosine_similarity(
+        query_tfidf_matrix, tfidf_matrix).flatten()
     page_with_cosine = {}
     for i in range(len(cosine_similarities)):
         page_id = df["id_page"].loc[i]
