@@ -7,5 +7,5 @@ if __name__ == "__main__":
     db = Database()
     db.create_tables()
 
-    # run_background_service()
-    run_background_service_threaded()
+    run_background_service()
+    # run_background_service_threaded()
