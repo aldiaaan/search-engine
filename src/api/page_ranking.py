@@ -50,7 +50,7 @@ def start_pagerank_service():
 
         PageRankingService.run({
             'max_iterations': max_iterations,
-            'damping_dactor': damping_factor
+            'damping_factor': damping_factor
         })
 
         response = {
