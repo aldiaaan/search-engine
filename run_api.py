@@ -4,11 +4,10 @@ from src.domain.domain import Domain
 import os
 from dotenv import load_dotenv
 from src.bootstrap import collect_domains
+import sys
 
 def warmup():
     print('warming up...')
-    # Domain.get_stats()
-    print('warming up done')
 
 if __name__ == "__main__":
     load_dotenv()

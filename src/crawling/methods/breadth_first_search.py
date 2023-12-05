@@ -83,10 +83,13 @@ class BreadthFirstSearch:
 
         try:
             hostname = urlparse(url).hostname.replace("www.", "")
+            # country = "US"
+            # Domain(name=hostname, country=country).save()
             country = Domain.domain_name_for_country(hostname)
             Domain(name=hostname, country=country).save()
         except Exception as e:
-            print(e)
+            # print(e)
+            pass
 
 
         try:

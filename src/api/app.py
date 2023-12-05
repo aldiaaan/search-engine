@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Response
+from flask import Flask, jsonify, render_template, request, Response, send_from_directory
 import os
 from flask_cors import CORS
 from src.exceptions import BaseException
@@ -50,6 +50,21 @@ def run():
 
     @app.route("/")
     def index():
-        return render_template("index.html")
+        # return os.path.abspath(__file__ + "/../../web_client/")
+        return send_from_directory(os.path.abspath(__file__ + "/../../web_client/"), "index.html")
+        # return os.path.abspath(os.path.dirname(os.path.abspath(__file__)), '..')
+
+    @app.route("/assets/<path:path>")
+    def static_proxy(path):
+        # return path
+        """static folder serve"""
+        # file_name = path.split("/")[-1]
+        return send_from_directory(os.path.abspath(__file__ + "/../../web_client/assets/"), path)
+
+    @app.errorhandler(404)
+    def handle_404(e):
+        if request.path.startswith("/api/"):
+            return jsonify(message="Resource not found"), 404
+        return send_from_directory(os.path.abspath(__file__ + "/../../web_client/"), "index.html")
 
     return app
