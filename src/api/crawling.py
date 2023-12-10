@@ -10,6 +10,7 @@ import time
 import os
 import multiprocessing
 import signal
+import traceback
 
 bp_crawling = Blueprint("crawling", __name__)
 processes = []
@@ -88,6 +89,66 @@ def get_crawling_info():
         "domains_stats": Domain.get_stats(),
         "countries": countries
     }
+
+@bp_crawling.route("/start2")
+def start_crawling2():
+    # return "ok111"
+    
+    if len(processes) > 0:
+        return {
+            "msg": "Service is currently running!"
+        }
+    
+    try:
+        crawler_duration_sec = 6000
+        start_urls = os.getenv("CRAWLER_START_URLS").split()
+        max_threads = 8
+        try:
+            msb_keyword = os.getenv("CRAWLER_KEYWORD")
+        except:
+            msb_keyword = ""
+
+        if msb_keyword != "":
+            bfs_duration_sec = int(crawler_duration_sec) // 2
+            msb_duration_sec = int(crawler_duration_sec) // 2
+        else:
+            bfs_duration_sec = int(crawler_duration_sec)
+            msb_duration_sec = 0
+        # crawl.delay("resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
+
+        # process = multiprocessing.Process(
+        #     daemon=True,
+        #     target=start_crawling_task,
+        #     args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
+        # )
+
+        # checker_thread = Thread(target=crawling_task_checker, args=(event, kill_event))
+        # checker_thread.start()
+        # process.start()
+        start_time = time.time()
+        processes.append({
+            "task": "crawling",
+            "start_time": start_time,
+            "end_time": start_time + int(crawler_duration_sec),
+            "duration": crawler_duration_sec,
+            "pid": -1,
+            "threads": 8
+        })
+
+        response = {
+            "ok": True,
+            "message": "Sukses",
+        }
+        return response
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return {
+            "ok": False,
+            "message": f"{e}",
+
+        }, 500
+
 
 @bp_crawling.route("/start")
 def start_crawling():

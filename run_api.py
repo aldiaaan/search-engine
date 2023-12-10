@@ -1,5 +1,5 @@
 from src.database.database import Database
-from src.api.app import run
+from src.api.app import get_app
 from src.domain.domain import Domain
 import os
 from dotenv import load_dotenv
@@ -17,5 +17,5 @@ if __name__ == "__main__":
     # collect_domains()
 
     api_port = os.getenv("API_PORT")
-    application = run()
+    application = get_app()
     application.run(port=api_port)

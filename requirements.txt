@@ -27,3 +27,5 @@ wordcloud
 cachetools
 pymysql-pool
 anytree
+celery
+sqlalchemy

@@ -6,6 +6,12 @@ import multiprocessing
 import time
 import random
 import string
+from celery import Celery, Task
+from dotenv import load_dotenv
+
+
+load_dotenv(dotenv_path=os.path.join("C:\\Users\\Aldian\\Desktop\\projects\\search-engine", '.env'))
+
 
 
 def task():
@@ -13,8 +19,30 @@ def task():
     print('sleeping...')
     time.sleep(200)
 
+def create_celery_app(app: Flask) -> Celery:
+    class FlaskTask(Task):
+        def __call__(self, *args: object, **kwargs: object) -> object:
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery_app = Celery(app.name, task_cls=FlaskTask)
+    celery_app.config_from_object(app.config["CELERY"])
+    celery_app.set_default()
+    app.extensions["celery"] = celery_app
+    return celery_app
+
+
 def run():
     app = Flask(__name__)
+
+    app.config.from_mapping(
+        CELERY=dict(
+            broker_url='sqla+sqlite:///celerydb.sqlite'
+        ),
+    )
+
+    app.config.from_prefixed_env()
+    create_celery_app(app)
 
     
     CORS(app)
