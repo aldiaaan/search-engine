@@ -70,6 +70,7 @@ class BreadthFirstSearch:
             except Exception as e:
                 print(e)
                 continue
+            time.sleep(0.1)
 
         executor.shutdown39(wait=False, cancel_futures=True)
 

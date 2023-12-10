@@ -22,4 +22,4 @@ load_dotenv(dotenv_path=os.path.join("C:\\Users\\Aldian\\Desktop\\projects\\sear
 
 db = Database()
 db.create_tables()
-application = run(os.getenv('API_PORT'))
+application = run()

@@ -57,6 +57,7 @@ class Crawl:
                         self.url_queue.put(complete_url)
 
     def run(self) -> int:
+        print("inside crawl::run()")
         """
         Fungsi utama yang berfungsi untuk menjalankan proses crawling.
 
@@ -83,6 +84,7 @@ class Crawl:
         else:
             print("Resuming the crawler from the last urls...")
             last_urls = self.visited_urls[-3:]
+            # last_urls = ['https://news.detik.com/pemilu', 'https://travel.detik.com/', 'https://food.detik.com/']
             for url in last_urls:
                 urls_string += url + " "
             self.scrape_links_for_resume(last_urls)

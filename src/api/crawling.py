@@ -118,6 +118,7 @@ def start_crawling():
         
 
         process = multiprocessing.Process(
+            daemon=True,
             target=start_crawling_task,
             args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
         )

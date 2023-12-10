@@ -2,7 +2,16 @@ from flask import Flask, jsonify, render_template, request, Response, send_from_
 import os
 from flask_cors import CORS
 from src.exceptions import BaseException
+import multiprocessing
+import time
+import random
+import string
 
+
+def task():
+    file = open(f'./test/{"".join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))}.txt', 'a')
+    print('sleeping...')
+    time.sleep(200)
 
 def run():
     app = Flask(__name__)
@@ -46,7 +55,20 @@ def run():
             return e
         
     app.register_error_handler(Exception, handle_exception)
+
     
+    @app.route("/ping")
+    def ping():
+        p = multiprocessing.Process(target=task)
+        p.daemon = True
+        try:
+            p.start()
+            print(p.pid)
+            return f"{p.pid}"
+        except Exception as e:
+            print(e)
+            return f"{e}"
+        return "PONG"
 
     @app.route("/")
     def index():
