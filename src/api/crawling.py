@@ -5,7 +5,7 @@ from src.domain import Domain
 from src.webpage import Webpage
 import multiprocessing
 import json
-from threading import Thread
+from threading import Thread, Event
 import time
 import os
 import multiprocessing
@@ -15,6 +15,17 @@ bp_crawling = Blueprint("crawling", __name__)
 processes = []
 
 IS_CRAWLING_RUNNING = False
+
+class CustomThread(Thread):
+    def __init__(self, *args, **kwargs):
+        super(CustomThread, self).__init__(*args, **kwargs)
+        self._stopper = Event()
+    
+    def stop(self):
+        self._stopper.set()
+
+    def stopped(self):
+        return self._stopper.isSet()
 
 def crawling_task_checker(event, kill_event):
     
@@ -36,7 +47,7 @@ def start_crawling_task(event, status, start_urls, max_threads, bfs_duration_sec
 @bp_crawling.route("stop")
 def stop_crawler():
     if len(processes) > 0:
-        os.kill(processes[0].get("pid"), signal.SIGTERM)
+        processes[0].get("handle").stop()
         processes.clear()
         print("process stopped")
         return {
@@ -117,7 +128,7 @@ def start_crawling():
         kill_event = multiprocessing.Event()
         
 
-        process = multiprocessing.Process(
+        process = CustomThread(
             daemon=True,
             target=start_crawling_task,
             args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
@@ -132,7 +143,8 @@ def start_crawling():
             "start_time": start_time,
             "end_time": start_time + int(crawler_duration_sec),
             "duration": crawler_duration_sec,
-            "pid": process.pid,
+            "pid": -1,
+            "handle": process,
             "threads": int(request.args.get('threads'))
         })
 
@@ -154,8 +166,7 @@ def start_crawling():
 def stop_crawling():
     try:
         for process in processes:
-            process.terminate()
-            process.join()
+            process.get('handle').stop()
 
         processes.clear()
 

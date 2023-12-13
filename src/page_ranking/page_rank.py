@@ -273,7 +273,9 @@ def run_background_service_threaded(options: dict = dict()):
     db_connection = Database().connect()
     N = Database().count_rows(db_connection, "page_information")
     initial_pr = 1 / N
+    print('saving initial pagerank...')
     save_initial_pagerank(db_connection, initial_pr)
+    print('done')
     
     Database().connect_threaded()
 
