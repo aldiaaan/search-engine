@@ -27,3 +27,4 @@ wordcloud
 cachetools
 pymysql-pool
 anytree
+memory-profiler

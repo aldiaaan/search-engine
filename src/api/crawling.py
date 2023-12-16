@@ -18,7 +18,7 @@ IS_CRAWLING_RUNNING = False
 
 def crawling_task_checker(event, kill_event):
     
-    print("[checker thread] waiting for crawling task finished...")
+    print("[checker thread] waiting for crawling task finished")
     event.wait()
     print("[checker thread] crawling task done, clearing...")
     processes.clear()
@@ -118,7 +118,6 @@ def start_crawling():
         
 
         process = multiprocessing.Process(
-            daemon=True,
             target=start_crawling_task,
             args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
         )

@@ -9,6 +9,7 @@ from urllib.parse import urljoin
 import psutil
 import os
 import warnings
+from memory_profiler import profile
 
 
 class Crawl:
@@ -55,7 +56,6 @@ class Crawl:
                             complete_url
                     ) and complete_url not in self.visited_urls:
                         self.url_queue.put(complete_url)
-
     def run(self) -> int:
         print("inside crawl::run()")
         """

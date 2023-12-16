@@ -2096,3 +2096,159 @@
 [Sun Dec 10 13:08:34.920250 2023] [wsgi:error] [pid 11432:tid 5076] [client ::1:56548] 17320\r
 [Sun Dec 10 13:08:46.473257 2023] [wsgi:error] [pid 11432:tid 5076] [client ::1:56554] 1816\r
 [Sun Dec 10 13:12:15.730845 2023] [wsgi:error] [pid 16208:tid 5060] [client ::1:56691] 2080\r
+[Wed Dec 13 14:28:02.215429 2023] [wsgi:error] [pid 12164:tid 5144] [client ::1:53008] select *, count(*) as frequency from tfidf_word where word like '%%' group by word order by frequency DESC LIMIT 0, 20\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:28:02.594625 2023] [wsgi:error] [pid 12164:tid 5060] [client ::1:53007] <src.account.account.Account object at 0x0000014E262FF4D0>\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:28:03.876089 2023] [wsgi:error] [pid 12164:tid 5144] [client ::1:53008] select count(distinct word) as total from tfidf_word where word like '%%'\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:28:08.799998 2023] [wsgi:error] [pid 12164:tid 5144] [client ::1:53008] select *, count(*) as frequency from tfidf_word where word like '%%' group by word order by frequency DESC LIMIT 0, 20\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:10.139204 2023] [wsgi:error] [pid 12164:tid 5144] [client ::1:53008] select count(distinct word) as total from tfidf_word where word like '%%'\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:13.408829 2023] [wsgi:error] [pid 12164:tid 5012] [client ::1:53013] select *, count(*) as frequency from tfidf_word where word like '%%' group by word order by frequency DESC LIMIT 0, 20\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:13.425185 2023] [wsgi:error] [pid 12164:tid 5040] [client ::1:53009] <src.account.account.Account object at 0x0000014E26567D90>\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:14.939877 2023] [wsgi:error] [pid 12164:tid 5012] [client ::1:53013] select count(distinct word) as total from tfidf_word where word like '%%'\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:27.654482 2023] [wsgi:error] [pid 12164:tid 5000] [client ::1:53053] select *, count(*) as frequency from tfidf_word where word like '%%' group by word order by frequency DESC LIMIT 0, 20\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:27.657485 2023] [wsgi:error] [pid 12164:tid 5144] [client ::1:53008] <src.account.account.Account object at 0x0000014E26306B90>\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:28:28.903013 2023] [wsgi:error] [pid 12164:tid 5000] [client ::1:53053] select count(distinct word) as total from tfidf_word where word like '%%'\r, referer: http://localhost:8880/dashboard/services/document-ranking/overview
+[Wed Dec 13 14:30:24.716390 2023] [wsgi:error] [pid 12164:tid 5036] [client ::1:53077] <src.account.account.Account object at 0x0000014E262EB8D0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] mod_wsgi (pid=4084): Failed to exec Python script file 'C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi'.
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] mod_wsgi (pid=4084): Exception occurred processing WSGI script 'C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi'.
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] Traceback (most recent call last):\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 644, in connect\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     sock = socket.create_connection(\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]            ^^^^^^^^^^^^^^^^^^^^^^^^^\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socket.py", line 851, in create_connection\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     raise exceptions[0]\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socket.py", line 836, in create_connection\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     sock.connect(sa)\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] \r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] During handling of the above exception, another exception occurred:\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] \r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] Traceback (most recent call last):\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi", line 24, in <module>\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     db.create_tables()\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\Desktop\\projects\\search-engine\\src\\database\\database.py", line 193, in create_tables\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     connection = self.connect()\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]                  ^^^^^^^^^^^^^^\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\Desktop\\projects\\search-engine\\src\\database\\database.py", line 39, in connect\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     connection = pymysql.connect(\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]                  ^^^^^^^^^^^^^^^^\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 358, in __init__\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     self.connect()\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 711, in connect\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361]     raise exc\r
+[Wed Dec 13 14:45:39.634612 2023] [wsgi:error] [pid 4084:tid 2016] [client ::1:53361] pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")\r
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] mod_wsgi (pid=4084): Failed to exec Python script file 'C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi'., referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] mod_wsgi (pid=4084): Exception occurred processing WSGI script 'C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi'., referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] Traceback (most recent call last):\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 644, in connect\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     sock = socket.create_connection(\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]            ^^^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socket.py", line 851, in create_connection\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     raise exceptions[0]\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\socket.py", line 836, in create_connection\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     sock.connect(sa)\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] \r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] During handling of the above exception, another exception occurred:\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] \r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] Traceback (most recent call last):\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:/Users/Aldian/Desktop/projects/search-engine/search-engine.wsgi", line 24, in <module>\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     db.create_tables()\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\Desktop\\projects\\search-engine\\src\\database\\database.py", line 193, in create_tables\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     connection = self.connect()\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]                  ^^^^^^^^^^^^^^\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\Desktop\\projects\\search-engine\\src\\database\\database.py", line 39, in connect\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     connection = pymysql.connect(\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]                  ^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 358, in __init__\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     self.connect()\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\pymysql\\connections.py", line 711, in connect\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379]     raise exc\r, referer: http://localhost:8880/
+[Wed Dec 13 14:45:43.810468 2023] [wsgi:error] [pid 4084:tid 2172] [client ::1:53379] pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'localhost' ([WinError 10061] No connection could be made because the target machine actively refused it)")\r, referer: http://localhost:8880/
+[Wed Dec 13 14:53:24.231021 2023] [wsgi:error] [pid 4376:tid 5044] [client ::1:53442] select *, count(*) as frequency from tfidf_word where word like '%%' group by word order by frequency DESC LIMIT 0, 20\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:53:24.319538 2023] [wsgi:error] [pid 4376:tid 5056] [client ::1:53436] <src.account.account.Account object at 0x00000252B5C9E750>\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:53:25.911576 2023] [wsgi:error] [pid 4376:tid 5044] [client ::1:53442] select count(distinct word) as total from tfidf_word where word like '%%'\r, referer: http://localhost:8880/dashboard/overview
+[Wed Dec 13 14:54:11.821749 2023] [wsgi:error] [pid 4376:tid 5056] [client ::1:53470] <src.account.account.Account object at 0x00000252B70A0450>\r, referer: http://localhost:8880/dashboard/services/page-ranking/overview
+[Wed Dec 13 16:16:50.361884 2023] [wsgi:error] [pid 4376:tid 5044] [client ::1:53615] <src.account.account.Account object at 0x00000252B70A1D10>\r, referer: http://localhost:8880/dashboard/services/page-ranking/overview
+[Wed Dec 13 16:16:50.652667 2023] [wsgi:error] [pid 4376:tid 5044] [client ::1:53615] <src.account.account.Account object at 0x00000252B70A1FD0>\r, referer: http://localhost:8880/dashboard/services/page-ranking/overview
+[Wed Dec 13 16:16:58.661749 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53618] <src.account.account.Account object at 0x00000252B70A2590>\r, referer: http://localhost:8880/dashboard/services/page-ranking/overview
+[Wed Dec 13 16:17:00.850057 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53618] <src.account.account.Account object at 0x00000252B9AC9290>\r, referer: http://localhost:8880/dashboard/services/page-ranking/overview
+[Wed Dec 13 16:17:26.414334 2023] [wsgi:error] [pid 4376:tid 5036] [client ::1:53635] <src.account.account.Account object at 0x00000252B9A2F550>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.524540 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] ERROR:src.api.app:Exception on /api/v1.0/crawling/stop [GET]\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] Traceback (most recent call last):\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask\\app.py", line 867, in full_dispatch_request\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     rv = self.dispatch_request()\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]          ^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask\\app.py", line 852, in dispatch_request\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\Desktop\\projects\\search-engine\\src\\api\\crawling.py", line 39, in stop_crawler\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     os.kill(processes[0].get("pid"), signal.SIGTERM)\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] PermissionError: [WinError 5] Access is denied\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] \r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] During handling of the above exception, another exception occurred:\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] \r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] Traceback (most recent call last):\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask\\app.py", line 1455, in wsgi_app\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     response = self.full_dispatch_request()\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask\\app.py", line 869, in full_dispatch_request\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     rv = self.handle_user_exception(e)\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask_cors\\extension.py", line 176, in wrapped_function\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     return cors_after_request(app.make_response(f(*args, **kwargs)))\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]   File "C:\\Users\\Aldian\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\flask\\app.py", line 1197, in make_response\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654]     raise TypeError(\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:26.530600 2023] [wsgi:error] [pid 4376:tid 5040] [client ::1:53654] TypeError: The view function did not return a valid response. The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a PermissionError.\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:27.970364 2023] [wsgi:error] [pid 4376:tid 5056] [client ::1:53655] <src.account.account.Account object at 0x00000252B9A3D0D0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:36.964360 2023] [wsgi:error] [pid 4632:tid 5068] [client 127.0.0.1:53668] <src.account.account.Account object at 0x0000021F43776DD0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:37.144136 2023] [wsgi:error] [pid 4632:tid 5180] [client ::1:53672] <src.account.account.Account object at 0x0000021F43792990>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:17:42.870490 2023] [wsgi:error] [pid 4632:tid 5180] [client ::1:53672] <src.account.account.Account object at 0x0000021F43BF3410>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:22:50.546721 2023] [wsgi:error] [pid 4632:tid 5184] [client ::1:53724] <src.account.account.Account object at 0x0000021F43B44910>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:23:02.244774 2023] [wsgi:error] [pid 4632:tid 5180] [client ::1:53725] <src.account.account.Account object at 0x0000021F43781A10>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:26:09.056538 2023] [wsgi:error] [pid 4632:tid 5184] [client ::1:53757] <src.account.account.Account object at 0x0000021F43B2D3D0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:26:14.917706 2023] [wsgi:error] [pid 4632:tid 5180] [client ::1:53758] <src.account.account.Account object at 0x0000021F437B5F90>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:27:24.082026 2023] [wsgi:error] [pid 4632:tid 5184] [client ::1:53776] <src.account.account.Account object at 0x0000021F43795750>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:27:27.303157 2023] [wsgi:error] [pid 4632:tid 5064] [client ::1:53777] <src.account.account.Account object at 0x0000021F43797210>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:27:27.983686 2023] [wsgi:error] [pid 4632:tid 5064] [client ::1:53777] <src.account.account.Account object at 0x0000021F43796FD0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:28:55.383375 2023] [wsgi:error] [pid 4632:tid 5184] [client ::1:53792] <src.account.account.Account object at 0x0000021F43CB0110>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:31:57.798932 2023] [wsgi:error] [pid 14340:tid 5072] [client ::1:53812] <src.account.account.Account object at 0x00000251BBEFA490>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:31:58.505041 2023] [wsgi:error] [pid 14340:tid 5064] [client ::1:53814] <src.account.account.Account object at 0x00000251BBF117D0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:33:20.313092 2023] [wsgi:error] [pid 14340:tid 5064] [client ::1:53834] <src.account.account.Account object at 0x00000251BC3CF6D0>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:33:20.707390 2023] [wsgi:error] [pid 14340:tid 5064] [client ::1:53834] <src.account.account.Account object at 0x00000251BC3CFB50>\r, referer: http://localhost:8880/dashboard/services/crawling/overview
+[Wed Dec 13 16:38:17.251662 2023] [wsgi:error] [pid 15340:tid 5148] [client ::1:54613] <src.account.account.Account object at 0x000001BDD83349D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:38:25.001497 2023] [wsgi:error] [pid 15340:tid 5072] [client ::1:54615] <src.account.account.Account object at 0x000001BDD83412D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:38:26.661746 2023] [wsgi:error] [pid 15340:tid 5072] [client ::1:54615] <src.account.account.Account object at 0x000001BDD8340D50>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:39:07.970580 2023] [wsgi:error] [pid 15428:tid 5052] [client ::1:54658] <src.account.account.Account object at 0x0000021FE8C47950>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:40:12.828920 2023] [wsgi:error] [pid 15428:tid 5052] [client ::1:54669] <src.account.account.Account object at 0x0000021FE8C44A90>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:40:13.936089 2023] [wsgi:error] [pid 15428:tid 5052] [client ::1:54669] <src.account.account.Account object at 0x0000021FE8BD6CD0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:46:18.733408 2023] [wsgi:error] [pid 8344:tid 4664] [client ::1:54752] <src.account.account.Account object at 0x000001BF5C63D190>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:46:21.427906 2023] [wsgi:error] [pid 8344:tid 4616] [client ::1:54750] <src.account.account.Account object at 0x000001BF5C9B17D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:46:50.749554 2023] [wsgi:error] [pid 8344:tid 4664] [client ::1:54776] <src.account.account.Account object at 0x000001BF5C64B8D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:01.713027 2023] [wsgi:error] [pid 13456:tid 5132] [client 127.0.0.1:54788] <src.account.account.Account object at 0x0000015ECF2DB390>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:02.444722 2023] [wsgi:error] [pid 13456:tid 5132] [client 127.0.0.1:54788] <src.account.account.Account object at 0x0000015ECF2DB690>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:10.698654 2023] [wsgi:error] [pid 13456:tid 4632] [client ::1:54790] 'Thread' object has no attribute 'pid'\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:24.248826 2023] [wsgi:error] [pid 13456:tid 5132] [client ::1:54860] <src.account.account.Account object at 0x0000015ECF61BD50>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:26.616374 2023] [wsgi:error] [pid 13456:tid 5132] [client ::1:54860] <src.account.account.Account object at 0x0000015ECFA2C550>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:47:28.394711 2023] [wsgi:error] [pid 13456:tid 5132] [client ::1:54860] <src.account.account.Account object at 0x0000015ED120D6D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:48:02.090564 2023] [wsgi:error] [pid 264:tid 5200] [client ::1:54895] <src.account.account.Account object at 0x00000294F94F3750>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:48:02.921902 2023] [wsgi:error] [pid 264:tid 5200] [client ::1:54895] <src.account.account.Account object at 0x00000294F966BF10>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:48:16.903467 2023] [wsgi:error] [pid 264:tid 5060] [client ::1:54967] <src.account.account.Account object at 0x00000294F9CD2E50>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:50:01.587610 2023] [wsgi:error] [pid 5200:tid 4628] [client 127.0.0.1:54983] <src.account.account.Account object at 0x000001CB8449D250>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:50:03.679855 2023] [wsgi:error] [pid 5200:tid 5088] [client ::1:54989] <src.account.account.Account object at 0x000001CB84892550>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:58:53.622228 2023] [wsgi:error] [pid 5200:tid 4628] [client ::1:55035] <src.account.account.Account object at 0x000001CB8470ED90>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:58:55.148587 2023] [wsgi:error] [pid 5200:tid 4628] [client ::1:55035] <src.account.account.Account object at 0x000001CB8470F050>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:58:56.801101 2023] [wsgi:error] [pid 5200:tid 5128] [client ::1:55038] <src.account.account.Account object at 0x000001CB84518B50>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:59:00.322520 2023] [wsgi:error] [pid 5200:tid 5088] [client ::1:55036] <src.account.account.Account object at 0x000001CB8483F6D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 16:59:59.977700 2023] [wsgi:error] [pid 5200:tid 5128] [client ::1:55095] <src.account.account.Account object at 0x000001CB84C3CD90>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:00:07.830442 2023] [wsgi:error] [pid 12744:tid 5064] [client 127.0.0.1:55100] <src.account.account.Account object at 0x0000015D78619250>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:00:08.553787 2023] [wsgi:error] [pid 12744:tid 5064] [client 127.0.0.1:55100] <src.account.account.Account object at 0x0000015D7861BBD0>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:00:36.981536 2023] [wsgi:error] [pid 12744:tid 5060] [client ::1:55144] <src.account.account.Account object at 0x0000015D78E902D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:00:43.910565 2023] [wsgi:error] [pid 15304:tid 5092] [client 127.0.0.1:55149] <src.account.account.Account object at 0x0000024D8D1CD610>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:00:43.914170 2023] [wsgi:error] [pid 15304:tid 5056] [client ::1:55163] <src.account.account.Account object at 0x0000024D8D247450>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:04:03.290443 2023] [wsgi:error] [pid 15304:tid 5264] [client ::1:55304] <src.account.account.Account object at 0x0000024D8FDDB4D0>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:05:11.859768 2023] [wsgi:error] [pid 15304:tid 5056] [client ::1:55332] <src.account.account.Account object at 0x0000024D8D643C10>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:05:12.504652 2023] [wsgi:error] [pid 15304:tid 5056] [client ::1:55332] <src.account.account.Account object at 0x0000024D8D5B6250>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:05:13.842245 2023] [wsgi:error] [pid 15304:tid 5056] [client ::1:55332] <src.account.account.Account object at 0x0000024D8D5B4790>\r, referer: http://localhost:5173/
+[Wed Dec 13 17:05:16.059464 2023] [wsgi:error] [pid 15304:tid 5056] [client ::1:55332] <src.account.account.Account object at 0x0000024D8D5B5B90>\r, referer: http://localhost:5173/
+[Wed Dec 13 19:00:51.146085 2023] [wsgi:error] [pid 15304:tid 5052] [client ::1:55766] <src.account.account.Account object at 0x0000024D8F30B050>\r, referer: http://localhost:5173/
