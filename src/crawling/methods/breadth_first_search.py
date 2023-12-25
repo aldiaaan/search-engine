@@ -12,6 +12,9 @@ import re
 from src.domain import Domain
 from urllib.parse import urlparse
 
+def noop():
+    return
+
 
 class BreadthFirstSearch:
     """
@@ -27,8 +30,9 @@ class BreadthFirstSearch:
 
     def __init__(self, crawl_id: int, url_queue: queue.Queue,
                  visited_urls: list, duration_sec: int,
-                 max_threads: int) -> None:
+                 max_threads: int, is_aborted = noop) -> None:
         self.crawl_id = crawl_id
+        self.is_aborted = is_aborted
         self.url_queue = url_queue
         self.visited_urls = visited_urls
         self.duration_sec = duration_sec
@@ -38,16 +42,18 @@ class BreadthFirstSearch:
         self.lock = threading.Lock()
         self.start_time: float = time.time()
         self.list_urls = []
-
+    
     def run(self) -> None:
         """
         Fungsi utama yang berfungsi untuk menjalankan proses crawling BFS.
         """
         executor = CustomThreadPoolExecutor(max_workers=self.max_threads)
-
         futures = []
         while True:
+            time.sleep(1)
             try:
+                if self.is_aborted():
+                    break
                 time_now = time.time() - self.start_time
                 time_now_int = int(time_now)
                 if time_now_int >= self.duration_sec:
@@ -58,6 +64,7 @@ class BreadthFirstSearch:
                     self.visited_urls.append(target_url)
                     futures.append(
                         executor.submit(self.scrape_page, target_url))
+                time.sleep(1)
             except queue.Empty:
                 if self.crawl_utils.running_thread_count(futures) > 0:
                     continue
@@ -71,7 +78,6 @@ class BreadthFirstSearch:
                 print(e)
                 continue
             # time.sleep(0.1)
-
         executor.shutdown39(wait=False, cancel_futures=True)
 
     def scrape_page(self, url: str) -> None:

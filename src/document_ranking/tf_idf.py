@@ -155,7 +155,12 @@ def get_all_tfidf_for_api(keyword, start=None, length=None):
     saved_tfidf = get_all_saved_tfidf(db_connection, keyword, start, length)
     return saved_tfidf
 
-def run_background_service():
+def run_background_service(is_aborted):
+
+    def noop():
+        return
+
+    is_aborted = is_aborted or noop
     """
     Fungsi utama yang digunakan untuk melakukan pembobotan kata pada dokumen menggunakan metode TF-IDF.
     """
@@ -174,18 +179,25 @@ def run_background_service():
     )
 
     tfidf_matrix = vectorizer.fit_transform(text_content)
-    words = vectorizer.get_feature_names()
+    words = vectorizer.get_feature_names_out()
     idf_vector = vectorizer.idf_
 
     df_tfidf = pd.DataFrame.sparse.from_spmatrix(tfidf_matrix, columns=words)
 
     data_tfidf = []
+    if is_aborted():
+        return
     for i in range(len(df_tfidf)):
+        if is_aborted():
+            break
         page_id = df["id_page"].loc[i]
-        for j in range(len(words)):
+        for j in range(len(words)):            
+            if is_aborted():
+                break
             word = words[j]
             tf_idf = df_tfidf[word].loc[i]
             if tf_idf == 0.0:
+                print(f"word: {word}, page_id: {page_id}, tfidf score: {tf_idf}, skipping..")
                 continue
             idf = idf_vector[j]
             tf = tf_idf / idf
@@ -229,7 +241,7 @@ def get_cosine_similarity(keyword):
     )
 
     tfidf_matrix = vectorizer.fit_transform(text_content)
-    words = vectorizer.get_feature_names()
+    words = vectorizer.get_feature_names_out()
     idf_vector = vectorizer.idf_
 
     query_tfidf_matrix = vectorizer.transform([keyword])

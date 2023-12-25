@@ -26,8 +26,9 @@ class Crawl:
 
     def __init__(self, status, start_urls: list, max_threads: str,
                  bfs_duration_sec: int, msb_duration_sec: int,
-                 msb_keyword: str) -> None:
+                 msb_keyword: str, is_aborted) -> None:
         self.status = status
+        self.is_aborted = is_aborted
         self.start_urls = start_urls
         self.max_threads = int(max_threads)
         self.bfs_duration_sec = bfs_duration_sec
@@ -36,6 +37,7 @@ class Crawl:
         self.db = Database()
         self.crawl_utils = CrawlUtils()
         self.process = psutil.Process(os.getpid())
+        self.service_handles = []
         warnings.filterwarnings("ignore", message="Unverified HTTPS request")
 
     def scrape_links_for_resume(self, urls: list) -> None:
@@ -56,6 +58,7 @@ class Crawl:
                             complete_url
                     ) and complete_url not in self.visited_urls:
                         self.url_queue.put(complete_url)
+
     def run(self) -> int:
         print("inside crawl::run()")
         """
@@ -66,6 +69,10 @@ class Crawl:
         """
         self.url_queue: queue.Queue = queue.Queue()
         self.start_time: float = time.time()
+        # time.sleep(30)
+
+        if (self.is_aborted()):
+            return
 
         db_connection = self.db.connect()
         if self.status.lower() == "start":
@@ -97,9 +104,11 @@ class Crawl:
 
         print("Running breadth first search crawler...")
         bfs = BreadthFirstSearch(crawl_id, self.url_queue, self.visited_urls,
-                                 self.bfs_duration_sec, self.max_threads)
+                                 self.bfs_duration_sec, self.max_threads, is_aborted=self.is_aborted)
         bfs.run()
         print("Finished breadth first search crawler...")
+        if (self.is_aborted()):
+            return
 
         # Modified Similarity Based Crawler
         print("Running modified similarity based crawler...")
@@ -112,6 +121,7 @@ class Crawl:
             self.msb_duration_sec,
             self.max_threads,
         )
+
         msb.run()
         print("Finished modified similarity based crawler...")
 

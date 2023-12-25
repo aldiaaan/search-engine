@@ -47,13 +47,12 @@ class ModifiedSimilarityBased:
         self.list_urls: List[str] = list_urls
         self.hot_queue: queue.Queue = queue.Queue()
         self.url_queue: queue.Queue = self.reorder_queue(url_queue)
-
+        
     def run(self) -> None:
         """
         Fungsi utama yang berfungsi untuk menjalankan proses crawling MSB.
         """
-        executor = CustomThreadPoolExecutor(max_workers=self.max_threads)
-
+        executor = CustomThreadPoolExecutor(max_workers=self.max_threads)        
         futures = []
         while True:
             try:

@@ -28,3 +28,5 @@ cachetools
 pymysql-pool
 anytree
 memory-profiler
+celery[redis]
+eventlet

@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, current_app
 from src.crawling.crawl import Crawl
 from src.crawling.crawl import CrawlUtils
 from src.domain import Domain
@@ -10,14 +10,19 @@ import time
 import os
 import multiprocessing
 import signal
+from celery.result import AsyncResult
+from celery.contrib.abortable import AbortableAsyncResult
 
 bp_crawling = Blueprint("crawling", __name__)
 processes = []
 
+tid = None
+
 IS_CRAWLING_RUNNING = False
 
+
 def crawling_task_checker(event, kill_event):
-    
+
     print("[checker thread] waiting for crawling task finished")
     event.wait()
     print("[checker thread] crawling task done, clearing...")
@@ -25,42 +30,69 @@ def crawling_task_checker(event, kill_event):
     kill_event.set()
     print("[checker thread] all done, processes cleared!")
 
+
 def start_crawling_task(event, status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
-    c = Crawl(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
-    
+    c = Crawl(status, start_urls, max_threads,
+              bfs_duration_sec, msb_duration_sec, msb_keyword)
+
     print("starting running crawling task")
     c.run()
     event.set()
 
 
-@bp_crawling.route("stop")
-def stop_crawler():
-    if len(processes) > 0:
-        os.kill(processes[0].get("pid"), signal.SIGTERM)
-        processes.clear()
-        print("process stopped")
-        return {
-            "message": "stopped"
-        }
-    return {
-        "message": "crawling service not running yet"
-    }
+# @bp_crawling.route("stop")
+# def stop_crawler():
+#     if len(processes) > 0:
+#         os.kill(processes[0].get("pid"), signal.SIGTERM)
+#         processes.clear()
+#         print("process stopped")
+#         return {
+#             "message": "stopped"
+#         }
+#     return {
+#         "message": "crawling service not running yet"
+#     }
 
 @bp_crawling.route('specs')
 def get_specs():
     return {
-        "available_cpus": multiprocessing.cpu_count() 
+        "available_cpus": multiprocessing.cpu_count()
     }, 200
+
+
+def get_crawling_task():
+    tasks = [x for x in current_app.extensions["celery"].control.inspect().active(
+    ).get('celery@SEARCH_ENGINE_WORKERS') if x.get('name') == 'workers.crawler.run']
+    if len(tasks) == 0:
+        return None
+    task = AbortableAsyncResult(tasks[0].get('id'))
+    return task
+
+
+def kill_crawling_task():
+    task = get_crawling_task()
+    task.abort()
+    return True
+
 
 @bp_crawling.route("status")
 def get_crawling_status():
-
+    task = get_crawling_task()
+    if task is None:
+        return {
+            "status": "IDLE"
+        }
+    
+    info = task.info
+    
     return {
-        "status": "RUNNING" if len(processes) > 0 else "IDLE",
-        "start_time": processes[0]["start_time"] if len(processes) > 0 else -1,
-        "end_time": processes[0]["end_time"] if len(processes) > 0 else -1,
-        "duration": int(processes[0]["duration"]) if len(processes) > 0 else -1,
-        "threads": processes[0]["threads"] if len(processes) > 0 else -1        
+        # "__celery": current_app.extensions["celery"].control.inspect().active(),
+        # "__task": get_crawling_task().info,
+        "status": "RUNNING",
+        "start_time": info["start_time"],
+        "end_time": info["end_time"],
+        "duration": int(info["duration"]),
+        "threads": info["threads"]
     }
 
 
@@ -81,7 +113,7 @@ def get_crawling_info():
         "sort_pagerank_score": "DESC"
     })
 
-    return {        
+    return {
         "total_domains": total_domains,
         "total_webpages": total_webpages,
         "total_webpages_size": Webpage.get_total_size(),
@@ -89,18 +121,70 @@ def get_crawling_info():
         "countries": countries
     }
 
+
+@bp_crawling.route("stop")
+def stop_2():
+    try:
+        kill_crawling_task()
+        return {
+            "message": "stopped"
+        }
+    except Exception as e:
+        return {
+            "message": f"{e}"
+        }
+
+
 @bp_crawling.route("/start")
+def start_crawling_2():
+    # from src.celery.workers import greet
+    # result = greet.delay("aldian")
+    # global tid
+    # tid = result.id
+    # return {
+    #     "id": result.id
+    # }
+
+    crawler_duration_sec = request.args.get("duration", default="", type=str)
+    start_urls = os.getenv("CRAWLER_START_URLS").split()
+    max_threads = int(request.args.get('threads')
+                      ) or os.getenv("CRAWLER_MAX_THREADS")
+    try:
+        msb_keyword = os.getenv("CRAWLER_KEYWORD")
+    except:
+        msb_keyword = ""
+
+    if msb_keyword != "":
+        bfs_duration_sec = int(crawler_duration_sec) // 2
+        msb_duration_sec = int(crawler_duration_sec) // 2
+    else:
+        bfs_duration_sec = int(crawler_duration_sec)
+        msb_duration_sec = 0
+
+    from src.celery.workers import run_crawl
+    result = run_crawl.delay("resume", start_urls, max_threads,
+                             bfs_duration_sec, msb_duration_sec, msb_keyword)
+    global tid
+    tid = result.id
+    return {
+        "result_id": result.id
+    }
+
+
+@bp_crawling.route("/start2")
 def start_crawling():
-    
+
     if len(processes) > 0:
         return {
             "msg": "Service is currently running!"
         }
-    
+
     try:
-        crawler_duration_sec = request.args.get("duration", default="", type=str)
+        crawler_duration_sec = request.args.get(
+            "duration", default="", type=str)
         start_urls = os.getenv("CRAWLER_START_URLS").split()
-        max_threads = int(request.args.get('threads')) or os.getenv("CRAWLER_MAX_THREADS")
+        max_threads = int(request.args.get('threads')
+                          ) or os.getenv("CRAWLER_MAX_THREADS")
         try:
             msb_keyword = os.getenv("CRAWLER_KEYWORD")
         except:
@@ -115,14 +199,15 @@ def start_crawling():
 
         event = multiprocessing.Event()
         kill_event = multiprocessing.Event()
-        
 
         process = multiprocessing.Process(
             target=start_crawling_task,
-            args=(event, "resume", start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword),
+            args=(event, "resume", start_urls, max_threads,
+                  bfs_duration_sec, msb_duration_sec, msb_keyword),
         )
 
-        checker_thread = Thread(target=crawling_task_checker, args=(event, kill_event))
+        checker_thread = Thread(
+            target=crawling_task_checker, args=(event, kill_event))
         checker_thread.start()
         process.start()
         start_time = time.time()
@@ -149,27 +234,27 @@ def start_crawling():
         }, 500
 
 
-@bp_crawling.route("/stop")
-def stop_crawling():
-    try:
-        for process in processes:
-            process.terminate()
-            process.join()
+# @bp_crawling.route("/stop2")
+# def stop_crawling():
+#     try:
+#         for process in processes:
+#             process.terminate()
+#             process.join()
 
-        processes.clear()
+#         processes.clear()
 
-        response = {
-            "ok": True,
-            "message": "Sukses",
-        }
-        json_obj = json.dumps(response, indent=4, default=str)
-        return json.loads(json_obj), 200
+#         response = {
+#             "ok": True,
+#             "message": "Sukses",
+#         }
+#         json_obj = json.dumps(response, indent=4, default=str)
+#         return json.loads(json_obj), 200
 
-    except Exception as e:
-        return {
-            "ok": False,
-            "message": e,
-        }, 500
+#     except Exception as e:
+#         return {
+#             "ok": False,
+#             "message": e,
+#         }, 500
 
 
 @bp_crawling.route("/pages")
@@ -230,7 +315,8 @@ def start_insert_pages():
         duration_crawl = request.json["duration_crawl"]
         crawl_utils = CrawlUtils()
 
-        id_crawling = crawl_utils.start_insert_api(start_urls, keyword, duration_crawl)
+        id_crawling = crawl_utils.start_insert_api(
+            start_urls, keyword, duration_crawl)
 
         response = {
             "ok": True,
