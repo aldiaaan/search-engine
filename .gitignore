@@ -6,3 +6,5 @@ lib/
 lib64/
 share/
 web_client/
+page_ranking_service_state
+logs/*
