@@ -160,14 +160,11 @@ def run_background_service(options: dict = dict()):
     """
     Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
     """
-    try:
-        os.remove('page_ranking_service_state')
-        state = open('page_ranking_service_state', 'wb')
-        iteration = 0
-        pickle.dump(iteration, state)
-        state.close()
-    except:
-        print('state not found')
+    def noop():
+        return
+    
+    on_iteration_change = options.get('on_iteration_change') or noop
+
     print('start pageranking (non-threaded)....')
 
     max_iterations = options.get('max_iterations') or 20
@@ -175,12 +172,15 @@ def run_background_service(options: dict = dict()):
     db_connection = Database().connect()
     N = Database().count_rows(db_connection, "page_information")
     initial_pr = 1 / N
+    print('saving initial pagerank...')
     save_initial_pagerank(db_connection, initial_pr)
+    
+    print('finished saving initial pagerank...')
     
     # Database().connect_threaded()
 
 
-    def process_page(page_row, db_connection = None):
+    def process_page(page_row, db_connection = None):   
         db_connection = db_connection or Database().connect_threaded()
         t1 = perf_counter()
         page_id = page_row["id_page"]
@@ -229,6 +229,7 @@ def run_background_service(options: dict = dict()):
         return pr_change, t2 - t1
 
     for iteration in range(max_iterations):
+        on_iteration_change(iteration)        
         iteration_t1 = perf_counter()
         pr_change_sum = 0
         # state = open('page_ranking_service_state', 'wb')
@@ -237,10 +238,9 @@ def run_background_service(options: dict = dict()):
         pages = get_all_crawled_pages(db_connection)
         avg = 0
         idx = 0
-        for index,page_row in enumerate(pages):
+        for index,page_row in enumerate(pages):            
             pr_change, time = process_page(page_row, db_connection)
-            pr_change_sum += pr_change
-
+            pr_change_sum += pr_change        
         average_pr_change = pr_change_sum / N
         if average_pr_change < 0.0001:
             print(f"convergent with average pr change: {average_pr_change}")
@@ -248,8 +248,6 @@ def run_background_service(options: dict = dict()):
         
         iteration_t2 = perf_counter()
         print(f"iteration took {iteration_t2 - iteration_t1} seconds!!")
-        exit()
-    state.close()
     Database().close_connection(db_connection)
     print("PageRank Background Service - Completed.")
 
@@ -258,15 +256,8 @@ def run_background_service_threaded(options: dict = dict()):
     """
     Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
     """
-    try:
-        os.remove('page_ranking_service_state')
-        state = open('page_ranking_service_state', 'wb')
-        iteration = 0
-        pickle.dump(iteration, state)
-        state.close()
-    except:
-        print('state not found')
-    print('start pageranking....')
+    
+    print('starting pageranking....')
 
     max_iterations = options.get('max_iterations') or 20
     damping_factor = options.get('damping_factor') or 0.85
@@ -348,7 +339,7 @@ def run_background_service_threaded(options: dict = dict()):
         
         iteration_t2 = perf_counter()
         print(f"iteration took {iteration_t2 - iteration_t1} seconds!!")
-        exit()
+
     state.close()
     Database().close_connection(db_connection)
     print("PageRank Background Service - Completed.")
