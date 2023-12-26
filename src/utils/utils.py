@@ -41,6 +41,6 @@ def get_memsize():
             total_size += size
             # xs.append({'id': i, 'class': cls, 'size': size, 'referents': referents})            
     file.write(f"{datetime.now()},{total_size}\n")
-    time.sleep(5)
+    time.sleep(1800)
     __get_memsize_lock = False
     # cPickle.dump(xs, dump)
