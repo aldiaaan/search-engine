@@ -11,6 +11,9 @@ import time
 import re
 from src.domain import Domain
 from urllib.parse import urlparse
+from src.utils import get_memsize
+
+
 
 
 class BreadthFirstSearch:
@@ -47,6 +50,7 @@ class BreadthFirstSearch:
 
         futures = []
         while True:
+            get_memsize()
             try:
                 time_now = time.time() - self.start_time
                 time_now_int = int(time_now)

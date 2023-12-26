@@ -6,6 +6,14 @@ import multiprocessing
 import time
 import random
 import string
+from src.celery.init import celery_init_app
+from dotenv import load_dotenv
+
+
+load_dotenv(dotenv_path=os.path.join(os.path.abspath('../..'), '.env'))
+
+
+
 
 
 def task():
@@ -16,8 +24,22 @@ def task():
 def run():
     app = Flask(__name__)
 
+    app.config.from_mapping(
+        CELERY=dict(
+            broker_url="redis://127.0.0.1:6379/0",
+            result_backend="redis://127.0.0.1:6379/0",
+            task_ignore_result=True,
+            task_track_started=True,
+        ),
+    )
+
+    app.config.from_prefixed_env()
+
+
     
     CORS(app)
+    celery_init_app(app)
+            
             
     from src.api.crawling import bp_crawling
     from src.api.page_ranking import bp_page_ranking

@@ -301,6 +301,10 @@ class Database:
                 connection,
                 "ALTER TABLE `pagerank_changes` ADD CONSTRAINT `pagerankc_pageinfo` FOREIGN KEY (`page_id`) REFERENCES `page_information` (`id_page`) ON DELETE CASCADE",
             )
+            self.exec_query(
+                connection,
+                "CREATE TABLE crawlerdb.search_log (query TEXT NULL,ip varchar(100) NULL,ua TEXT NULL,id INT auto_increment NOT NULL,created_at TIMESTAMP DEFAULT NOW() NULL,CONSTRAINT search_log_PK PRIMARY KEY (id)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci"
+            )
         except:
             return
 

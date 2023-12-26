@@ -1,4 +1,7 @@
 import sys
+import os
+
+sys.path.insert(0, os.path.abspath('../..'))
 
 from src.api.app import run
 from celery import shared_task
@@ -7,10 +10,19 @@ from multiprocessing import  Process
 from src.document_ranking.service import DocumentRankingService
 from src.page_ranking.page_rank import run_background_service
 from celery.contrib.abortable import AbortableTask
+from celery.signals import task_revoked
 import time
+from celery.result import AsyncResult
 
 flask = run()
 handle = None
+
+@task_revoked.connect
+def on_task_revoked(*args, **kwargs):
+    print(str(kwargs))
+    t = AsyncResult(kwargs['request'].id)
+    print('task_revoked')
+    print(t._get_task_meta())
 
 
 @shared_task(name='workers.document_ranking.run', bind=True)
@@ -36,6 +48,7 @@ def run_page_ranking(self, max_iterations, damping_factor):
         self.update_state(meta={
             "iterations": i
         })
+        print(self._get_task_meta())
     
     start_time = time.time()
     
@@ -52,27 +65,32 @@ def run_page_ranking(self, max_iterations, damping_factor):
     })
 
 
-@shared_task(name='workers.crawler.run', bind=True, base=AbortableTask)
+@shared_task(name='workers.crawler.run', bind=True)
 def run_crawl(self, status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword):
     start_time = time.time()
     
+
+    c = Crawl(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
+
     self.update_state(meta={
         "threads": max_threads,
         "duration": bfs_duration_sec + msb_duration_sec,
         "start_time": start_time,
-        "end_time": start_time + bfs_duration_sec + msb_duration_sec
+        "end_time": start_time + bfs_duration_sec + msb_duration_sec,
+        # "pid": p.pid        
     })
+    c.run()
+    # p = Process(target=c.run)
 
-    c = Crawl(status, start_urls, max_threads, bfs_duration_sec, msb_duration_sec, msb_keyword)
-    p = Process(target=c.run)
+    # p.start()
 
-    p.run()
 
-    self.update_state(meta={
-      "pid": p.pid
-    })
 
-    p.join()
+    # self.update_state(meta={
+    #   "pid": p.pid
+    # })
+
+    # p.join()
     
 celery_app = flask.extensions["celery"]
 

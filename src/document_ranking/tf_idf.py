@@ -174,7 +174,7 @@ def run_background_service():
     )
 
     tfidf_matrix = vectorizer.fit_transform(text_content)
-    words = vectorizer.get_feature_names()
+    words = vectorizer.get_feature_names_out()
     idf_vector = vectorizer.idf_
 
     df_tfidf = pd.DataFrame.sparse.from_spmatrix(tfidf_matrix, columns=words)

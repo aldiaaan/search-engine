@@ -6,12 +6,30 @@ import os
 import signal
 import time
 import pymysql
-
-handle = None
+from flask import current_app
+from celery.result import AsyncResult
 
 class PageRankingService:
+    def get_active_task():
+        try:
+            active_tasks = current_app.extensions["celery"].control.inspect().active().get('celery@SEARCH_ENGINE_WORKERS')
+        except Exception as e:
+            return None, {}
+
+
+        tasks = [x for x in active_tasks if x.get('name') == 'workers.page_ranking.run']
+        
+        if len(tasks) == 0:
+            return None, {}
+        
+        task = AsyncResult(tasks[0].get('id'))
+        
+        return task, task._get_task_meta().get('result')
+    
     def is_busy():
-        return handle is not None
+        task, info = PageRankingService.get_active_task()
+        
+        return task is not None
 
     def get_metrics():
         connection = Database().connect()
@@ -33,57 +51,26 @@ class PageRankingService:
         }
 
     def stop(pid: str = None):
-        global handle
-        if PageRankingService.is_busy():
-            os.kill(pid or handle.get('pid'), signal.SIGTERM)
-            PageRankingService.cleanup()
+        task, info = PageRankingService.get_active_task()
+        if task is not None:
+            task.revoke(terminate=True, signal='SIGKILL')
         else:
             raise Exception('no process are running rn')
 
     def status():
-        if PageRankingService.is_busy():
-            return {'pid': handle.get('pid'), 'status': 'RUNNING' if handle is not None else 'IDLE', 'max_iterations': handle.get('max_iterations'), 'start_time': handle.get('start_time'), 'iteration': get_iteration_count() + 1}
+        task, info = PageRankingService.get_active_task()
+        i = info.get('iterations') or 0
+        if task is not None:
+            return {'status': 'RUNNING', 'max_iterations': info.get('max_iterations'), 'start_time': info.get('start_time'), 'iteration': i + 1}
         return {'status': 'IDLE'}
     
-    def task(event: Event, options: dict):
-        run_background_service(options)
-        event.set()
-
-    def checker(event: Event):
-        
-        print('waiting...')
-        event.wait()
-        PageRankingService.cleanup()
-
-    def cleanup():
-        global handle
-        handle = None
-
     def run(options):
         max_iterations = options.get('max_iterations')
-        threads = 0
         damping_factor = options.get('damping_factor')
 
-        event = Event()
+        from src.celery.workers import run_page_ranking
 
-        new_process = Process(target=PageRankingService.task, args=(event, {
-            'max_iterations': max_iterations,
-            'damping_factor': damping_factor
-        },))
-        process_checker = Thread(
-            target=PageRankingService.checker, args=(event,))
-
-        new_process.start()
         
-        global handle
-
-        handle = {
-            'pid': new_process.pid,
-            # time in seconds since the epoch
-            'start_time': time.time(),
-            'max_iterations': max_iterations
-        }
-
-        process_checker.start()
-
+        run_page_ranking.delay(max_iterations, damping_factor)
+        
         return True
