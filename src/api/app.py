@@ -26,8 +26,8 @@ def run():
 
     app.config.from_mapping(
         CELERY=dict(
-            broker_url="redis://127.0.0.1:6379/0",
-            result_backend="redis://127.0.0.1:6379/0",
+            broker_url="amqps://rmqdwwlc:16EzBKC_QmSd5bU4QEKDa_rYGF_0cb9R@cougar.rmq.cloudamqp.com/rmqdwwlc",
+            result_backend = 'db+sqlite:///celery_workers.sqlite'           ,
             task_ignore_result=True,
             task_track_started=True,
         ),

@@ -18,14 +18,19 @@ def log_execution_time(func=None, args=dict(), fn_name= None):
 def get_available_threads():
     return cpu_count()
 
-__get_memsize_lock = False
+last_time_called = None
 
 def get_memsize():
-    global __get_memsize_lock
-    if __get_memsize_lock:
-        return
-    
-    __get_memsize_lock = True
+    global last_time_called
+    if last_time_called is not None:
+        if (datetime.now() - last_time_called ).seconds < 5:
+            return
+    last_time_called = datetime.now()
+    print(last_time_called)
+    print(datetime.now())
+    print((datetime.now() - last_time_called).seconds)
+    print('----------')
+    # print((last_time_called - datetime.now()).seconds)
 
     path = os.path.abspath('../../memdump.csv')
     file = open(path, 'a')
@@ -40,7 +45,5 @@ def get_memsize():
             cls = str(obj.__class__)
             total_size += size
             # xs.append({'id': i, 'class': cls, 'size': size, 'referents': referents})            
-    file.write(f"{datetime.now()},{total_size}\n")
-    time.sleep(1800)
-    __get_memsize_lock = False
+    file.write(f"{datetime.now()},{total_size}\n")   
     # cPickle.dump(xs, dump)

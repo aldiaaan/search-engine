@@ -29,10 +29,13 @@ def get_active_crawling_task():
     
     if len(tasks) == 0:
         return None, {}
-    
     task = AsyncResult(tasks[0].get('id'))
-    print(task)    
-    return task, task._get_task_meta().get('result')
+    # print(tasks[0].get('args'))
+    [_, _, threads, _, _, _] = tasks[0].get('args')
+    # print(task.args
+    
+    # ['resume', ['https://detik.com'], 3, 2222, 0, ''])    
+    return task,  {"threads": threads or None}
 
 
 @bp_crawling.route("stop")

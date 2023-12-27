@@ -48,7 +48,6 @@ def run_page_ranking(self, max_iterations, damping_factor):
         self.update_state(meta={
             "iterations": i
         })
-        print(self._get_task_meta())
     
     start_time = time.time()
     

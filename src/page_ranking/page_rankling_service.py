@@ -24,7 +24,7 @@ class PageRankingService:
         
         task = AsyncResult(tasks[0].get('id'))
         
-        return task, task._get_task_meta().get('result')
+        return task, task._get_task_meta().get('result') or {}
     
     def is_busy():
         task, info = PageRankingService.get_active_task()

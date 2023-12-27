@@ -29,7 +29,7 @@ def get_active_document_ranking_task():
         return None, {}
     
     task = AsyncResult(tasks[0].get('id'))
-    return task, task._get_task_meta().get('result')
+    return task, task._get_task_meta().get('result') or {}
 
 
 @bp_document_ranking.route("/stop", methods=["POST"])
