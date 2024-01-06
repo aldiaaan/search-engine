@@ -160,7 +160,7 @@ def run_background_service(options: dict = dict()):
     """
     Fungsi utama yang digunakan untuk melakukan perangkingan halaman Page Rank.
     """
-    def noop():
+    def noop(x = None):
         return
     
     on_iteration_change = options.get('on_iteration_change') or noop
