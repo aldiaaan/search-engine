@@ -5,6 +5,9 @@ import sys
 import gc
 from datetime import datetime
 import time
+import tracemalloc
+import gc
+import linecache
 
 def log_execution_time(func=None, args=dict(), fn_name= None):
     if (func is not None):
@@ -19,6 +22,74 @@ def get_available_threads():
     return cpu_count()
 
 last_time_called = None
+
+
+class MemoryLogger:    
+    every = 300
+    last_time_called = None
+    snapshots = []
+    latest_snapshot = None
+    
+    def __init__(self, every = 300):
+        self.every = 300
+        pass
+
+    def take_snapshot(self):
+        if self.last_time_called is not None:
+            if (datetime.now() - self.last_time_called ).seconds < self.every:
+                return
+        self.last_time_called = datetime.now()
+        snapshot = tracemalloc.take_snapshot()        
+        self._save_snapshot(snapshot)
+        self.latest_snapshot = snapshot
+
+    def _save_snapshot(self, snapshot):
+        total_gc = 0
+        for obj in gc.get_objects():
+            size = sys.getsizeof(obj, 0)
+            if hasattr(obj, '__class__'):
+                cls = str(obj.__class__)
+                total_gc += size
+        now = datetime.now()
+
+        report_path = os.path.abspath(f'../../reports/MemoryLogReport-{now}.txt')   
+        limit = 50             
+        file = open(report_path, 'a')
+        file.write(f"[!] Memory Log Report ({now}) \n\n\n\n")
+        file.write(f"[+] Top {limit} lines \n\n")
+        top_stats = snapshot.statistics('lineno')
+        for index, stat in enumerate(top_stats[:limit], 1):
+            frame = stat.traceback[0]
+            file.write("    #%s: %s:%s: %.1f KiB \n" % (index, frame.filename, frame.lineno, stat.size / 1024))
+            line = linecache.getline(frame.filename, frame.lineno).strip()
+            if line:
+                file.write('        %s \n' % line)
+        other = top_stats[limit:]
+        file.write("\n\n")
+        if self.latest_snapshot is not None:
+            file.write(f"[+] Differences from previous snapshots {limit} lines \n\n")
+            differences = snapshot.compare_to(self.latest_snapshot, 'lineno')
+            for index, stat in enumerate(differences[:limit]):
+                file.write(f"    #{index}: {stat} \n")
+        
+        file.write("\n\n")
+
+        file.write(f"[+] Summaries \n\n")
+        if other:
+            size = sum(stat.size for stat in other)
+            file.write("Total size of others (%s): %.1f KiB (tracemalloc) \n" % (len(other), size / 1024))        
+        total = sum(stat.size for stat in top_stats)
+        file.write("Total allocated size: %.1f KiB (tracemalloc) \n" % (total / 1024))        
+        file.write("Total allocated size: %.1f KiB (gc) \n" % (total_gc / 1024))     
+        file.write(f"\n\n\n\n")   
+        file.flush()
+        file.close()
+
+    def start():
+        tracemalloc.start()
+    def stop():
+        tracemalloc.stop()
+
 
 def get_memsize():
     global last_time_called
