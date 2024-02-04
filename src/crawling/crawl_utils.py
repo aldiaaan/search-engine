@@ -50,7 +50,7 @@ class CrawlUtils:
             Any: Respons dari halaman. None jika error
         """
         try:
-            res = requests.get(url, verify=False, timeout=300)
+            res = requests.get(url, verify=False, timeout=120)
             res.raise_for_status()
             return res
         except Exception as e:
@@ -68,21 +68,10 @@ class CrawlUtils:
             int: Jumlah threads yang sedang berjalan
         """
         r = 0
-        for f in futures:
-            if f.done():
-                done += 1
-                continue
-            if f.cancelled():
-                cancelled += 1                
-                continue
-            if f.running():
-                running += 1
-                continue
-        print(f"futures: {done} done, {running} running, {cancelled} cancelled")
         for future in futures:
             if future.running():
                 r += 1
-        # print(f"{r} threads running")
+        print(f"{r} threads running")
         return r
 
     def insert_page_information(

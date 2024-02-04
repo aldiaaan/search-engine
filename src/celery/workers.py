@@ -13,6 +13,9 @@ from celery.contrib.abortable import AbortableTask
 from celery.signals import task_revoked
 import time
 from celery.result import AsyncResult
+from src.utils import MemoryLogger
+
+MemoryLogger.start()
 
 flask = run()
 handle = None

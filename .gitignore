@@ -11,3 +11,4 @@ logs/*
 memdump.csv
 reports/*
 .vscode
+celery_workers.sqlite

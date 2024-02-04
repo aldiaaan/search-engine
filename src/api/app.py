@@ -26,8 +26,8 @@ def run():
 
     app.config.from_mapping(
         CELERY=dict(
-            broker_url=os.getenv('CELERY_BROKER_URL'),
-            result_backend = os.getenv('CELERY_RESULT_BACKEND'),
+            broker_url=os.getenv("CELERY_BROKER_URL"),
+            result_backend =os.getenv("CELERY_RESULT_BACKEND"),
             task_ignore_result=True,
             task_track_started=True,
         ),

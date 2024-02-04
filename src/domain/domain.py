@@ -56,24 +56,27 @@ class Domain:
     def domain_name_for_country(domain: str):
         splitted_domain = domain.split(".")
         country = "UNKNOWN"
+        
+        print(f"getting ip for {domain}")
         try:
-            response = requests.get("http://" + domain, stream=True)
+            response = requests.get("http://" + domain, timeout=30, stream=True)
         except Exception as e:
             print(e)
         
         try:
-            response = requests.get("https://" + domain, stream=True)
+            response = requests.get("https://" + domain,  timeout=30, stream=True)
         except Exception as e:
             return "UNKNOWN"
-
         ip, _ = response.raw._fp.fp.raw._sock.getpeername()
-        # print(ip)
+        print(f"got ip for domain {domain} ({ip})")
         country = geoip2_handle.country(ip).registered_country.iso_code
         return country
     
     def save(self):
         country = self.country
         name = self.name
+        
+        print(f"saving domain info for {name}")
 
         if not name or not country:
             raise Exception("[Domain::save] name or country cannot be undefined")
@@ -81,9 +84,9 @@ class Domain:
         db = Database()
         connection = db.connect()
         cursor = connection.cursor(pymysql.cursors.DictCursor)
-
+        print(f"checking if {name} is already in db")
         query = """SELECT * FROM domains where name = '{}'""".format(name)
-
+        
         cursor.execute(query)
 
         if len(cursor.fetchall()) > 0:

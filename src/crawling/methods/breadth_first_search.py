@@ -11,10 +11,10 @@ import time
 import re
 from src.domain import Domain
 from urllib.parse import urlparse
-import gc
 from src.utils import get_memsize, MemoryLogger
 
 
+memlog = MemoryLogger(every=1800)
 
 
 class BreadthFirstSearch:
@@ -43,31 +43,16 @@ class BreadthFirstSearch:
         self.start_time: float = time.time()
         self.list_urls = []
 
-    def futures_stats(self, futures):
-        done = 0
-        running = 0
-        cancelled = 0
-        for f in futures:
-            if f.done():
-                done += 1
-                continue
-            if f.cancelled():
-                cancelled += 1                
-                continue
-            if f.running():
-                running += 1
-                continue
-        print(f"futures: {done} done, {running} running, {cancelled} cancelled")
-
     def run(self) -> None:
         """
         Fungsi utama yang berfungsi untuk menjalankan proses crawling BFS.
         """
         executor = CustomThreadPoolExecutor(max_workers=self.max_threads)
-        memlog = MemoryLogger()
+
         futures = []
         while True:
             memlog.take_snapshot()
+            # get_memsize()
             try:
                 time_now = time.time() - self.start_time
                 time_now_int = int(time_now)
@@ -79,26 +64,50 @@ class BreadthFirstSearch:
                     self.visited_urls.append(target_url)
                     futures.append(
                         executor.submit(self.scrape_page, target_url))
-                    # executor.submit(self.scrape_page, target_url)     
             except queue.Empty:
+                # theres some strange case where queue is empty and crawl_utils.running_thread_count returns 1 (1 future that forever running)
+                # resulting in  never ending loop, workaround for this issue for now is just inject new url if this case occurs
+                # backup_urls = ["https://www.viva.co.id/berita", "https://news.kompas.com"]
+                # if self.crawl_utils.running_thread_count(futures) == 1:
+                #     for url in backup_urls:
+                #         if url not in self.visited_urls:
+                #         self.visited_urls.append(url)
+                #         futures.append(
+                #             executor.submit(self.scrape_page, url))
+                    # futures.append(
+                    #     executor.submit(self.scrape_page, "https://www.viva.co.id/berita"))
+                    # futures.append(
+                    #     executor.submit(self.scrape_page, "https://news.kompas.com"))
+                    # )
                 if self.crawl_utils.running_thread_count(futures) > 0:
                     continue
                 else:
-                    print("Stopped because empty queue...")
+                    print("Queue empty, injecting new urls...") 
+                    urls = ["https://www.viva.co.id/berita", "https://www.antaranews.com", "https://news.kompas.com/", "https://www.tribunnews.com/"]
+                    flag = False
+                    for u in urls:
+                        if u not in self.visited_urls:
+                            self.url_queue.put(u)                            
+                            flag = True
+                            break
+
+                    if flag:
+                       continue
                     break
+
+                    # break
             except KeyboardInterrupt:
                 print("Stopped because keyboard interrupt...")
                 break
             except Exception as e:
                 print(e)
                 continue
-
-                           
             time.sleep(1)
 
         executor.shutdown39(wait=False, cancel_futures=True)
 
     def scrape_page(self, url: str) -> None:
+        print(f'scraping {url}')
         """
         Fungsi untuk menyimpan konten yang ada pada suatu halaman ke database.
 
@@ -111,7 +120,7 @@ class BreadthFirstSearch:
             # country = "US"
             # Domain(name=hostname, country=country).save()
             country = Domain.domain_name_for_country(hostname)
-            Domain(name=hostname, country=country).save()
+            # Domain(name=hostname, country=country).save()
         except Exception as e:
             # print(e)
             pass
@@ -124,7 +133,7 @@ class BreadthFirstSearch:
                 db_connection = self.db.connect()
                 self.lock.acquire()
                 now = datetime.now()
-                print(url, "| BFS |", now.strftime("%d/%m/%Y %H:%M:%S"))
+                print(f"| BFS | {now} | {url}")
                 self.lock.release()
                 soup = bs4.BeautifulSoup(response.text, "html.parser")
                 title = soup.title.string
