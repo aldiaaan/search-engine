@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.30)  5 FEB 2024 01:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.30)  5 FEB 2024 05:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -957,7 +957,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 121.
 
-<flowchart_lazuardy.png, id=97, 411.78844pt x 341.02406pt>
+<flowchart_lazuardy.png, id=101, 411.78844pt x 341.02406pt>
 File: flowchart_lazuardy.png Graphic file (type png)
 <use flowchart_lazuardy.png>
 Package pdftex.def Info: flowchart_lazuardy.png  used on input line 126.
@@ -966,7 +966,7 @@ Package pdftex.def Info: flowchart_lazuardy.png  used on input line 126.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2 <./flowchart_lazuardy.png>]
-<desain-penelitian.png, id=118, 514.3215pt x 451.6875pt>
+<desain-penelitian.png, id=122, 514.3215pt x 451.6875pt>
 File: desain-penelitian.png Graphic file (type png)
 <use desain-penelitian.png>
 Package pdftex.def Info: desain-penelitian.png  used on input line 161.
@@ -1047,42 +1047,42 @@ Overfull \hbox (1.08943pt too wide) in paragraph at lines 194--195
  []
 
 [3 <./desain-penelitian.png>]
-<usecase.png, id=127, 288.3272pt x 467.49657pt>
+<usecase.png, id=131, 288.3272pt x 467.49657pt>
 File: usecase.png Graphic file (type png)
 <use usecase.png>
 Package pdftex.def Info: usecase.png  used on input line 213.
 (pdftex.def)             Requested size: 231.84843pt x 375.93805pt.
-<view_crawling_domain_list.png, id=128, 3854.4pt x 2168.1pt>
+<view_crawling_domain_list.png, id=132, 3854.4pt x 2168.1pt>
 File: view_crawling_domain_list.png Graphic file (type png)
 <use view_crawling_domain_list.png>
 Package pdftex.def Info: view_crawling_domain_list.png  used on input line 227.
 
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_dashboard_services_crawling_overview.png, id=129, 3854.4pt x 2168.1pt>
+<view_dashboard_services_crawling_overview.png, id=133, 3854.4pt x 2168.1pt>
 File: view_dashboard_services_crawling_overview.png Graphic file (type png)
 <use view_dashboard_services_crawling_overview.png>
 Package pdftex.def Info: view_dashboard_services_crawling_overview.png  used on
  input line 232.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_overview.png, id=130, 3854.4pt x 2168.1pt>
+<view_document_ranking_overview.png, id=134, 3854.4pt x 2168.1pt>
 File: view_document_ranking_overview.png Graphic file (type png)
 <use view_document_ranking_overview.png>
 Package pdftex.def Info: view_document_ranking_overview.png  used on input line
  237.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_search_logs.png, id=131, 3854.4pt x 2168.1pt>
+<view_document_ranking_search_logs.png, id=135, 3854.4pt x 2168.1pt>
 File: view_document_ranking_search_logs.png Graphic file (type png)
 <use view_document_ranking_search_logs.png>
 Package pdftex.def Info: view_document_ranking_search_logs.png  used on input l
 ine 242.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_words.png, id=132, 3854.4pt x 2168.1pt>
+<view_document_ranking_words.png, id=136, 3854.4pt x 2168.1pt>
 File: view_document_ranking_words.png Graphic file (type png)
 <use view_document_ranking_words.png>
 Package pdftex.def Info: view_document_ranking_words.png  used on input line 24
 7.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_page_ranking_overview.png, id=133, 3854.4pt x 2168.1pt>
+<view_page_ranking_overview.png, id=137, 3854.4pt x 2168.1pt>
 File: view_page_ranking_overview.png Graphic file (type png)
 <use view_page_ranking_overview.png>
 Package pdftex.def Info: view_page_ranking_overview.png  used on input line 252
@@ -1094,23 +1094,23 @@ Underfull \vbox (badness 2680) has occurred while \output is active []
  [4 <./usecase.png> <./view_crawling_domain_list.png> <./view_dashboard_service
 s_crawling_overview.png> <./view_document_ranking_overview.png> <./view_documen
 t_ranking_search_logs.png>]
-<view_search_engine_home.png, id=148, 3854.4pt x 2168.1pt>
+<view_search_engine_home.png, id=152, 3854.4pt x 2168.1pt>
 File: view_search_engine_home.png Graphic file (type png)
 <use view_search_engine_home.png>
 Package pdftex.def Info: view_search_engine_home.png  used on input line 257.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_search_engine_result.png, id=149, 3854.4pt x 2168.1pt>
+<view_search_engine_result.png, id=153, 3854.4pt x 2168.1pt>
 File: view_search_engine_result.png Graphic file (type png)
 <use view_search_engine_result.png>
 Package pdftex.def Info: view_search_engine_result.png  used on input line 262.
 
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_add.png, id=150, 3854.4pt x 2168.1pt>
+<view_staff_add.png, id=154, 3854.4pt x 2168.1pt>
 File: view_staff_add.png Graphic file (type png)
 <use view_staff_add.png>
 Package pdftex.def Info: view_staff_add.png  used on input line 268.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_edit.png, id=151, 3854.4pt x 2168.1pt>
+<view_staff_edit.png, id=155, 3854.4pt x 2168.1pt>
 File: view_staff_edit.png Graphic file (type png)
 <use view_staff_edit.png>
 Package pdftex.def Info: view_staff_edit.png  used on input line 273.
@@ -1118,12 +1118,12 @@ Package pdftex.def Info: view_staff_edit.png  used on input line 273.
 
 Underfull \vbox (badness 2680) has occurred while \output is active []
 
-<view_staff_list.png, id=152, 3854.4pt x 2168.1pt>
+<view_staff_list.png, id=156, 3854.4pt x 2168.1pt>
 File: view_staff_list.png Graphic file (type png)
 <use view_staff_list.png>
 Package pdftex.def Info: view_staff_list.png  used on input line 278.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_login.png, id=153, 3854.4pt x 2168.1pt>
+<view_staff_login.png, id=157, 3854.4pt x 2168.1pt>
 File: view_staff_login.png Graphic file (type png)
 <use view_staff_login.png>
 Package pdftex.def Info: view_staff_login.png  used on input line 283.
@@ -1134,7 +1134,7 @@ Underfull \vbox (badness 2680) has occurred while \output is active []
  [5 <./view_document_ranking_words.png> <./view_page_ranking_overview.png> <./v
 iew_search_engine_home.png> <./view_search_engine_result.png> <./view_staff_add
 .png> <./view_staff_edit.png> <./view_staff_list.png> <./view_staff_login.png>]
-<infra2.png, id=174, 584.1825pt x 610.28pt>
+<infra2.png, id=178, 584.1825pt x 610.28pt>
 File: infra2.png Graphic file (type png)
 <use infra2.png>
 Package pdftex.def Info: infra2.png  used on input line 294.
@@ -1144,1065 +1144,1058 @@ Underfull \hbox (badness 1953) in paragraph at lines 306--307
 []\T1/pplx/m/n/10 (+20) Adapun grafik peng-gu-naan mem-ori ap-likasi
  []
 
-<memchart.png, id=175, 517.935pt x 351.495pt>
+<memchart.png, id=179, 517.935pt x 351.495pt>
 File: memchart.png Graphic file (type png)
 <use memchart.png>
 Package pdftex.def Info: memchart.png  used on input line 310.
 (pdftex.def)             Requested size: 231.84843pt x 157.34532pt.
-<line_memusage_chart.png, id=178, 359.16pt x 217.467pt>
+<line_memusage_chart.png, id=182, 359.16pt x 217.467pt>
 File: line_memusage_chart.png Graphic file (type png)
 <use line_memusage_chart.png>
 Package pdftex.def Info: line_memusage_chart.png  used on input line 318.
 (pdftex.def)             Requested size: 231.84843pt x 140.3796pt.
-[6 <./infra2.png> <./memchart.png> <./line_memusage_chart.png>]
+<erd.png, id=183, 1170.3725pt x 991.705pt>
+File: erd.png Graphic file (type png)
+<use erd.png>
+Package pdftex.def Info: erd.png  used on input line 328.
+(pdftex.def)             Requested size: 231.84843pt x 196.44597pt.
 
-! Package caption Error: \caption outside float.
+Underfull \vbox (badness 5756) has occurred while \output is active []
 
-See the caption package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.328 	\caption
-               {Hasil \textit{Unit Testing}} \\
-If you do not understand this error, please take a closer look
-at the documentation of the `caption' package, especially the
-section about errors.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 334--334
+ [6 <./infra2.png> <./memchart.png> <./line_memusage_chart.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 343--343
 []\T1/pplx/b/n/10 (+20) Skenario
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 334--335
-[]\T1/pplx/m/n/10 (+20) Tidak
+Overfull \hbox (0.93745pt too wide) in paragraph at lines 343--343
+[]\T1/pplx/b/n/10 (-20) Sesuai| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
+[]\T1/pplx/b/n/10 (+20) Tidak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 []\T1/pplx/m/n/10 (+20) Pencarian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) pen-car-ian,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) kunci pen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) car-ian dan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 2020) in paragraph at lines 336--336
+Underfull \hbox (badness 2020) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) maka peng-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) guna akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) di-al-ihkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) ke ha-la-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 336--336
+Underfull \hbox (badness 10000) in paragraph at lines 345--345
 \T1/pplx/m/n/10 (+20) man hasil
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 337--346
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 []\T1/pplx/m/n/10 (+20) Saat
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 338--338
+Underfull \hbox (badness 7273) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) maka akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) di-ta-mpilkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) peta si-tus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) dari kata
  []
 
 
-Underfull \hbox (badness 5388) in paragraph at lines 338--338
+Underfull \hbox (badness 5388) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) kunci yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 338--338
+Underfull \hbox (badness 10000) in paragraph at lines 347--347
 \T1/pplx/m/n/10 (+20) sedang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) kata kunci
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) pen-car-ian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) den-gan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) mema-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/it/10 (+20) query \T1/pplx/m/n/10 (+20) den-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) gan kunci
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 340--340
+Underfull \hbox (badness 10000) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) men-da-p-
  []
 
 
-Underfull \hbox (badness 8056) in paragraph at lines 340--340
+Underfull \hbox (badness 8056) in paragraph at lines 349--349
 \T1/pplx/m/n/10 (+20) atkan hasil
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 327--341
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 351--351
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 351--351
 \T1/pplx/m/n/10 (+20) den-gan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 351--351
 \T1/pplx/m/n/10 (+20) mema-
  []
 
 
-Underfull \hbox (badness 4391) in paragraph at lines 342--342
+Underfull \hbox (badness 4391) in paragraph at lines 351--351
 \T1/pplx/m/n/10 (+20) kunci pada
  []
 
 
-Underfull \hbox (badness 1735) in paragraph at lines 342--342
+Underfull \hbox (badness 1735) in paragraph at lines 351--351
 \T1/pplx/m/it/10 (+20) text field \T1/pplx/m/n/10 (+20) di
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 351--351
 \T1/pplx/m/n/10 (+20) atas lalu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 342--342
+Underfull \hbox (badness 10000) in paragraph at lines 351--351
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 \T1/pplx/m/n/10 (+20) da-pat
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 \T1/pplx/m/n/10 (+20) mem-\T1/pplx/m/it/10 (+20) filter
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 \T1/pplx/m/n/10 (+20) peta si-tus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 353--353
 \T1/pplx/m/n/10 (+20) berdasarkan
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 344--344
+Underfull \hbox (badness 1688) in paragraph at lines 353--353
 \T1/pplx/m/n/10 (+20) ne-gara den-
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 344--344
+Underfull \hbox (badness 1496) in paragraph at lines 353--353
 \T1/pplx/m/it/10 (+20) Coun-tries \T1/pplx/m/n/10 (+20) di
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 346--354
+[] 
+ []
+
+[7 <./erd.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) kata kunci
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) pen-car-ian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) den-gan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) mema-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) kata kunci
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) pen-car-ian
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) pada \T1/pplx/m/it/10 (+20) query
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) URL den-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) gan kunci
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/it/10 (+20) query \T1/pplx/m/n/10 (+20) dan
  []
 
 
-Underfull \hbox (badness 1688) in paragraph at lines 346--346
+Underfull \hbox (badness 1688) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) ne-gara den-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 346--346
+Underfull \hbox (badness 10000) in paragraph at lines 355--355
 \T1/pplx/m/n/10 (+20) gan kunci
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 341--347
-[] 
- []
-
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) in-for-masi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) akun den-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) gan be-nar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) ke dalam
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) for-mulir
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) yang ada
  []
 
 
-Underfull \hbox (badness 2020) in paragraph at lines 348--348
+Underfull \hbox (badness 2020) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) maka peng-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) guna akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) di-al-ihkan
  []
 
 
-Underfull \hbox (badness 1472) in paragraph at lines 348--348
+Underfull \hbox (badness 1472) in paragraph at lines 357--357
 \T1/pplx/m/n/10 (+20) ke ha-la-man
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) in-for-masi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) akun den-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) dalam for-
  []
 
 
-Underfull \hbox (badness 5711) in paragraph at lines 350--350
+Underfull \hbox (badness 5711) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) mulir yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) ada maka
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 350--350
+Underfull \hbox (badness 3039) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) akan diberi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) mema-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) sukkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) in-for-masi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 350--350
+Underfull \hbox (badness 10000) in paragraph at lines 359--359
 \T1/pplx/m/n/10 (+20) akun yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 354--360
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 5787) in paragraph at lines 352--352
+Underfull \hbox (badness 5787) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) tombol \T1/pplx/m/it/10 (+20) pro-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 \T1/pplx/m/it/10 (+20) file \T1/pplx/m/n/10 (+20) maka
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--352
+Underfull \hbox (badness 10000) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) akan dis-
  []
 
 
-Underfull \hbox (badness 7344) in paragraph at lines 352--352
+Underfull \hbox (badness 7344) in paragraph at lines 361--361
 \T1/pplx/m/n/10 (+20) yang berisi
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 347--353
-[] 
- []
-
-
-Underfull \hbox (badness 6204) in paragraph at lines 354--354
+Underfull \hbox (badness 6204) in paragraph at lines 363--363
 []\T1/pplx/m/n/10 (+20) Page Rank-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 354--354
+Underfull \hbox (badness 1365) in paragraph at lines 363--363
 \T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) sta-tus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/it/10 (+20) page rank-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/it/10 (+20) ing \T1/pplx/m/n/10 (+20) akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/n/10 (+20) berubah
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 354--354
+Underfull \hbox (badness 10000) in paragraph at lines 363--363
 \T1/pplx/m/n/10 (+20) men-jadi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--356
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--356
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--356
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 356--356
+Underfull \hbox (badness 10000) in paragraph at lines 365--365
 \T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) page
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/n/10 (+20) tombol
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 358--358
+Underfull \hbox (badness 3724) in paragraph at lines 367--367
 \T1/pplx/m/it/10 (+20) start\T1/pplx/m/n/10 (+20) , maka
  []
 
 
-Underfull \hbox (badness 2119) in paragraph at lines 358--358
+Underfull \hbox (badness 2119) in paragraph at lines 367--367
 \T1/pplx/m/it/10 (+20) sta-tus crawl-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/it/10 (+20) ing \T1/pplx/m/n/10 (+20) akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/n/10 (+20) berubah
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 358--358
+Underfull \hbox (badness 10000) in paragraph at lines 367--367
 \T1/pplx/m/n/10 (+20) men-jadi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 360--360
-[]\T1/pplx/m/n/10 (+20) Ketika
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--360
-\T1/pplx/m/n/10 (+20) peng-guna
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--360
-\T1/pplx/m/n/10 (+20) menekan
- []
-
-
-Underfull \hbox (badness 1748) in paragraph at lines 360--360
-\T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) crawl-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 360--360
-\T1/pplx/m/it/10 (+20) ing \T1/pplx/m/n/10 (+20) akan
- []
-
-
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 353--361
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 360--368
 [] 
  []
 
 [8]
-Underfull \hbox (badness 1281) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 369--369
+[]\T1/pplx/m/n/10 (+20) Ketika
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--369
+\T1/pplx/m/n/10 (+20) peng-guna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--369
+\T1/pplx/m/n/10 (+20) menekan
+ []
+
+
+Underfull \hbox (badness 1748) in paragraph at lines 369--369
+\T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) crawl-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--369
+\T1/pplx/m/it/10 (+20) ing \T1/pplx/m/n/10 (+20) akan
+ []
+
+
+Underfull \hbox (badness 1281) in paragraph at lines 371--371
 []\T1/pplx/m/n/10 (+20) Saat \T1/pplx/m/it/10 (+20) tab do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 371--371
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 371--371
 \T1/pplx/m/n/10 (+20) akan di-al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 371--371
 \T1/pplx/m/n/10 (+20) ihkan ke
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 362--362
+Underfull \hbox (badness 10000) in paragraph at lines 371--371
 \T1/pplx/m/n/10 (+20) sub ha-la-
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 362--362
+Underfull \hbox (badness 6300) in paragraph at lines 371--371
 \T1/pplx/m/n/10 (+20) man daf-tar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--364
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
 []\T1/pplx/m/n/10 (+20) Saat \T1/pplx/m/it/10 (+20) tab
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--364
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
 \T1/pplx/m/it/10 (+20) web-pages
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--364
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
 \T1/pplx/m/n/10 (+20) guna akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 364--364
+Underfull \hbox (badness 10000) in paragraph at lines 373--373
 \T1/pplx/m/n/10 (+20) di-al-ihkan
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 364--364
+Underfull \hbox (badness 6300) in paragraph at lines 373--373
 \T1/pplx/m/n/10 (+20) man daf-tar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) salah satu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) si-tus pada
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 366--366
+Underfull \hbox (badness 1603) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) daf-tar si-tus,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) akan di-al-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) ihkan ke
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--366
+Underfull \hbox (badness 10000) in paragraph at lines 375--375
 \T1/pplx/m/n/10 (+20) ha-la-man
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 377--377
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 368--368
+Underfull \hbox (badness 5245) in paragraph at lines 377--377
 \T1/pplx/m/n/10 (+20) da-pat men-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 377--377
 \T1/pplx/m/it/10 (+20) si-tus \T1/pplx/m/n/10 (+20) yang
  []
 
 
-Overfull \hbox (1.36525pt too wide) in paragraph at lines 368--368
+Overfull \hbox (1.36525pt too wide) in paragraph at lines 377--377
 \T1/pplx/m/n/10 (-20) dimunculkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 377--377
 \T1/pplx/m/it/10 (+20) fil-ter \T1/pplx/m/n/10 (+20) yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 368--368
+Underfull \hbox (badness 10000) in paragraph at lines 377--377
 \T1/pplx/m/n/10 (+20) terse-dia
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--369
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 368--378
+[] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
 []\T1/pplx/m/n/10 (+20) Daftar \T1/pplx/m/it/10 (+20) Do-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--369
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
 
 
-Underfull \hbox (badness 5245) in paragraph at lines 369--369
+Underfull \hbox (badness 5245) in paragraph at lines 378--378
 \T1/pplx/m/n/10 (+20) da-pat men-
  []
 
 
-Overfull \hbox (1.36525pt too wide) in paragraph at lines 369--369
+Overfull \hbox (1.36525pt too wide) in paragraph at lines 378--378
 \T1/pplx/m/n/10 (-20) dimunculkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--369
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
 \T1/pplx/m/it/10 (+20) fil-ter \T1/pplx/m/n/10 (+20) yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 369--369
+Underfull \hbox (badness 10000) in paragraph at lines 378--378
 \T1/pplx/m/n/10 (+20) terse-dia
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 361--370
-[] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 []\T1/pplx/m/it/10 (+20) Document
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 371--371
+Underfull \hbox (badness 1365) in paragraph at lines 380--380
 \T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) sta-tus
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \T1/pplx/m/it/10 (+20) doc-u-ment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \T1/pplx/m/n/10 (+20) berubah
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 371--371
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
 \T1/pplx/m/n/10 (+20) men-jadi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 \T1/pplx/m/n/10 (+20) tombol
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 \T1/pplx/m/it/10 (+20) stop\T1/pplx/m/n/10 (+20) , maka
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 373--373
+Underfull \hbox (badness 10000) in paragraph at lines 382--382
 \T1/pplx/m/it/10 (+20) doc-u-ment
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--375
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--375
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--375
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
 \T1/pplx/m/n/10 (+20) menekan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 375--375
+Underfull \hbox (badness 10000) in paragraph at lines 384--384
 \T1/pplx/m/it/10 (+20) tab words\T1/pplx/m/n/10 (+20) ,
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 375--375
+Underfull \hbox (badness 7273) in paragraph at lines 384--384
 \T1/pplx/m/n/10 (+20) maka akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--377
+Underfull \hbox (badness 10000) in paragraph at lines 386--386
 []\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--377
+Underfull \hbox (badness 10000) in paragraph at lines 386--386
 \T1/pplx/m/n/10 (+20) peng-guna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 377--377
+Underfull \hbox (badness 10000) in paragraph at lines 386--386
 \T1/pplx/m/it/10 (+20) search log\T1/pplx/m/n/10 (+20) ,
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 377--377
+Underfull \hbox (badness 7273) in paragraph at lines 386--386
 \T1/pplx/m/n/10 (+20) maka akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 379--379
-[]\T1/pplx/m/n/10 (+20) Ketika
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 379--379
-\T1/pplx/m/it/10 (+20) new staff
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 379--379
-\T1/pplx/m/n/10 (+20) ditekan,
- []
-
-
-Underfull \hbox (badness 7273) in paragraph at lines 379--379
-\T1/pplx/m/n/10 (+20) maka akan
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 379--379
-\T1/pplx/m/n/10 (+20) di-al-ihkan
- []
-
-
-Underfull \hbox (badness 1472) in paragraph at lines 379--379
-\T1/pplx/m/n/10 (+20) ke ha-la-man
- []
-
-
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 370--380
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 378--387
 [] 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
-[]\T1/pplx/m/n/10 (+20) Ketila
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+[]\T1/pplx/m/n/10 (+20) Ketika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
-\T1/pplx/m/n/10 (+20) yang dil-
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+\T1/pplx/m/it/10 (+20) new staff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
-\T1/pplx/m/n/10 (+20) am-bangkan
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+\T1/pplx/m/n/10 (+20) ditekan,
  []
 
 
-Underfull \hbox (badness 7273) in paragraph at lines 381--381
+Underfull \hbox (badness 7273) in paragraph at lines 388--388
 \T1/pplx/m/n/10 (+20) maka akan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+\T1/pplx/m/n/10 (+20) di-al-ihkan
+ []
+
+
+Underfull \hbox (badness 1472) in paragraph at lines 388--388
+\T1/pplx/m/n/10 (+20) ke ha-la-man
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
+[]\T1/pplx/m/n/10 (+20) Ketila
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
+\T1/pplx/m/n/10 (+20) yang dil-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
+\T1/pplx/m/n/10 (+20) am-bangkan
+ []
+
+
+Underfull \hbox (badness 7273) in paragraph at lines 390--390
+\T1/pplx/m/n/10 (+20) maka akan
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
 \T1/pplx/m/n/10 (+20) muncul
  []
 
 
-Underfull \hbox (badness 4805) in paragraph at lines 381--381
+Underfull \hbox (badness 4805) in paragraph at lines 390--390
 \T1/pplx/m/it/10 (+20) popup \T1/pplx/m/n/10 (+20) yang
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 381--381
+Underfull \hbox (badness 10000) in paragraph at lines 390--390
 \T1/pplx/m/n/10 (+20) berisi aksi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) staff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) akan di-ha-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) pus dari
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) daf-tar \T1/pplx/m/it/10 (+20) staff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) sete-lah
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 392--392
 \T1/pplx/m/n/10 (+20) melakukan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--385
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
 \T1/pplx/m/n/10 (+20) maka \T1/pplx/m/it/10 (+20) staff
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--385
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
 \T1/pplx/m/n/10 (+20) ta-m-bahkan
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--385
+Underfull \hbox (badness 10000) in paragraph at lines 394--394
 \T1/pplx/m/n/10 (+20) ke daf-tar
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 380--388
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 387--397
 [] 
  []
 
-(template.bbl
-Underfull \vbox (badness 4467) has occurred while \output is active []
-
-) [10]
-(template.aux)
+(template.bbl) [10] (template.aux)
 Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: ED66D31E5813F86F81378E60CA952BD4;2357.
+(rerunfilecheck)             Checksum: 2D021AED3E268D31EC3FD42EF3D9C90A;2495.
  ) 
 Here is how much of TeX's memory you used:
- 25753 strings out of 475385
- 478770 string characters out of 2776435
- 831981 words of memory out of 3000000
- 46080 multiletter control sequences out of 15000+600000
+ 25764 strings out of 475385
+ 479034 string characters out of 2776435
+ 832032 words of memory out of 3000000
+ 46088 multiletter control sequences out of 15000+600000
  551359 words of font info for 472 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,12n,91p,1610b,527s stack positions out of 10000i,1000n,20000p,200000b,80000s
@@ -2212,9 +2205,9 @@ b><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplbi
 8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/
 uplr8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palat
 ino/uplri8a.pfb>
-Output written on template.pdf (10 pages, 2526220 bytes).
+Output written on template.pdf (10 pages, 2580332 bytes).
 PDF statistics:
- 249 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 119031 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 256 PDF objects out of 1000 (max. 8388607)
+ 64 named destinations out of 1000 (max. 500000)
+ 119044 words of extra memory for PDF output out of 128383 (max. 10000000)
 
