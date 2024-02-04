@@ -30,7 +30,10 @@
 
 \usepackage{float}
 \usepackage{graphicx}
-
+\usepackage{longtable}
+\usepackage{supertabular,booktabs}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
 %\addbibresource{sample.bib} % BibLaTeX bibliography file
 
@@ -113,12 +116,26 @@ Mempertimbangkan masih dibutuhkannya mesin pencarian yang bersifat \textit{open 
 
 %------------------------------------------------
 
-\section{Kajian Teori}
+\section{Studi Literatur}
 
-\subsection{Search Engine}
-\textit{Search Engine} merupakan sebuah perangkat lunak yang dirancang untuk mencari informasi dalam internet. Dalam penggunaannya, pengguna memasukan kata kunci yang ingin pengguna cari dalam \textit{search engine} dan \textit{search engine} akan menampilkan daftar dokumen, suara, gambar, video dan lain lain yang relevan dengan kata kunci yang pengguna masukkan. 
+\subsection{Review \textit{Search Engine} \cite{lazu}}
 
-\textit{Search engine} menggunakan sebuah perangkat lunak bernama \textit{crawler} yang bertugas untuk memindai dan meng-\textit{index} halaman \textit{web} yang berada di \textit{internet}. Crawler ini mengikuti tautan dari satu halaman ke halaman lainnya mengumpulkan informasi mengenai konten dan struktur website. Data yang berhasil dikumpulkan tersebut lalu disimpan dalam sebuah database yang membentuk \textit{search engine index}. Beberapa contoh search engine yang populer pada saat ini adalah Google, Yahoo, Bing, Baidu dan Yandex.
+Pada penelitian \cite{lazu}, telah dirancang sebuah arsitektur \textit{search engine} dengan mengintegrasikan \textit{web crawler}, \textit{page ranking} dan \textit{document ranking}. \textit{Flowchart} dari pengintegrasian tersebut adalah sebagai berikut
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{flowchart_lazuardy.png}
+	\caption{\textit{Flowchart search engine}\cite{lazu}}
+	\label{gambar:flowchart_lazu}
+\end{figure}
+
+Untuk \textit{web crawler} digunakan algoritma \textit{crawling} bernama \textit{breadth first search}. Pada Pada penerapannya, \textit{algoritma breadth first search} ini akan melakukan pencarian yang dimulai dari pemilihan \textit{node} awal kemudian dilanjutkan dengan pencarian bertahap level demi level. Algoritma ini merupakan bentuk paling sederhana dari algoritma \textit{crawling} \cite{lazu}. 
+
+Pada saat tahap \textit{crawling}, digunakan pustaka \textit{beutifulsoup} python. Pustaka \textit{beautifulsoup} bertugas untuk mengolah setiap halaman yang algoritma \textit{crawling breadth first search} kunjungi untuk mendapatkan informasi yang akan disimpan dalam \textit{database} yang ada.
+
+Preprocessing data dilakukan agar data yang digunakan bebas noise, memiliki ukuran yang lebih kecil, dan lebih terorganisir sehingga dapat diproses lebih lanjut \cite{lazu}.
+
+Pada tahap selanjutnya setelah melewati tahap \textit{preprocessing data}, data dapat dilanjutkan ke dua tahap yaitu \textit{pagerank} dan \textit{tf-idf}. \textit{TF-IDF} adalah metode pemberian bobot pada hubungan antara kata (word) dan dokumen, metode ini adalah metode yang paling umum digunakan untuk menghitung bobot setiap kata dalam pencarian informasi \cite{lazu}. Pada tahapan \textit{pagerank} digunakan algoritma \textit{Pagerank} untuk menentukan peringkat halaman-halaman yang ada.
+
 
 \subsection{\textit{Agile}}
 Pengembangan perangkat lunak menggunakan agile merupakan salah satu metode pengembangan perangkat lunak yang ada. Kata "\textit{agile}" memiliki arti cepat, ringan dan bebas bergerak. Konsep pengembangan perangkat lunak menggunakan \textit{agile} ditemukan oleh Kent Beck dan 16 koleganya dengan menyatakan \textit{agile} adalah cara dalam membangun sebuah perangkat lunak dengan cara mengerjakannya dan membantu satu sama lain dalam membangunnya dalam satu waktu. Dalam pengembangan perangkat lunak menggunakan \textit{agile}, interaksi dan personil adalah hal yang penting dibandingkan proses dan alat kerja, Perangkat lunak yang bekerja lebih pentung dari dokumentasi yang lengkap, Kolaborasi antara klien lebih penting dari negosiasi kontrak dan responsif dalam perubahan adalah hal yang lebih penting dari mengikuti rencana yang telah dibuat. Spertim model lainnya, \textit{agile} memiliki kelebihan dan tidak cocok untuk semua tipe projek. \textit{Agile} membuat model proses yang toleran terhadap perubahan kebutuhan sehingga perubahan dapat dilakukan dengan cepat \cite{scrum}.
@@ -131,22 +148,11 @@ Dalam pelaksanaannya, \textit{Scrum} terdiri dari tiga peran utama: \textit{Prod
 
 Proses pengerjaan projek dengan \textit{Scrum} dimulai dengan penggambaran sistem yang akan dibuat, kemudian \textit{Product Owner} menggambarkan proses bisnis ke dalam Product Backlog. \textit{Sprint}, sebagai bagian dari \textit{Scrum}, adalah tujuan yang ingin dicapai dalam iterasi selanjutnya. Setiap sprint dimulai dengan \textit{Sprint Planning Meeting}, diikuti oleh pertemuan harian \textit{Daily Scrum Meeting} di mana setiap anggota tim berdiskusi tentang progres dan tugas selanjutnya. \textit{Sprint} diakhiri dengan pertemuan untuk mendemonstrasikan hasil pekerjaan. \textit{Scrum} dirancang untuk meningkatkan fleksibilitas dan responsivitas dalam pengembangan perangkat lunak \cite{scrum}.
 
-\subsection{\textit{Javascript}}
-Javascript adalah bahasa pemrograman tingkat tinggi dan \textit{interpreted} yang digunakan untuk menambahkan interaktivitas dan sifat dinamis dalam \textit{website}. Dikembangkan oleh Brendan Eich pada tahun 1995, Javascript menjadi populer karena kemampuannya membuat elemen interaktif dan merespons aksi pengguna. Awalnya bernama "Mocha" dan "Livescript," kemudian diubah menjadi "Javascript" untuk keperluan pemasaran.
-
-Javascript membedakan diri dari Java dan menjadi standar \textit{de facto} untuk \textit{client-side} \textit{scripting} di \textit{website}. Pengenalan fitur baru dan teknologi seperti AJAX pada tahun 2000 memperluas kemampuan Javascript, memungkinkannya melakukan komunikasi asynchronous dengan server tanpa perlu memuat ulang halaman \textit{website}.
-
-Selama bertahun-tahun, Javascript terus berkembang dengan adanya NodeJS yang memungkinkan eksekusi Javascript di luar \textit{browser}. Hal ini membuka peluang penggunaan Javascript dalam \textit{server-side scripting}, \textit{command-line tools}, dan pembuatan aplikasi. Pengenalan berbagai framework dan library seperti Angular, React, dan VueJS juga memberikan kemudahan bagi pengembang dalam membuat aplikasi \textit{web} kompleks.
-
-\subsection{\textit{User Interface}}
-\textit{User Interface} adalah ilmu tentang tata letak grafis suatu web atau aplikasi \cite{userinterface1}. Cakupan \textit{User Interface} adalah tombol yang akan diklik oleh pengguna, teks, gambar, text entry fields, dan semua item yang berinteraksi dengan pengguna. Termasuk layout, animasi, transisi, dan semua interaksi kecil. UI mendesain semua elemen visual, bagaimana pengguna berinteraksi dengan halaman web dan apa yang ditampilkan di halaman web. Elemen visual yang ditangani oleh seorang desainer UI adalah skema warna, menentukan bentuk tombol, serta menentukan jenis font yang digunakan untuk teks. Desainer UI harus bisa membuat tampilan bagus yang akan meningkatkan kesetiaan pengguna. 
-
-
 %------------------------------------------------
 
-\section{Metodologi}
+\section{Pengembangan}
 
-\subsection{Perancangan Dengan \textit{Scrum}}
+\subsection{Pengembangan Dengan \textit{Scrum}}
 Agar penelitian ini menjadi lebih terstruktur dan mudah, maka penelitian ini
 akan menggunakan metode \textit{scrum} sebagai metode pengembangan sistemnya.
 Komponen-komponen \textit{scrum} terdiri dari \textit{product backlog}, \textit{sprint backlog}, \textit{daily scrum} dan \textit{sprint} lalu dilanjutkan dengan pengujian sistem yang sudah dibuat.
@@ -285,12 +291,19 @@ Aplikasi Apache memiliki untuk meneruskan permintaan dari internet publik ke apl
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{infra.png}
+	\includegraphics[width=\linewidth]{infra2.png}
 	\caption{Infrastruktur \textit{search engine}}
 \end{figure}
 
 \subsection{\textit{Memory Profiling}}
-Dilakukan pengujian penggunaan memori pada aplikasi \textit{search engine}. Pengujian dilakukan dengan menggunakan pustaka \textit{tracemalloc} dan \textit{gc} dari bahasa pemrograman \textit{python}. Pencacatan penggunaan memori aplikasi dilakukan setiap 30 menit dalam waktu lebih dari satu hari di lingkungan \textit{server}. Adapun grafik penggunaan memori aplikasi adalah sebagai berikut.
+Dilakukan pengujian penggunaan memori pada aplikasi \textit{search engine}. Pengujian dilakukan dengan menggunakan pustaka \textit{tracemalloc} dan \textit{gc} dari bahasa pemrograman \textit{python}. Pencacatan penggunaan memori aplikasi dilakukan setiap 30 menit dalam waktu lebih dari satu hari di lingkungan \textit{server}. Pencatatan penggunaan memori dilakukan di dalam spesifikasi perangkat sebagai berikut: 
+
+\begin{enumerate}
+	\item 3 \textit{Gigabyte} RAM 
+	\item AMD CPU dengan 3 buah \textit{thread}
+\end{enumerate}
+
+Adapun grafik penggunaan memori aplikasi adalah sebagai berikut.
 
 
 \begin{figure}[H]
@@ -306,6 +319,73 @@ Percobaan lain dilakukan dengan waktu yang lebih singkat untuk mengidentifikasi 
 	\caption{Grafik penggunaan memori terbanyak tiga baris kode aplikasi teratas}
 	\label{gambar:linemem}
 \end{figure}
+
+\subsection{\textit{Unit Testing}}
+
+Pengujian \textit{unit testing} dilaksanakan dengan salah satu tim pengembang \textit{backend} internal pada saat akhir \textit{sprint}. Kesimpulan dari unit testing yang telah dilakukan adalah fitur yang telah dibuat dapat berjalan dengan baik.
+
+\begin{supertabular}{@{}|p{2cm}|p{2cm}|p{1cm}|p{1.5cm}|@{}}
+	\caption{Hasil \textit{Unit Testing}} \\
+	\hline
+	\multicolumn{4}{|c|}{\textbf{Unit Testing}} \\
+	\hline
+	&&\multicolumn{2}{c|}{Kesesuaian}\\
+	\cline{3-4}
+	\textbf{Uji Fitur} & \textbf{Skenario Pengujian} & Sesuai & Tidak Sesuai  \\
+	\hline
+	Pencarian Pengguna & Pada tampilan halaman pencarian, ketika pengguna memasukkan kata kunci pencarian dan menekan tombol \textit{enter} maka pengguna akan dialihkan ke halaman hasil pencarian & \checkmark & \\
+	\hline
+	Hasil Pencarian & Saat menekan \textit{tab} peta situs atau \textit{sitemap} maka akan ditampilkan peta situs dari kata kunci yang sedang dicari  & \checkmark &\\
+	\cline{2-4} 
+	& Pengguna dapat memasukkan kata kunci pencarian dengan memasukkan \textit{query} dengan kunci \textit{search} untuk mendapatkan hasil pencarian & \checkmark & \\
+	\hline
+	Peta Situs & Pengguna dapat memasukkan kata kunci ulang dengan memasukkan kata kunci pada \textit{text field} di pojok kanan atas lalu menekan tombol \textit{enter} & \checkmark & \\
+	\cline{2-4}
+	& Pengguna dapat mem-\textit{filter} peta situs berdasarkan negara dengan memilih negara pada tombol \textit{Select Countries} di pojok kanan atas  & \checkmark &\\
+	\cline{2-4}
+	& Pengguna dapat memasukkan kata kunci pencarian dengan memasukkan kata kunci pencarian pada \textit{query} URL dengan kunci \textit{query} dan negara dengan kunci \textit{countries} & \checkmark &\\
+	\hline
+	Login & Ketika pengguna memasukkan informasi akun dengan benar ke dalam formulir yang ada maka pengguna akan dialihkan ke halaman \textit{dashboard} & \checkmark &\\
+	\cline{2-4}
+	& Ketika pengguna memasukkan informasi akun dengan salah ke dalam formulir yang ada maka pengguna akan diberi pesan bahwa pengguna memasukkan informasi akun yang salah &\checkmark&\\	
+	\hline
+	Dashboard & Ketika pengguna menekan tombol \textit{profile} maka pengguna akan disajikan \textit{popup} yang berisi aksi \textit{logout} & \checkmark&\\
+	\hline
+	Page Ranking & Ketika pengguna menekan tombol \textit{start}, maka \textit{status page ranking} akan berubah menjadi \textit{running} dan akan muncul tombol \textit{stop} &\checkmark& \\
+	\cline{2-4}	
+	& Ketika pengguna menekan tombol \textit{stop}, maka \textit{page ranking} akan berhenti dan tombol \textit{start} akan muncul &\checkmark& \\
+	\hline
+	Crawling & Ketika pengguna menekan tombol \textit{start}, maka \textit{status crawling} akan berubah menjadi \textit{running} dan akan muncul tombol \textit{stop} &\checkmark&  \\
+	\cline{2-4}
+	& Ketika pengguna menekan tombol \textit{stop}, maka \textit{crawling} akan berhenti dan tombol \textit{start} akan muncul &\checkmark& \\
+	\cline{2-4}
+	& Saat \textit{tab} \textit{domains} diklik, pengguna akan dialihkan ke sub halaman daftar domain &\checkmark& \\
+	\cline{2-4}
+	& Saat \textit{tab} \textit{webpages} diklik, pengguna akan dialihkan ke sub halaman daftar \textit{webpages} &\checkmark& \\
+	\hline
+	Daftar Situs & Ketika pengguna menekan salah satu situs pada daftar situs, pengguna akan dialihkan ke halaman detail situs &\checkmark& \\
+	\hline
+	& Pengguna dapat menyaring daftar \textit{situs} yang dimunculkan dengan mengaplikasikan \textit{filter} yang tersedia yang terletak di atas tabel &\checkmark& \\
+	Daftar \textit{Domain} & Pengguna dapat menyaring daftar \textit{domain} yang dimunculkan dengan mengaplikasikan \textit{filter} yang tersedia yang terletak di atas tabel &\checkmark& \\
+	\cline{2-4}
+	\textit{Document Ranking} & Ketika pengguna menekan tombol \textit{start}, maka \textit{status document ranking} akan berubah menjadi \textit{running} dan akan muncul tombol \textit{stop}&\checkmark&  \\
+	\cline{2-4}
+	& Ketika pengguna menekan tombol \textit{stop}, maka \textit{document ranking} akan berhenti dan tombol \textit{start} akan muncul &\checkmark& \\
+	\cline{2-4}
+	& Ketika pengguna menekan \textit{tab} \textit{words}, maka akan dialihkan ke sub halaman \textit{words} &\checkmark& \\
+	\cline{2-4}		
+	& Ketika pengguna menekan \textit{tab} \textit{search log}, maka akan dialihkan ke sub halaman \textit{search log} &\checkmark& \\
+	\hline
+	Daftar Staff & Ketika tombol \textit{create new staff} ditekan, maka akan dialihkan ke halaman tambah \textit{staff} baru &\checkmark& \\
+	\cline{2-4}
+	&  Ketila tombol \textit{more} yang dilambangkan dengan ikon tiga titik vertikal ditekan, maka akan muncul \textit{popup} yang berisi aksi \textit{delete staff}. &\checkmark& \\
+	\cline{2-4}
+	& Ketika \textit{delete staff} ditekan, maka \textit{staff} akan dihapus dari daftar \textit{staff} setelah melakukan \textit{refresh} ulang. &\checkmark& \\
+	\hline
+	Tambah Staff & Ketika form berhasil diisi maka \textit{staff} baru akan ditambahkan ke daftar \textit{staff} &\checkmark& \\
+	\hline
+\end{supertabular}
+
 
 \section{Kesimpulan}
 Berdasarkan  hasil  implementasi  dan  pengujian  pada program ini, maka didapatkan kesimpulan sebagai berikut:
