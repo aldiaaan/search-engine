@@ -1,0 +1,54 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: template-farhan.aux
+Reallocating 'name_of_file' (item size: 1) to 15 items.
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+The style file: myapalike.bst
+Database file #1: daftar-pustaka.bib
+Warning--empty journal in brin1998anatomy
+Warning--empty journal in khatulistiwa2022SearchEngine
+Warning--empty journal in pratama2022indexer
+Warning--empty journal in qoriiba2021perancangan
+Warning--empty journal in zalghornain2022indexer
+You've used 16 entries,
+            1935 wiz_defined-function locations,
+            551 strings with 6343 characters,
+and the built_in function-call counts, 4907 in all, are:
+= -- 483
+> -- 167
+< -- 15
++ -- 56
+- -- 52
+* -- 356
+:= -- 908
+add.period$ -- 43
+call.type$ -- 16
+change.case$ -- 105
+chr.to.int$ -- 16
+cite$ -- 21
+duplicate$ -- 206
+empty$ -- 334
+format.name$ -- 72
+if$ -- 930
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 10
+newline$ -- 78
+num.names$ -- 48
+pop$ -- 93
+preamble$ -- 1
+purify$ -- 106
+quote$ -- 0
+skip$ -- 170
+stack$ -- 0
+substring$ -- 278
+swap$ -- 14
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 94
+warning$ -- 5
+while$ -- 39
+width$ -- 0
+write$ -- 188
+(There were 5 warnings)

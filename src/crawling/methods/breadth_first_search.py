@@ -11,7 +11,8 @@ import time
 import re
 from src.domain import Domain
 from urllib.parse import urlparse
-from src.utils import get_memsize
+import gc
+from src.utils import get_memsize, MemoryLogger
 
 
 
@@ -42,15 +43,31 @@ class BreadthFirstSearch:
         self.start_time: float = time.time()
         self.list_urls = []
 
+    def futures_stats(self, futures):
+        done = 0
+        running = 0
+        cancelled = 0
+        for f in futures:
+            if f.done():
+                done += 1
+                continue
+            if f.cancelled():
+                cancelled += 1                
+                continue
+            if f.running():
+                running += 1
+                continue
+        print(f"futures: {done} done, {running} running, {cancelled} cancelled")
+
     def run(self) -> None:
         """
         Fungsi utama yang berfungsi untuk menjalankan proses crawling BFS.
         """
         executor = CustomThreadPoolExecutor(max_workers=self.max_threads)
-
+        memlog = MemoryLogger()
         futures = []
         while True:
-            get_memsize()
+            memlog.take_snapshot()
             try:
                 time_now = time.time() - self.start_time
                 time_now_int = int(time_now)
@@ -62,6 +79,7 @@ class BreadthFirstSearch:
                     self.visited_urls.append(target_url)
                     futures.append(
                         executor.submit(self.scrape_page, target_url))
+                    # executor.submit(self.scrape_page, target_url)     
             except queue.Empty:
                 if self.crawl_utils.running_thread_count(futures) > 0:
                     continue
@@ -74,7 +92,9 @@ class BreadthFirstSearch:
             except Exception as e:
                 print(e)
                 continue
-            # time.sleep(0.1)
+
+                           
+            time.sleep(1)
 
         executor.shutdown39(wait=False, cancel_futures=True)
 

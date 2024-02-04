@@ -9,3 +9,5 @@ web_client/
 page_ranking_service_state
 logs/*
 memdump.csv
+reports/*
+.vscode

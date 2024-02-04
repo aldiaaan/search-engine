@@ -23,7 +23,6 @@ def get_available_threads():
 
 last_time_called = None
 
-
 class MemoryLogger:    
     every = 300
     last_time_called = None
@@ -50,17 +49,19 @@ class MemoryLogger:
             if hasattr(obj, '__class__'):
                 cls = str(obj.__class__)
                 total_gc += size
-        now = datetime.now()
+        now = int(time.time())
 
-        report_path = os.path.abspath(f'../../reports/MemoryLogReport-{now}.txt')   
+        report_path = os.path.abspath(f'./MemoryLogReport-{now}.txt')   
         limit = 50             
         file = open(report_path, 'a')
         file.write(f"[!] Memory Log Report ({now}) \n\n\n\n")
         file.write(f"[+] Top {limit} lines \n\n")
-        top_stats = snapshot.statistics('lineno')
+        top_stats = snapshot.statistics('traceback')
         for index, stat in enumerate(top_stats[:limit], 1):
             frame = stat.traceback[0]
             file.write("    #%s: %s:%s: %.1f KiB \n" % (index, frame.filename, frame.lineno, stat.size / 1024))
+            for line in stat.traceback.format():
+                file.write(f'       {line} \n')
             line = linecache.getline(frame.filename, frame.lineno).strip()
             if line:
                 file.write('        %s \n' % line)

@@ -1,0 +1,80 @@
+%!TEX root = ./template-skripsi.tex
+%-------------------------------------------------------------------------------
+% 								BAB I
+% 							LATAR BELAKANG
+%-------------------------------------------------------------------------------
+
+\chapter{PENDAHULUAN}
+
+\section{Latar Belakang Masalah}
+
+Dengan bertambah banyaknya informasi yang berada di internet setiap harinya, tentu saja mencari informasi yang kita inginkan secara manual di \textit{Web} sangatlah memakan waktu. Oleh karena itulah \textit{search engine} atau mesin pencari hadir untuk menangani masalah tersebut. Mesin pencari atau search engine adalah program berbasis web yang dapat diakses di internet yang memiliki tujuan utama yaitu mencari yang informasi yang relevan dengan cepat terhadap \textit{query} yang pengguna kirim. Mesin pencari atau \textit{search engine} bekerja dengan cara mencocokan query dari pengguna kepada index yang search engine atau mesin pencari telah buat
+
+Mesin pencari atau yang biasa disebut \emph{search engine} merupakan sebuah program komputer yang berguna untuk membantu pengguna dalam mencari situs web berdasarkan permintaan pencarian pengguna. Mesin pencari sebenarnya tidak berbeda dengan \textit{website} pada umumnya, hanya saja perannya lebih terfokus pada pengumpulan dan pengorganisasian berbagai informasi di internet sesuai dengan kebutuhan penggunanya. Selain untuk memudahkan pencarian, mesin pencari juga berguna untuk meningkatkan pengunjung sebuah situs web.
+
+Kebanyakan \textit{search engine} atau mesin pencari yang ada di pasaran seperti Google, Bing dan Yahoo menyimpan aktivitas pengguna mereka dalam bentuk sebuah riwayat pencarian. Riwayat pencarian memberikan wawasan mengenai bagaimana suatu \textit{search engine} atau mesin pencari digunakan dan apa ketertarikan pengguna saat ini. Hal ini dibuat mungkin dikarenakan riwayat pencarian menyimpan apa saja yang pengguna cari pada \textit{search engine} atau mesin pencari dalam jangka waktu tertentu. Data riwayat pencarian ini dapat digunakan lebih jauh lagi untuk mengerti lebih dalam tentang pengguna.
+
+Pada penelitian yang berjudul "Web Search Result Optimization by Mining the Search Engine Query Logs", sebuah metode diperkenalkan untuk mengoptimisasi hasil pencarian yang dimana metode yang diperkenalkan mempelajari dari riwayat pencarian dari penggunanya. Metode yang diperkenalkan ini memiliki tujuan untuk mengurangi waktu navigasi hasil pencarian oleh pengguna dengan cara memprediksi kebutuhan informasi dari pengguna. Metode yang diusulkan dari penelitian adalah klasterisasi query berdasarkan \textit{query} user dan \textit{feedback} user, kemudian halaman yang dikunjungi oleh user yang membentuk pola sequential dalam setiap \textit{cluster} dihasilkan dengan algoritma GSP (\textit{Generalized Sequential Patterns}). Tujuan akhirnya adalah melakukan perankingan kembali berdasarkan data sekuensial yang telah dihasilkan sebelumnya. Hasil dari penelitian yang dilakukan menunjukan hasil yang memuaskan dalam hal mengurangi ruang pencarian pengguna dan meningkatkan efektivitas search engine. Pendekatan yang dilakukan penelitian ini memerlukan setiap user memiliki perankingan dokumen yang berbeda dari user yang lain dikarenakan satu user dengan user lainnya pasti memiliki query pencarian dan tanggapan terhadap hasil pencarian yang berbeda juga \citep{improvingsearchresultbyminingusersquerylogs}.
+
+Namun ada juga \textit{search engine} atau mesin pencari yang tidak menyimpan Riwayat pencarian penggunanya, seperti DuckDuckGo. DuckDuckGo merupakan \textit{search engine} atau mesin pencari yang memiliki tujuan agar penggunanya dapat menjelajah internet tanpa mengkhawatirkan data personal mereka dimanfaatkan oleh perusahaan lain. DuckDuckGo menjanjikan layanan pencarian yang privat, anonim dan menawarkan \textit{built-in tracker blocking} sehingga situs yang pengguna kunjungi akan kesulitan mengumpulkan informasi mengenai pengguna. DuckDuckGo menawarkan layanannya dalam \textit{platform} perangkat \textit{mobile} dan ekstensi \textit{desktop}. 
+
+Visualisasi data adalah metode utama untuk membantu data mendapatkan interpretasi data dan juga menemukan nilainya. Data disajikan secara visual untuk menyampaikan interpretasi dasar mengenai apa yang data katakan tanpa adanya kesulitan \citep{datavisualizationbalogun}. Saat ini, visualisasi data atau visualisasi informasi menjadi topik yang menarik dan menjadi bidang penelitian yang luas. \citep{dbpediacasestudy} 
+
+\iffalse
+Graph adalah struktur matematika yang terdiri dari titik dan sisi yang menggambarkan hubungan antara beberapa entitas yang dimana titik memrepresentasikan entitas dan sisi yang ada di antara dua titik melambangkan bahwa dua entitas yang terhubung.\textit{Graph} dirumuskan dengan G=(V,E) yang terdiri dari beberapa titik \textit{vertices} (V) dan beberapa sisi \textit{edges} (pasangan titik). Banyak node dilambangkan dengan n = |V| dan banyaknya sisi dilambankgan dengan m = |E|. Apabila ada sisi yang menghubungkan antara titik i dengan titik j, dapat dilambangkan dengan notasi i -> j, jika graph tersebut tidak berarah maka dapat dilambangkan dengan notasi i <-> j (i dan j titik yang bertetangga). \citep{graphyifanhu}
+\fi
+
+Visualisasi grafik merupakan cara untuk menampilkan informasi yang terstruktur sebagai diagram dari grafik dan jaringan. \citep{graphvisualizationmeaning}. Visualisasi \textit{graph} dapat dilakukan dengan bantuan library open source diantaranya seperti GraphViz, D3.js, VivaGraph dan lain lain.\citep{graphyifanhu}
+
+Dalam search engine, \textit{user interface} atau tampilan merupakan hal yang penting mengingat \textit{search engine} sering sekali digunakan dalam kehidupan sehari-hari bahkan menjadi bagian hidup dari seseorang. Menurut \citep{alonsoumarbaezaricardo}, pada umumnya, skenario dari penggunaan \textit{user interface} atau tampilan dari \textit{search engine} adalah sebagai berikut: 
+
+\begin{enumerate}
+	\item Pengguna memiliki kata yang ingin dicari dan mengirimkannya kepada mesin pencari atau \textit{search engine}
+	\item  \textit{Search engine} merespon kata yang dikirimkan oleh user
+	\item \textit{Search engine} akan mencari dokumen yang sesuai dengan query yang pengguna kirim dan menampilkannya ke tampilan \textit{search engine}
+	\item Yang terakhir user menentukan apakah dokumen yang diterima user relevan atau tidak dengan yang diharapkan pengguna
+\end{enumerate}
+
+%Pengguna memiliki kata yang ingin dicari dan mengirimkannya kepada mesin pencari atau \textit{search engine} (1). \textit{Search engine} merespon kata yang dikirimkan oleh user (2). \textit{Search engine} akan mencari dokumen yang sesuai dengan query yang pengguna kirim dan menampilkannya ke tampilan \textit{search engine} (3). Yang terakhir user menentukan apakah dokumen yang diterima user relevan atau tidak dengan yang diharapkan pengguna (4).
+
+Pada penelitian "Perancangan arsitektur \textit{search engine} dengan mengintegrasikan \textit{web crawler}, algoritma \textit{page ranking}, dan \textit{document ranking}" \citep{lazu} telah dirancang arsitektur \textit{serch engine} berbasis \textit{console}. Pada penelitian ini terdapat beberapa kekurangan yaitu tidak adanya \textit{admin console} untuk manajemen dan visualisasi data hasil pengindeksan \textit{search engine} yang telah dibuat.
+
+Penelitian ini akan merancang tampilan dari \textit{search engine} dengan \textit{admin console} untuk visualisasi dan manajemen hasil indeks dengan mengintegrasikan penelitian dari \cite{lazu} yang berfokus pada perancangan arsitektur \textit{search engine} dengan mengintegrasikan \textit{web crawler}, algoritma \textit{page ranking} dan \textit{document ranking}.
+
+\section{Rumusan Masalah}
+Dari uraian latar belakang di atas, perumusan masalah pada penelitian ini adalah “Bagaimana perancangan \textit{user interface} \textit{search engine} dengan \textit{admin console} untuk manajemen dan visualisasi data hasil pengindeksan \textit{search engine}”.
+
+\section{Pembatasan Masalah}
+Pembatasan masalah pada penelitian ini antara lain:
+\begin{enumerate}
+	\item Penelitian ini menggunakan \textit{search engine} yang telah dibuat oleh \cite{lazu}.
+	\item Rancangan tampilan yang akan dibuat hanya berfokus untuk tampilan \textit{desktop}.
+\end{enumerate}
+
+\section{Tujuan Penelitian}
+Membuat \textit{user interface} dari \textit{search engine} dengan \textit{admin console} yang telah dibuat pada penelitian \cite{lazu}
+
+\section{Manfaat Penelitian}
+\begin{enumerate}
+%	\item Bagi penulis
+%	
+%	Memperluas pengetahuan tentang \textit{search engine} dan memperoleh gelar sarjana di bidang Ilmu Komputer, serta menjadi media untuk penulis dalam mengaplikasikan ilmu yang didapatkan dari kampus.
+	
+	\item Bagi Program Studi Ilmu Komputer
+	
+	Penelitian ini dapat menjadi pembuka untuk penelitian di masa depan, dan dapat memberikan panduan bagi mahasiswa program studi Ilmu Komputer tentang rancang bangun aplikasi \textit{search engine}.
+	
+%	\item Bagi Universitas Negeri Jakarta
+%	
+%	Menjadi evaluasi akademik program studi Ilmu Komputer dalam penyusunan skripsi sehingga dapat meningkatkan kualitas pendidikan dan lulusan program studi Ilmu Komputer di Universitas Negeri Jakarta.
+	
+\end{enumerate}
+
+
+
+% Baris ini digunakan untuk membantu dalam melakukan sitasi
+% Karena diapit dengan comment, maka baris ini akan diabaikan
+% oleh compiler LaTeX.
+\begin{comment}
+\bibliography{daftar-pustaka}
+\end{comment}

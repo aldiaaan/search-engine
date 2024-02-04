@@ -1,0 +1,15 @@
+[Unit]
+Description=Search Engine Workers Service
+After=network.target
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/conf.d/celery
+WorkingDirectory=/var/www/html/se2/src/celery
+ExecStart=/opt/rh/rh-python38/root/bin/python -m celery -A workers worker  -l INFO --pool=prefork -n SEARCH_ENGINE_WORKERS --without-heartbeat --without-gossip --without-mingle
+ExecStop=/opt/rh/rh-python38/root/bin/python -m celery multi stopwait -A workers worker -l INFO --pool=prefork -n SEARCH_ENGINE_WORKERS
+ExecReload=/opt/rh/rh-python38/root/bin/python -m celery multi restart -A workers worker -l INFO --pool=prefork -n SEARCH_ENGINE_WORKERS
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

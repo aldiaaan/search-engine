@@ -1,0 +1,92 @@
+\begin{thebibliography}{}
+
+\bibitem[Amstrong, 2021]{amstrong2021website}
+Amstrong, M. (2021).
+\newblock How many websites are there?
+\newblock https://www.statista.com/chart/19058/number-of-websites-online/.
+  Diakses pada 30-07-2022.
+
+\bibitem[Berners-Lee dkk., 1992]{bernersLee1992}
+Berners-Lee, T., Cailliau, R., Groff, J.-F., dan Pollermann, B. (1992).
+\newblock World-wide web: The information universe.
+\newblock {\em Internet Research}, 2(1):52--58.
+
+\bibitem[Brin dan Page, 1998]{brin1998anatomy}
+Brin, S. dan Page, L. (1998).
+\newblock The anatomy of a large-scale hypertextual web search engine.
+
+\bibitem[GeeksForGeeks, 2022]{geeksForGeeksBtree}
+GeeksForGeeks (2022).
+\newblock Introduction of b-tree.
+\newblock https://www.geeksforgeeks.org/introduction-of-b-tree-2/. Diakses pada
+  28-09-2022.
+
+\bibitem[GlobalStatCounter, 2022]{gsc2022marketshare}
+GlobalStatCounter (2022).
+\newblock Search engine market share worldwide - july 2022.
+\newblock
+  https://gs.statcounter.com/search-engine-market-share\#monthly-200901-202208-bar.
+  Diakses pada 28-09-2022.
+
+\bibitem[Khatulistiwa, 2022]{khatulistiwa2022SearchEngine}
+Khatulistiwa, L. (2022).
+\newblock Perancangan arsitektur search engine dengan mengintegrasikan web
+  crawler, algoritma page ranking, dan document ranking.
+
+\bibitem[Kontovasilis dan Mitrou, 1995]{kontovasilisMitrou1995}
+Kontovasilis, K.~P. dan Mitrou, N.~M. (1995).
+\newblock Markov-modulated traffic with nearly complete decomposability
+  characteristics and associated fluid queueing models.
+\newblock {\em Advances in Applied Probability}, 27(4):1144--1185.
+
+\bibitem[MySQLDoc, 2022]{mysqlIndex}
+MySQLDoc (2022).
+\newblock How mysql uses indexes.
+\newblock https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html. Diakses
+  pada 30-07-2022.
+
+\bibitem[Page dkk., 1999]{ilprints422}
+Page, L., Brin, S., Motwani, R., dan Winograd, T. (1999).
+\newblock The pagerank citation ranking: Bringing order to the web.
+\newblock Technical Report 1999-66, Stanford InfoLab.
+
+\bibitem[Pratama, 2022]{pratama2022indexer}
+Pratama, Z. (2022).
+\newblock Perancangan modul pengindeks pada search engine berupa induced
+  generalized suffix tree untuk keperluan perangkingan dokumen.
+
+\bibitem[Qoriiba, 2021]{qoriiba2021perancangan}
+Qoriiba, M.~F. (2021).
+\newblock Perancangan crawler sebagai pendukung pada search engine.
+
+\bibitem[Sample, 2018]{sample2018internet}
+Sample, I. (2018).
+\newblock What is the internet? 13 key questions answered.
+\newblock
+  https://www.theguardian.com/technology/2018/oct/22/what-is-the-internet-13-key-questions-answered.
+  Diakses pada 30-07-2022.
+
+\bibitem[Techopedia, 2020]{techopedia2020website}
+Techopedia (2020).
+\newblock Website.
+\newblock https://www.techopedia.com/definition/5411/website. Diakses pada
+  30-07-2022.
+
+\bibitem[Wilson, 1996]{wilson1996}
+Wilson, R.~J. (1996).
+\newblock {\em Introduction to Graph Theory}.
+\newblock Longman Group Ltd.
+
+\bibitem[Zalghornain, 2022]{zalghornain2022indexer}
+Zalghornain, M. (2022).
+\newblock Rancang bangun sistem pencarian teks dengan menggunakan model
+  continuous-bag-of-words dan model continuous skip-gram pada koleksi dokumen.
+
+\bibitem[Zhu dkk., 2005]{zhuetal2005distributedPagerank}
+Zhu, Y., Ye, S., dan Li, X. (2005).
+\newblock Distributed pagerank computation based on iterative
+  aggregation-disaggregation methods.
+\newblock In {\em CIKM '05: Proceedings of the 14th ACM international
+  conference on Information and knowledge management}, pages 578--585.
+
+\end{thebibliography}

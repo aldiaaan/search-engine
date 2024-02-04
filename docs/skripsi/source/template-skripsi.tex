@@ -1,0 +1,195 @@
+%-------------------------------------------------------------------------------
+%                      Template Naskah Skripsi
+%               	Berdasarkan format JTETI FT UGM
+% 						(c) @gunturdputra 2014
+%-------------------------------------------------------------------------------
+
+%Template pembuatan naskah skripsi.
+\documentclass{jtetiskripsi}
+
+\renewcommand \thesection{\Alph{section}.}
+\renewcommand \thesubsection{\arabic{subsection}.}
+
+%Untuk prefiks pada daftar gambar dan tabel
+\usepackage[titles]{tocloft}
+\renewcommand\cftfigpresnum{Gambar\  }
+\renewcommand\cfttabpresnum{Tabel\   }
+
+%Untuk hyperlink dan table of content
+\usepackage[hidelinks]{hyperref}
+\newlength{\mylenf}
+\settowidth{\mylenf}{\cftfigpresnum}
+\setlength{\cftfignumwidth}{\dimexpr\mylenf+2em}
+\setlength{\cfttabnumwidth}{\dimexpr\mylenf+2em}
+
+% comment
+\usepackage{comment}
+
+%Untuk Bold Face pada Keterangan Gambar
+\usepackage[labelfont=bf]{caption}
+
+%Untuk caption dan subcaption
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{longtable}
+%
+%\usepackage{draftwatermark}
+%\usepackage{tikz}
+%\SetWatermarkText{\centering{\tikz{\node[opacity=0.1]{\includegraphics[width=0.8\paperwidth]{gambar/UNJ_LOGO.png}};}}}
+%\SetWatermarkAngle{0}
+%\SetWatermarkScale{1}
+
+%pdf
+\usepackage{pdfpages}
+
+%table
+\usepackage{graphics}
+
+\usepackage{wrapfig}
+
+%bibliography
+\usepackage{natbib}
+
+%equation
+\usepackage{amsmath}
+\usepackage{amssymb}
+%algoritma
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
+%listing
+\usepackage{listings}
+
+
+\usepackage{enumitem}
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+
+\lstset{style=mystyle}
+
+
+%-----------------------------------------------------------------
+%Disini awal masukan untuk data skripsi
+%-----------------------------------------------------------------
+\titleind{Perancangan \emph{User Interface Search Engine} Dengan Admin Console Untuk Manajemen dan Visualisasi Data Hasil Pengindeksan \texit{Search Engine}}
+
+\fullname{Aldian Asmara}
+
+\idnum{1313618032}
+
+%\approvaldate{12 Februari 2019}
+%\approvaldate{12 Februari 2019}
+
+\degree{Sarjana Ilmu Komputer}
+
+\yearsubmit{2024}
+
+\program{Ilmu Komputer}
+
+\dept{Ilmu Komputer}
+
+\firstsupervisor{Muhammad Eka Suryana, M. Kom.}
+\firstnip{198512232012121002}
+
+\secondsupervisor{Med Irzal, M. Kom.}
+\secondnip{197706152003121001}
+
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk data proposal skripsi
+%-----------------------------------------------------------------
+
+\tolerance=1
+\emergencystretch=\maxdimen
+\hyphenpenalty=10000
+\hbadness=10000
+
+\begin{document}
+
+
+\cover
+%-----------------------------------------------------------------
+%-----------------------------------------------------------------
+%Disini akhir masukan untuk muka skripsi
+%-----------------------------------------------------------------
+
+\include{orisinalitas}
+\include{persembahan}
+%\include{pengesahan}
+\include{kata-pengantar}
+\include{abstrak}
+\include{abstract}
+\begin{singlespacing}
+\tableofcontents 
+\addcontentsline{toc}{chapter}{DAFTAR ISI}
+\listoffigures
+\addcontentsline{toc}{chapter}{DAFTAR GAMBAR}
+\listoftables
+\addcontentsline{toc}{chapter}{DAFTAR TABEL}
+\end{singlespacing}
+\begin{counterpage}
+\end{counterpage}
+%Disini awal masukan untuk Bab
+%-----------------------------------------------------------------
+\include{bab1}
+\include{bab2}
+\include{bab3}
+\include{bab4}
+\include{bab5}
+
+
+%-----------------------------------------------------------------
+%Disini akhir masukan Bab
+%-----------------------------------------------------------------
+
+
+%-----------------------------------------------------------------
+% Disini awal masukan untuk Daftar Pustaka
+% - Daftar pustaka diambil dari file .bib yang ada pada folder ini
+%   juga.
+% - Untuk memudahkan dalam memanajemen dan menggenerate file .bib
+%   gunakan reference manager seperti Mendeley, Zotero, EndNote,
+%   dll.
+%-----------------------------------------------------------------
+\bibliography{daftar-pustaka}
+\bibliographystyle{myapalike}
+\begin{singlespacing}
+\addcontentsline{toc}{chapter}{DAFTAR PUSTAKA}
+\end{singlespacing}
+\addcontentsline{toc}{chapter}{RIWAYAT HIDUP}
+\include{riwayat}
+
+%\include{lampiran}
+%\include{lampiranreza}
+%\include{lampiranrachel}
+%\include{lampiranlazu}
+%-----------------------------------------------------------------
+%Disini akhir masukan Daftar Pustaka
+%-----------------------------------------------------------------
+
+
+\end{document}

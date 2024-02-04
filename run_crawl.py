@@ -3,8 +3,10 @@ from dotenv import load_dotenv
 from src.crawling.crawl import Crawl
 from src.database.database import Database
 import os
+from src.utils import MemoryLogger
 
 if __name__ == "__main__":
+    MemoryLogger.start()
     load_dotenv()
     db = Database()
     db.create_tables()

@@ -67,7 +67,7 @@ class Domain:
             return "UNKNOWN"
 
         ip, _ = response.raw._fp.fp.raw._sock.getpeername()
-        print(ip)
+        # print(ip)
         country = geoip2_handle.country(ip).registered_country.iso_code
         return country
     
