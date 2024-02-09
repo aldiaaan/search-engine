@@ -285,6 +285,15 @@ Pada implementasi \textit{user interface}, digunakan bahasa pemrograman \textit{
 \label{gambar:staff_login}
 \end{figure}
 
+\subsection{Desain \textit{Database}}
+
+\begin{figure}[H]
+	\includegraphics[width=\linewidth]{erd.png}
+	\caption{Halaman \textit{Desain \textit{database}}}
+	\label{gambar:desain_database}
+\end{figure}
+
+
 \subsection{Infrastruktur}
 Aplikasi Apache memiliki untuk meneruskan permintaan dari internet publik ke aplikasi web yang terdapat dalam Server yaitu aplikasi web berbasis Flask dengan bahasa pemrograman Python. Aplikasi web berbasis flask ini menangani seluruh permintaan yang datang dari pengguna dan mengirim respon yang sesuai dengan permintaan pengguna. Saat menjalankan tugasnya, aplikasi berbasis flask ini didampingi oleh beberapa aplikasi lainnya yaitu Celery dan MySQL. Aplikasi Celery digunakan oleh aplikasi web berbasis Flask untuk memindahkan sebagian beban kerja yang besar dari aplikasi web berbasis flask yang ada. Dengan adanya pemindahan beban dari aplikasi web berbasis flask ke aplikasi Celery ini, aplikasi web berbasis flask dapat melayani banyak permintaan pengguna yang masuk. Dalam menjalankan tugasnya, aplikasi Celery dibantu oleh aplikasi RabbitMQ yang bertugas sebagai \textit{message broker}. Aplikasi MySQL merupakan aplikasi basis data yang digunakan dalam aplikasi web berbasis Flask. Aplikasi MySQL digunakan untuk menyimpan informasi dan mengambil data yang digunakan oleh aplikasi berbasis Flask.
 
@@ -320,27 +329,18 @@ Percobaan lain dilakukan dengan waktu yang lebih singkat untuk mengidentifikasi 
 	\label{gambar:linemem}
 \end{figure}
 
-
-\subsection{Desain \textit{Database}}
-
-
-\begin{figure}[H]
-	\includegraphics[width=\linewidth]{erd.png}
-	\caption{Desain \textit{database}}
-	\label{gambar:db}
-\end{figure}
-
 \subsection{\textit{Unit Testing}}
 
 Pengujian \textit{unit testing} dilaksanakan dengan salah satu tim pengembang \textit{backend} internal pada saat akhir \textit{sprint}. Kesimpulan dari unit testing yang telah dilakukan adalah fitur yang telah dibuat dapat berjalan dengan baik.
 
 \begin{supertabular}{@{}|p{2cm}|p{2cm}|p{1cm}|p{1.5cm}|@{}}
+	\caption{Hasil \textit{Unit Testing}} \\
 	\hline
 	\multicolumn{4}{|c|}{\textbf{Unit Testing}} \\
 	\hline
 	&&\multicolumn{2}{c|}{Kesesuaian}\\
 	\cline{3-4}
-	\textbf{Uji Fitur} & \textbf{Skenario Pengujian} & \textbf{Sesuai} & \textbf{Tidak Sesuai}  \\
+	\textbf{Uji Fitur} & \textbf{Skenario Pengujian} & Sesuai & Tidak Sesuai  \\
 	\hline
 	Pencarian Pengguna & Pada tampilan halaman pencarian, ketika pengguna memasukkan kata kunci pencarian dan menekan tombol \textit{enter} maka pengguna akan dialihkan ke halaman hasil pencarian & \checkmark & \\
 	\hline

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.30)  5 FEB 2024 05:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.3.30)  5 FEB 2024 04:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -957,7 +957,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\@ifnextchar' on input line 121.
 
-<flowchart_lazuardy.png, id=101, 411.78844pt x 341.02406pt>
+<flowchart_lazuardy.png, id=97, 411.78844pt x 341.02406pt>
 File: flowchart_lazuardy.png Graphic file (type png)
 <use flowchart_lazuardy.png>
 Package pdftex.def Info: flowchart_lazuardy.png  used on input line 126.
@@ -966,7 +966,7 @@ Package pdftex.def Info: flowchart_lazuardy.png  used on input line 126.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2 <./flowchart_lazuardy.png>]
-<desain-penelitian.png, id=122, 514.3215pt x 451.6875pt>
+<desain-penelitian.png, id=118, 514.3215pt x 451.6875pt>
 File: desain-penelitian.png Graphic file (type png)
 <use desain-penelitian.png>
 Package pdftex.def Info: desain-penelitian.png  used on input line 161.
@@ -1047,42 +1047,42 @@ Overfull \hbox (1.08943pt too wide) in paragraph at lines 194--195
  []
 
 [3 <./desain-penelitian.png>]
-<usecase.png, id=131, 288.3272pt x 467.49657pt>
+<usecase.png, id=127, 288.3272pt x 467.49657pt>
 File: usecase.png Graphic file (type png)
 <use usecase.png>
 Package pdftex.def Info: usecase.png  used on input line 213.
 (pdftex.def)             Requested size: 231.84843pt x 375.93805pt.
-<view_crawling_domain_list.png, id=132, 3854.4pt x 2168.1pt>
+<view_crawling_domain_list.png, id=128, 3854.4pt x 2168.1pt>
 File: view_crawling_domain_list.png Graphic file (type png)
 <use view_crawling_domain_list.png>
 Package pdftex.def Info: view_crawling_domain_list.png  used on input line 227.
 
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_dashboard_services_crawling_overview.png, id=133, 3854.4pt x 2168.1pt>
+<view_dashboard_services_crawling_overview.png, id=129, 3854.4pt x 2168.1pt>
 File: view_dashboard_services_crawling_overview.png Graphic file (type png)
 <use view_dashboard_services_crawling_overview.png>
 Package pdftex.def Info: view_dashboard_services_crawling_overview.png  used on
  input line 232.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_overview.png, id=134, 3854.4pt x 2168.1pt>
+<view_document_ranking_overview.png, id=130, 3854.4pt x 2168.1pt>
 File: view_document_ranking_overview.png Graphic file (type png)
 <use view_document_ranking_overview.png>
 Package pdftex.def Info: view_document_ranking_overview.png  used on input line
  237.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_search_logs.png, id=135, 3854.4pt x 2168.1pt>
+<view_document_ranking_search_logs.png, id=131, 3854.4pt x 2168.1pt>
 File: view_document_ranking_search_logs.png Graphic file (type png)
 <use view_document_ranking_search_logs.png>
 Package pdftex.def Info: view_document_ranking_search_logs.png  used on input l
 ine 242.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_document_ranking_words.png, id=136, 3854.4pt x 2168.1pt>
+<view_document_ranking_words.png, id=132, 3854.4pt x 2168.1pt>
 File: view_document_ranking_words.png Graphic file (type png)
 <use view_document_ranking_words.png>
 Package pdftex.def Info: view_document_ranking_words.png  used on input line 24
 7.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_page_ranking_overview.png, id=137, 3854.4pt x 2168.1pt>
+<view_page_ranking_overview.png, id=133, 3854.4pt x 2168.1pt>
 File: view_page_ranking_overview.png Graphic file (type png)
 <use view_page_ranking_overview.png>
 Package pdftex.def Info: view_page_ranking_overview.png  used on input line 252
@@ -1094,23 +1094,23 @@ Underfull \vbox (badness 2680) has occurred while \output is active []
  [4 <./usecase.png> <./view_crawling_domain_list.png> <./view_dashboard_service
 s_crawling_overview.png> <./view_document_ranking_overview.png> <./view_documen
 t_ranking_search_logs.png>]
-<view_search_engine_home.png, id=152, 3854.4pt x 2168.1pt>
+<view_search_engine_home.png, id=148, 3854.4pt x 2168.1pt>
 File: view_search_engine_home.png Graphic file (type png)
 <use view_search_engine_home.png>
 Package pdftex.def Info: view_search_engine_home.png  used on input line 257.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_search_engine_result.png, id=153, 3854.4pt x 2168.1pt>
+<view_search_engine_result.png, id=149, 3854.4pt x 2168.1pt>
 File: view_search_engine_result.png Graphic file (type png)
 <use view_search_engine_result.png>
 Package pdftex.def Info: view_search_engine_result.png  used on input line 262.
 
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_add.png, id=154, 3854.4pt x 2168.1pt>
+<view_staff_add.png, id=150, 3854.4pt x 2168.1pt>
 File: view_staff_add.png Graphic file (type png)
 <use view_staff_add.png>
 Package pdftex.def Info: view_staff_add.png  used on input line 268.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_edit.png, id=155, 3854.4pt x 2168.1pt>
+<view_staff_edit.png, id=151, 3854.4pt x 2168.1pt>
 File: view_staff_edit.png Graphic file (type png)
 <use view_staff_edit.png>
 Package pdftex.def Info: view_staff_edit.png  used on input line 273.
@@ -1118,63 +1118,95 @@ Package pdftex.def Info: view_staff_edit.png  used on input line 273.
 
 Underfull \vbox (badness 2680) has occurred while \output is active []
 
-<view_staff_list.png, id=156, 3854.4pt x 2168.1pt>
+<view_staff_list.png, id=152, 3854.4pt x 2168.1pt>
 File: view_staff_list.png Graphic file (type png)
 <use view_staff_list.png>
 Package pdftex.def Info: view_staff_list.png  used on input line 278.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
-<view_staff_login.png, id=157, 3854.4pt x 2168.1pt>
+<view_staff_login.png, id=153, 3854.4pt x 2168.1pt>
 File: view_staff_login.png Graphic file (type png)
 <use view_staff_login.png>
 Package pdftex.def Info: view_staff_login.png  used on input line 283.
 (pdftex.def)             Requested size: 231.84843pt x 130.41121pt.
+
+
+LaTeX Warning: File `erd.png' not found on input line 291.
+
+
+! Package pdftex.def Error: File `erd.png' not found: using draft setting.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.291 	\includegraphics[width=\linewidth]{erd.png}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 2
+91.
+(C:\Users\Aldian\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `cmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
 
 Underfull \vbox (badness 2680) has occurred while \output is active []
 
  [5 <./view_document_ranking_words.png> <./view_page_ranking_overview.png> <./v
 iew_search_engine_home.png> <./view_search_engine_result.png> <./view_staff_add
 .png> <./view_staff_edit.png> <./view_staff_list.png> <./view_staff_login.png>]
-<infra2.png, id=178, 584.1825pt x 610.28pt>
+<infra2.png, id=174, 584.1825pt x 610.28pt>
 File: infra2.png Graphic file (type png)
 <use infra2.png>
-Package pdftex.def Info: infra2.png  used on input line 294.
+Package pdftex.def Info: infra2.png  used on input line 303.
 (pdftex.def)             Requested size: 231.84843pt x 242.208pt.
 
-Underfull \hbox (badness 1953) in paragraph at lines 306--307
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \hbox (badness 1953) in paragraph at lines 315--316
 []\T1/pplx/m/n/10 (+20) Adapun grafik peng-gu-naan mem-ori ap-likasi
  []
 
-<memchart.png, id=179, 517.935pt x 351.495pt>
+<memchart.png, id=175, 517.935pt x 351.495pt>
 File: memchart.png Graphic file (type png)
 <use memchart.png>
-Package pdftex.def Info: memchart.png  used on input line 310.
+Package pdftex.def Info: memchart.png  used on input line 319.
 (pdftex.def)             Requested size: 231.84843pt x 157.34532pt.
-<line_memusage_chart.png, id=182, 359.16pt x 217.467pt>
+[6 <./infra2.png> <./memchart.png>]
+<line_memusage_chart.png, id=191, 359.16pt x 217.467pt>
 File: line_memusage_chart.png Graphic file (type png)
 <use line_memusage_chart.png>
-Package pdftex.def Info: line_memusage_chart.png  used on input line 318.
+Package pdftex.def Info: line_memusage_chart.png  used on input line 327.
 (pdftex.def)             Requested size: 231.84843pt x 140.3796pt.
-<erd.png, id=183, 1170.3725pt x 991.705pt>
-File: erd.png Graphic file (type png)
-<use erd.png>
-Package pdftex.def Info: erd.png  used on input line 328.
-(pdftex.def)             Requested size: 231.84843pt x 196.44597pt.
 
-Underfull \vbox (badness 5756) has occurred while \output is active []
 
- [6 <./infra2.png> <./memchart.png> <./line_memusage_chart.png>]
+! Package caption Error: \caption outside float.
+
+See the caption package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.337 	\caption
+               {Hasil \textit{Unit Testing}} \\
+If you do not understand this error, please take a closer look
+at the documentation of the `caption' package, especially the
+section about errors.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 343--343
 []\T1/pplx/b/n/10 (+20) Skenario
  []
 
 
-Overfull \hbox (0.93745pt too wide) in paragraph at lines 343--343
-[]\T1/pplx/b/n/10 (-20) Sesuai| 
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 343--344
-[]\T1/pplx/b/n/10 (+20) Tidak
+[]\T1/pplx/m/n/10 (+20) Tidak
  []
 
 
@@ -1228,7 +1260,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 345--345
  []
 
 
-Overfull \hbox (3.0944pt too wide) in paragraph at lines 337--346
+Overfull \hbox (3.0944pt too wide) in paragraph at lines 336--346
 [] 
  []
 
@@ -1402,7 +1434,7 @@ Overfull \hbox (3.0944pt too wide) in paragraph at lines 346--354
 [] 
  []
 
-[7 <./erd.png>]
+[7 <./line_memusage_chart.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 355--355
 []\T1/pplx/m/n/10 (+20) Pengguna
  []
@@ -2188,26 +2220,48 @@ Overfull \hbox (3.0944pt too wide) in paragraph at lines 387--397
  []
 
 (template.bbl) [10] (template.aux)
-Package rerunfilecheck Info: File `template.out' has not changed.
-(rerunfilecheck)             Checksum: 2D021AED3E268D31EC3FD42EF3D9C90A;2495.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `template.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `template.out':
+(rerunfilecheck)             Before: ED66D31E5813F86F81378E60CA952BD4;2357
+(rerunfilecheck)             After:  32B5324F3092BF11200CE8B6C2438E33;2495.
  ) 
 Here is how much of TeX's memory you used:
- 25764 strings out of 475385
- 479034 string characters out of 2776435
- 832032 words of memory out of 3000000
- 46088 multiletter control sequences out of 15000+600000
- 551359 words of font info for 472 fonts, out of 8000000 for 9000
+ 25829 strings out of 475385
+ 480188 string characters out of 2776435
+ 831981 words of memory out of 3000000
+ 46132 multiletter control sequences out of 15000+600000
+ 551672 words of font info for 473 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,12n,91p,1610b,527s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C
-:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pf
-b><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplbi
+
+pdfTeX warning (dest): name{figure.caption.35} has been referenced but does not
+ exist, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{section*.37} has been referenced but does not exist
+, replaced by a fixed one
+
+
+pdfTeX warning (dest): name{subsection*.36} has been referenced but does not ex
+ist, replaced by a fixed one
+
+ <C:\Users\Aldian\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1
+000.pk>{C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.e
+nc}<C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb
 8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/
-uplr8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palat
-ino/uplri8a.pfb>
-Output written on template.pdf (10 pages, 2580332 bytes).
+uplbi8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/pala
+tino/uplr8a.pfb><C:/Users/Aldian/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
+palatino/uplri8a.pfb>
+Output written on template.pdf (10 pages, 2530231 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
- 119044 words of extra memory for PDF output out of 128383 (max. 10000000)
+ 266 PDF objects out of 1000 (max. 8388607)
+ 67 named destinations out of 1000 (max. 500000)
+ 119543 words of extra memory for PDF output out of 128383 (max. 10000000)
 
